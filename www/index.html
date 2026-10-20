@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A1A24">
+<title>Veritup</title>
+<style>
+:root{
+  --noche:#0A1A24;--prof:#11293A;--linea:#1E3A4D;--borde:#2A4A5E;--alza:#2BD98F;--alza-osc:#123D2E;
+  --ambar:#F2B33D;--ambar-osc:#3D3214;--niebla:#F4F7F6;--bruma:#8FA3AE;--suave:#C5D2D8;--baja:#FF6B6B;--baja-osc:#3D1A1C;
+  --titulo:"Sora","Segoe UI",Roboto,system-ui,sans-serif;--texto:"Inter",Roboto,"Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--noche);color:var(--niebla);font-family:var(--texto);font-size:17px;line-height:1.45}
+a{color:var(--alza)}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+#app{max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+.demo{background:var(--ambar);color:var(--noche);font-size:13px;font-weight:700;text-align:center;padding:6px 12px;letter-spacing:.02em}
+.pant{flex:1;padding:24px 20px 28px;display:flex;flex-direction:column;gap:20px}
+.fila{display:flex;align-items:center;gap:12px}
+.col{display:flex;flex-direction:column;gap:6px}
+.h1{margin:0;font-family:var(--titulo);font-size:30px;font-weight:700;letter-spacing:-.02em}
+.h2{margin:0;font-family:var(--titulo);font-size:21px;font-weight:700}
+.sub{margin:0;color:var(--bruma);font-size:16px}
+.chica{font-size:14px;color:var(--bruma);line-height:1.5}
+.marca{display:flex;align-items:center;gap:10px;font-family:var(--titulo);font-size:26px;font-weight:700;letter-spacing:-.02em}
+.tarjeta{background:var(--prof);border-radius:20px;padding:18px}
+.aviso{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:16px;border:1px solid var(--linea);font-size:15px;color:var(--suave)}
+.aviso svg,.fila>svg{flex-shrink:0}
+.aviso.ambar{background:#2B2410;border-color:#5C4A1A;color:#F4E3BE}
+.btn{min-height:56px;border:0;border-radius:16px;background:var(--alza);color:var(--noche);font-size:18px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;padding:0 16px;width:100%}
+.btn.sec{background:transparent;border:1px solid var(--borde);color:var(--niebla)}
+.btn.peligro{background:transparent;border:1px solid #5C2A2A;color:#FF8A8A}
+.btn[disabled]{background:var(--linea);color:#6F8590;cursor:not-allowed}
+.redondo{width:48px;height:48px;border-radius:999px;border:1px solid var(--borde);background:transparent;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+label.et{font-size:16px;font-weight:600}
+.campo{height:58px;width:100%;padding:0 16px;border-radius:14px;border:1px solid var(--borde);background:var(--prof);color:var(--niebla);font-size:19px;outline:none}
+.campo:focus{border-color:var(--alza)}
+.campo::placeholder{color:#6F8590}
+select.campo{width:auto;padding:0 10px;font-size:17px;font-weight:600}
+.err{color:#FF8A8A;font-size:14px;min-height:0}
+.pastilla{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font-size:14px;font-weight:600}
+.p-verde{background:var(--alza-osc);color:var(--alza)}.p-ambar{background:var(--ambar-osc);color:var(--ambar)}.p-rojo{background:var(--baja-osc);color:#FF8A8A}
+.tabs{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;padding:6px;border-radius:16px;background:var(--prof)}
+.tabs button{height:46px;border:0;border-radius:12px;background:transparent;color:var(--suave);font-size:16px;font-weight:600}
+.tabs button.on{background:var(--alza);color:var(--noche)}
+.opcion{text-align:left;width:100%;padding:16px;border-radius:18px;background:var(--prof);border:2px solid var(--borde);display:flex;gap:14px;align-items:center}
+.opcion.on{border-color:var(--alza)}
+.radio{width:24px;height:24px;flex-shrink:0;border-radius:999px;border:2px solid var(--borde);display:flex;align-items:center;justify-content:center}
+.opcion.on .radio{border-color:var(--alza)}
+.opcion.on .radio::after{content:"";width:12px;height:12px;border-radius:999px;background:var(--alza)}
+.num{font-family:var(--titulo);font-weight:700;font-variant-numeric:tabular-nums}
+.nav{position:sticky;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 8px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--linea);background:var(--noche)}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;font-size:13px;text-decoration:none;color:var(--bruma)}
+.nav a.on{color:var(--alza);font-weight:600}
+.plan{border-radius:22px;background:var(--prof);border:2px solid var(--prof);overflow:hidden}
+.plan.actual{border-color:var(--alza)}
+.plan.futuro{border:2px dashed #4A5B65;opacity:.5}
+.plan>button{width:100%;padding:14px 16px;border:0;background:transparent;display:flex;align-items:center;gap:14px;text-align:left}
+.insignia{width:52px;height:52px;flex-shrink:0;border-radius:16px;color:var(--noche);display:flex;align-items:center;justify-content:center;font-family:var(--titulo);font-size:22px;font-weight:700}
+.lista{border-radius:20px;background:var(--prof);overflow:hidden}
+.item{padding:16px;display:flex;gap:14px;align-items:flex-start;border-bottom:1px solid var(--linea)}
+.item:last-child{border-bottom:0}
+.vinculo{min-height:62px;padding:0 16px;display:flex;align-items:center;gap:14px;border:0;border-bottom:1px solid var(--linea);background:transparent;width:100%;text-align:left;font-size:18px;text-decoration:none;color:var(--niebla)}
+.semana{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.semana div{height:60px;border-radius:14px;background:var(--prof);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:var(--bruma);border:2px solid var(--prof)}
+.semana div small{font-size:11px;font-weight:600}
+.semana .hoy{background:var(--alza-osc);border-color:var(--alza);color:var(--alza)}
+.semana .sab{background:var(--ambar-osc);border-color:var(--ambar);color:var(--ambar)}
+.barra{display:flex;height:12px;border-radius:999px;overflow:hidden}
+.drop{min-height:160px;padding:20px;border-radius:18px;border:2px dashed var(--borde);background:#0E2230;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;cursor:pointer}
+.oculto{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--niebla);color:var(--noche);padding:12px 18px;border-radius:14px;font-weight:600;font-size:15px;z-index:9;max-width:90%;text-align:center}
+.pasos{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px}
+.pasos li{display:flex;gap:14px;align-items:flex-start}
+.pasos .n{width:32px;height:32px;flex-shrink:0;border-radius:999px;background:var(--linea);display:flex;align-items:center;justify-content:center;font-weight:700}
+.pasos span:last-child{padding-top:4px}
+.grafico{display:flex;align-items:flex-end;gap:8px;height:72px}
+.grafico div{flex:1;border-radius:6px}
+
+/* ===== Animaciones (inspiración iOS) ===== */
+:root{--resorte:cubic-bezier(.32,.72,0,1);--suave:cubic-bezier(.25,.1,.25,1);--glow:43,217,143}
+.btn,.tarjeta,.plan,.opcion,.item,.vinculo,.nav a,.tabs button,.redondo,.drop,.semana div,.lista,.insignia{
+  transition:transform .5s var(--resorte),box-shadow .5s var(--resorte),background-color .3s var(--suave),border-color .3s var(--suave),opacity .3s var(--suave),filter .3s var(--suave)}
+.btn,.tarjeta,.opcion,.vinculo,.drop,.plan>button,.redondo{position:relative;overflow:hidden;isolation:isolate}
+.btn::after,.tarjeta::after,.opcion::after,.vinculo::after,.drop::after,.plan>button::after,.redondo::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;border-radius:inherit;
+  background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.16),transparent 60%);
+  opacity:0;transition:opacity .45s var(--suave)}
+/* ratón: se eleva, se agranda apenas y resplandece */
+@media (hover:hover) and (pointer:fine){
+  .btn:not([disabled]):hover{transform:translateY(-2px) scale(1.015);box-shadow:0 12px 32px -12px rgba(var(--glow),.6),0 0 0 1px rgba(var(--glow),.35)}
+  .btn.sec:not([disabled]):hover,.btn.peligro:hover{box-shadow:0 12px 32px -14px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.16)}
+  .tarjeta:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 20px 44px -20px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.06)}
+  .plan:not(.futuro):hover{transform:scale(1.015);box-shadow:0 18px 44px -20px rgba(var(--glow),.45),0 0 0 1px rgba(var(--glow),.18)}
+  .plan:not(.futuro):hover .insignia{transform:scale(1.08) rotate(-3deg)}
+  .opcion:not([disabled]):hover{transform:scale(1.02);border-color:rgba(var(--glow),.65);box-shadow:0 0 0 4px rgba(var(--glow),.10)}
+  .lista:hover{box-shadow:0 18px 40px -22px rgba(0,0,0,.7)}
+  .vinculo:hover,.item:hover{background:rgba(255,255,255,.035)}
+  .nav a:hover{transform:translateY(-2px);color:#F4F7F6}
+  .tabs button:not(.on):hover{background:rgba(255,255,255,.06);color:#F4F7F6}
+  .redondo:hover{transform:scale(1.08);box-shadow:0 0 0 6px rgba(255,255,255,.05)}
+  .drop:hover{transform:scale(1.01);border-color:rgba(var(--glow),.6);box-shadow:0 0 0 6px rgba(var(--glow),.08)}
+  :is(.btn,.tarjeta,.opcion,.vinculo,.drop,.plan>button,.redondo):hover::after{opacity:1}
+}
+/* toque y presión: se hunde como en iOS */
+:is(.btn:not([disabled]),.opcion:not([disabled]),.redondo,.tabs button,.vinculo,.plan>button,.nav a,.drop):active{transform:scale(.965);transition-duration:.14s}
+.tocado::after{opacity:1!important}
+/* selección: pequeño rebote y halo */
+.pop{animation:pop .65s var(--resorte)}
+@keyframes pop{0%{transform:scale(.95)}45%{transform:scale(1.04)}100%{transform:scale(1)}}
+.brillo{animation:pop .65s var(--resorte),halo 1.1s var(--suave)}
+@keyframes halo{0%{box-shadow:0 0 0 0 rgba(var(--glow),.5)}100%{box-shadow:0 0 0 16px rgba(var(--glow),0)}}
+.opcion.on{box-shadow:0 0 0 4px rgba(var(--glow),.14),0 14px 32px -16px rgba(var(--glow),.55)}
+.tabs button.on{box-shadow:0 8px 20px -10px rgba(var(--glow),.8)}
+.plan.actual{box-shadow:0 0 0 4px rgba(var(--glow),.10)}
+.nav a.on svg{filter:drop-shadow(0 0 8px rgba(var(--glow),.65))}
+.nav a.on{animation:pop .6s var(--resorte)}
+/* entrada de cada pantalla, en cascada */
+.pant.entra>*{animation:entra .6s var(--resorte) both}
+.pant.entra>*:nth-child(2){animation-delay:.035s}.pant.entra>*:nth-child(3){animation-delay:.07s}
+.pant.entra>*:nth-child(4){animation-delay:.105s}.pant.entra>*:nth-child(5){animation-delay:.14s}
+.pant.entra>*:nth-child(6){animation-delay:.175s}.pant.entra>*:nth-child(n+7){animation-delay:.21s}
+@keyframes entra{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
+/* el plan se despliega con suavidad */
+.plan>.col{animation:despliega .5s var(--resorte) both}
+@keyframes despliega{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+/* avisos flotantes con resorte */
+.toast{animation:toastIn .55s var(--resorte) both;box-shadow:0 16px 40px -12px rgba(0,0,0,.55);backdrop-filter:blur(12px)}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,14px) scale(.94)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+/* el día de hoy late suave */
+.semana .hoy{animation:latido 2.6s ease-in-out infinite}
+@keyframes latido{0%,100%{box-shadow:0 0 0 0 rgba(var(--glow),0)}50%{box-shadow:0 0 0 5px rgba(var(--glow),.18)}}
+/* barra de navegación translúcida como iOS */
+.nav{background:rgba(10,26,36,.78);-webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+
+/* ===== Página de inicio ===== */
+.logo-btn{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:16px;flex-shrink:0;text-decoration:none;transition:transform .5s var(--resorte),box-shadow .5s var(--resorte)}
+.logo-btn:active{transform:scale(.92)}
+@media (hover:hover){.logo-btn:hover{transform:scale(1.08) rotate(-4deg);box-shadow:0 0 0 6px rgba(43,217,143,.10)}}
+.marca{text-decoration:none;color:inherit}
+.hero{position:relative;gap:18px;padding:8px 0 4px}
+.hero::before{content:"";position:absolute;inset:-40px -20px auto auto;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(43,217,143,.22),transparent 65%);pointer-events:none;z-index:-1;animation:flota 7s ease-in-out infinite}
+@keyframes flota{0%,100%{transform:translate(0,0)}50%{transform:translate(-18px,14px)}}
+.titular{margin:0;font-family:var(--titulo);font-size:clamp(34px,9vw,58px);font-weight:700;line-height:1.04;letter-spacing:-.03em}
+.grande{font-size:18px;line-height:1.5;color:#C5D2D8;margin:0;max-width:560px}
+.datos3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.datos3 .tarjeta{padding:14px 12px;display:flex;flex-direction:column;gap:4px}
+.pasos3{display:grid;grid-template-columns:1fr;gap:12px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:16px;background:var(--prof)}
+@media (min-width:768px){.pasos3{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding-top:24px}.datos3 .tarjeta{padding:20px}}
+
+/* ===== Responsive: celular, tablet y PC ===== */
+html{-webkit-text-size-adjust:100%}
+body{min-height:100vh}
+.pant{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+@media (max-width:360px){.h1{font-size:26px}.btn{font-size:17px}.campo{font-size:17px}}
+@media (min-width:768px){
+  body{background:radial-gradient(1200px 600px at 50% -10%,#12324A 0%,#0A1A24 60%)}
+  #app{max-width:760px}
+  .pant{padding:36px 32px 40px;gap:24px}
+  .h1{font-size:36px}
+  .grid-planes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  .nav{width:100%;max-width:760px;margin:0 auto;border-radius:22px 22px 0 0;border:1px solid var(--linea);border-bottom:0}
+}
+@media (min-width:1100px){
+  #app{max-width:1080px}
+  .pant{padding:44px 48px 48px}
+  .grid-planes{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .nav{max-width:560px;margin:0 auto 16px;border-radius:22px;border-bottom:1px solid var(--linea);bottom:16px}
+  .toast{bottom:110px}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+(function(){
+'use strict';
+var VERSION='1.0.9';
+var PLANES=[
+ {n:1,rol:'Explorador',precio:2,pct:25,vel:'en 12 h',color:'#C5D2D8',futuro:false,texto:'Tu primer paso. Conocé cómo funciona con lo mínimo.'},
+ {n:2,rol:'Aprendiz',precio:5,pct:30,vel:'en 8 h',color:'#4FD1E8',futuro:false,texto:'Más participación y retiros más ágiles.'},
+ {n:3,rol:'Socio',precio:10,pct:35,vel:'en 4 h',color:'#2BD98F',futuro:false,texto:'El equilibrio justo para empezar a crecer en serio.'},
+ {n:4,rol:'Impulsor',precio:50,pct:40,vel:'en 2 h',color:'#B9A5FF',futuro:false,texto:'Para quienes quieren su dinero en el mismo día.'},
+ {n:5,rol:'Estratega',precio:100,pct:50,vel:'en 1 h',color:'#7FA8FF',futuro:false,texto:'Retirás en poco tiempo, con atención preferencial.'},
+ {n:6,rol:'Visionario',precio:200,pct:55,vel:'en 30 min',color:'#F2B33D',futuro:true,texto:'Para quienes miran a largo plazo.'},
+ {n:7,rol:'Mentor',precio:500,pct:60,vel:'en 10 min',color:'#F7CF7A',futuro:true,texto:'Prácticamente inmediato.'},
+ {n:8,rol:'Fundador',precio:700,pct:70,vel:'al instante',color:'#F4F7F6',futuro:true,texto:'El plan más alto: tu retiro se acredita en el acto.'}
+];
+var CUENTA_NEGOCIO=[['Titular','[Razón social del negocio]'],['CUIT','[30-00000000-0]'],['CBU / CVU','[0000000000000000000000]'],['Banco','[Nombre del banco]']];
+var CLAVE='veritup_demo_v1';
+var S=cargar();
+var ui={modoAcceso:'crear',verClave:false,abierto:-1,metodo:'pasarela',archivo:null,filtro:'todo',retiroModo:'sabado',so:'android',perfilAbierto:'',confirmarSalir:false};
+
+function cargar(){try{var d=JSON.parse(localStorage.getItem(CLAVE)||'null');if(d&&d.v===1)return d;}catch(e){}return{v:1,usuarios:{},sesion:null};}
+function guardar(){try{localStorage.setItem(CLAVE,JSON.stringify(S));}catch(e){}}
+function yo(){return S.sesion?S.usuarios[S.sesion]:null;}
+function plan(u){return u&&u.plan?PLANES[u.plan-1]:null;}
+function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function money(n){return '$ '+Number(n).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function hoyTxt(u){return ahora(u).toLocaleString('es-AR',{timeZone:'America/Argentina/Buenos_Aires',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});}
+function primerNombre(u){return (u.nombre||'').split(' ')[0]||'';}
+function toast(t){var x=document.createElement('div');x.className='toast';x.textContent=t;document.body.appendChild(x);setTimeout(function(){x.remove();},2200);}
+function copiar(t){var ok=false;try{if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t);ok=true;}}catch(e){}
+ if(!ok){try{var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();}catch(e){}}
+ toast('Copiado');}
+
+var I={
+ logo:function(s){return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 64 64" aria-hidden="true"><path d="M10 16 L28 50" stroke="#2BD98F" stroke-opacity=".5" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M28 50 L54 10" stroke="#2BD98F" stroke-width="7" stroke-linecap="round" fill="none"/><circle cx="54" cy="10" r="5.5" fill="#F4F7F6"/></svg>';},
+ ic:function(d,c,s,w){return '<svg width="'+(s||22)+'" height="'+(s||22)+'" viewBox="0 0 24 24" fill="none" stroke="'+(c||'#F4F7F6')+'" stroke-width="'+(w||2)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+d+'"/></svg>';}
+};
+var P={atras:'M15 5l-7 7 7 7',ojo:'M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z',casa:'M3 11l9-7 9 7v9H3z',barras:'M4 20h16M6 16v-4M12 16V8M18 16V4',
+ amigos:'M9 4.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM3 20a6 6 0 0 1 12 0M17 8v6M14 11h6',persona:'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 21a8 8 0 0 1 16 0',
+ check:'M5 12l5 5L20 7',reloj:'M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z',cruz:'M6 6l12 12M18 6L6 18',info:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 11v5M12 8h.01',
+ candado:'M5 11h14v10H5zM8 11V8a4 4 0 0 1 8 0v3',flecha:'M9 6l6 6-6 6',abajo:'M6 9l6 6 6-6',subir:'M12 16V4M7 9l5-5 5 5M4 16v4h16v-4',bajar:'M12 4v12M7 11l5 5 5-5M5 20h14',
+ bolsa:'M5 8h14l-1 12H6zM9 8a3 3 0 0 1 6 0',lista:'M4 6h16M4 12h16M4 18h10',cel:'M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM12 7v7M9.5 11.5L12 14l2.5-2.5',
+ escudo:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4',crono:'M12 5a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM12 9v4l2.5 2M9 2h6',compartir:'M12 3v12M8 7l4-4 4 4M6 11H5v10h14V11h-1',salir:'M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l-5-5 5-5M5 12h11'};
+
+function cab(titulo,volver){return '<div class="fila">'+(volver?'<a class="redondo" href="#'+volver+'" aria-label="Volver">'+I.ic(P.atras)+'</a>':'')+'<h1 class="h1" style="flex:1">'+titulo+'</h1>'+logoBtn()+'</div>';}
+function logoBtn(){return '<a class="logo-btn" href="#bienvenida" aria-label="Veritup, página de inicio">'+I.logo(30)+'</a>';}
+function nav(act){var t=[['inicio','Inicio',P.casa],['planes','Planes',P.barras],['referidos','Referidos',P.amigos],['perfil','Perfil',P.persona]];
+ return '<nav class="nav">'+t.map(function(x){var on=x[0]===act;return '<a href="#'+x[0]+'" class="'+(on?'on':'')+'"'+(on?' aria-current="page"':'')+'>'+I.ic(x[2],on?'#2BD98F':'#8FA3AE',24,1.8)+x[1]+'</a>';}).join('')+'</nav>';}
+function estadoPill(e){if(e==='aprobado')return '<span class="pastilla p-verde">'+I.ic(P.check,'#2BD98F',14,2.6)+'Aprobado</span>';if(e==='espera')return '<span class="pastilla p-ambar">'+I.ic(P.reloj,'#F2B33D',14,2.4)+'En espera</span>';return '<span class="pastilla p-rojo">'+I.ic(P.cruz,'#FF8A8A',14,2.6)+'Denegado</span>';}
+
+/* ---------- fechas en hora de Argentina ---------- */
+var TZ='America/Argentina/Buenos_Aires';
+function ahora(u){return new Date(Date.now()+((u&&u.diasSim)||0)*86400000);}
+function fechaAR(d){var p=new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d);var o={};p.forEach(function(x){o[x.type]=x.value;});return o.year+'-'+o.month+'-'+o.day;}
+function hoyAR(u){return fechaAR(ahora(u));}
+function sumarDias(f,n){var p=f.split('-');return new Date(Date.UTC(+p[0],+p[1]-1,+p[2]+n)).toISOString().slice(0,10);}
+function diaSemana(f){var p=f.split('-');return new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay();}
+function fechaCorta(f){var p=f.split('-');return new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).toLocaleDateString('es-AR',{weekday:'short',day:'numeric',month:'short',timeZone:'UTC'});}
+function tsDe(f){var p=f.split('-');return Date.UTC(+p[0],+p[1]-1,+p[2]+1,3,0);}
+function r2(n){return Math.round(n*100)/100;}
+
+/* ---------- ingresos automáticos (montos ficticios) ---------- */
+var BASE=[0.02,0.04,0.08,0.35,0.70,0,0,0];
+function montoDia(u,f){var h=0;for(var i=0;i<f.length;i++)h=(h*31+f.charCodeAt(i)+u.tel.length)%997;var fac=h%9===0?0:0.6+(h%9)*0.1;return r2(BASE[(u.plan||1)-1]*fac);}
+function acreditar(u){if(!u||!u.plan||!u.desde)return;u.ingresos=u.ingresos||[];var hoy=hoyAR(u);var f=u.ultimo?sumarDias(u.ultimo,1):u.desde;var cambio=false;
+ while(f<hoy){u.ingresos.push({fecha:f,monto:montoDia(u,f),plan:u.plan});u.ultimo=f;f=sumarDias(f,1);cambio=true;}if(cambio)guardar();}
+function cuentas(u){acreditar(u);var ing=0;(u.ingresos||[]).forEach(function(x){ing+=x.monto;});var ret=0;(u.movs||[]).forEach(function(m){if(m.tipo==='retiro'&&m.estado!=='denegado')ret+=m.monto;});
+ var saldo=r2(ing-ret),hoy=hoyAR(u),sab=diaSemana(hoy)===6;var tope=sab?saldo:r2(Math.max(0,0.7*ing-ret));
+ var ult=(u.ingresos||[]).slice(-1)[0];var ult7=(u.ingresos||[]).slice(-7),sum7=0;ult7.forEach(function(x){sum7+=x.monto;});var prom=ult7.length&&sum7>0?sum7/ult7.length:BASE[(u.plan||1)-1];var unidad=r2(0.7*prom);
+ var ya=(u.movs||[]).some(function(m){return m.tipo==='retiro'&&m.dia===hoy&&m.estado!=='denegado';});
+ return{ingresos:r2(ing),retirado:r2(ret),saldo:saldo,retenido:r2(saldo-tope),tope:tope,unidad:unidad,promedio:r2(prom),sabado:sab,ayer:ult?ult.monto:0,hoy:hoy,yaRetiro:ya};}
+
+/* ---------- pantallas ---------- */
+function vLanding(){var u=yo();
+ var paso=function(n,ic,t,d){return '<div class="tarjeta col" style="gap:10px"><div class="fila"><span style="width:44px;height:44px;border-radius:14px;background:#123D2E;display:flex;align-items:center;justify-content:center;flex-shrink:0">'+I.ic(ic,'#2BD98F',22,1.9)+'</span><span class="chica" style="font-weight:700;color:#2BD98F">PASO '+n+'</span></div><div class="num" style="font-size:20px">'+t+'</div><div class="chica" style="color:#C5D2D8;font-size:15px">'+d+'</div></div>';};
+ var chips=PLANES.filter(function(p){return !p.futuro;}).map(function(p){return '<div class="chip"><span class="insignia" style="width:36px;height:36px;border-radius:11px;font-size:16px;background:'+p.color+'">'+p.n+'</span><span class="col" style="gap:0"><span style="font-weight:600;font-size:15px">'+p.rol+' · $'+p.precio+'</span><span class="num" style="font-size:15px;color:#2BD98F">'+p.pct+'% de la ganancia</span></span></div>';}).join('');
+ var cta=u?'<a class="btn" href="#inicio">Ir a mi panel</a>':'<a class="btn" href="#acceso" data-a="irAcceso" data-v="crear">Crear mi cuenta gratis</a>';
+ return '<div class="pant">'+
+ '<div class="fila" style="justify-content:space-between"><a class="marca" href="#bienvenida" aria-label="Veritup, página de inicio">'+I.logo(36)+'veritup</a>'+
+ (u?'<a class="btn sec" href="#inicio" style="width:auto;min-height:44px;font-size:16px">Mi panel</a>':'<a class="btn sec" href="#acceso" data-a="irAcceso" data-v="entrar" style="width:auto;min-height:44px;font-size:16px">Entrar</a>')+'</div>'+
+ '<div class="hero col"><span class="pastilla p-verde" style="align-self:flex-start">'+I.ic(P.subir,'#2BD98F',16,2.2)+'Ingresos diarios · planes desde $2</span>'+
+ '<h1 class="titular">Invertí en un negocio real.<br><span style="color:#2BD98F">Generá ingresos todos los días.</span></h1>'+
+ '<p class="grande">Elegí un plan, sumate a la ganancia del negocio y recibí tu parte cada día a las 00:00. Retirala a tu cuenta o billetera de Argentina.</p>'+
+ '<div class="col" style="gap:10px;max-width:420px">'+cta+(u?'':'<a class="btn sec" href="#acceso" data-a="irAcceso" data-v="entrar">Ya tengo cuenta</a>')+'</div></div>'+
+ '<div class="datos3">'+
+ '<div class="tarjeta"><span class="num" style="font-size:clamp(18px,5.2vw,26px);color:#2BD98F;white-space:nowrap">$2</span><span class="chica" style="font-size:13px">para empezar a invertir</span></div>'+
+ '<div class="tarjeta"><span class="num" style="font-size:clamp(18px,5.2vw,26px);color:#2BD98F;white-space:nowrap">25–70%</span><span class="chica" style="font-size:13px">de la ganancia de tu aporte</span></div>'+
+ '<div class="tarjeta"><span class="num" style="font-size:clamp(18px,5.2vw,26px);color:#2BD98F;white-space:nowrap">00:00</span><span class="chica" style="font-size:13px">tu ingreso, acreditado cada día</span></div></div>'+
+ '<div class="col" style="gap:12px"><h2 class="h2">Así generás ingresos</h2><div class="pasos3">'+
+ paso(1,P.bolsa,'Elegí tu plan','Desde $2. Cuanto más alto, mayor tu parte de la ganancia.')+
+ paso(2,P.subir,'Recibí ingresos diarios','Tu parte se acredita sola todos los días a las 00:00, hora de Argentina.')+
+ paso(3,P.bajar,'Retirá a tu cuenta','Hasta el 70% cada día, o el 100% acumulado los sábados.')+
+ '</div></div>'+
+ '<div class="col" style="gap:10px"><div class="fila" style="justify-content:space-between"><h2 class="h2">Planes de inversión</h2><span class="chica">y más por desbloquear</span></div><div class="chips">'+chips+'</div></div>'+
+ '<div class="tarjeta col" style="gap:14px;border:1px solid rgba(43,217,143,.35);background:linear-gradient(180deg,#123D2E 0%,#11293A 100%)"><div class="num" style="font-size:24px;line-height:1.2">Tu dinero, trabajando todos los días.</div><div style="color:#C5D2D8">Creá tu cuenta en menos de un minuto, solo con tu celular.</div>'+cta+'</div>'+
+ '<p class="chica" style="text-align:center;margin:0">Los ingresos dependen de la ganancia real del negocio: varían cada día y pueden ser cero. Invertir implica riesgos. Versión de prueba '+VERSION+'.</p>'+
+ '</div>';}
+
+function vAcceso(){var c=ui.modoAcceso==='crear';var ref=(location.hash.match(/ref=([a-z0-9-]+)/)||[])[1]||S.refPendiente||'';
+ return '<div class="pant">'+
+ '<a class="marca" href="#bienvenida" aria-label="Veritup, página de inicio">'+I.logo(36)+'veritup</a>'+
+ (c&&ref?'<div class="tarjeta" style="background:#F2B33D;color:#0A1A24;padding:14px 16px">Te invitó <strong>'+esc(ref)+'</strong>. Su beneficio ya está aplicado.</div>':'')+
+ '<div class="col"><h1 class="h1">'+(c?'Creá tu cuenta':'Hola de nuevo')+'</h1><p class="sub">'+(c?'Una cuenta por persona. Lleva menos de un minuto.':'Entrá con tu número y contraseña.')+'</p></div>'+
+ '<div class="tabs" role="tablist"><button role="tab" data-a="modo" data-v="crear" class="'+(c?'on':'')+'" aria-selected="'+c+'">Crear cuenta</button><button role="tab" data-a="modo" data-v="entrar" class="'+(!c?'on':'')+'" aria-selected="'+(!c)+'">Entrar</button></div>'+
+ '<form id="fAcceso" class="col" style="gap:16px" novalidate>'+
+ (c?'<div class="col"><label class="et" for="nombre">Nombre y apellido</label><input class="campo" id="nombre" autocomplete="name" autocapitalize="words" placeholder="Como figura en tu DNI"></div>':'')+
+ '<div class="col"><label class="et" for="tel">Número de celular</label><div class="fila" style="gap:8px"><select class="campo" id="pais" aria-label="Código de país"><option value="54">AR +54</option><option value="595">PY +595</option></select><input class="campo" id="tel" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="11 2345 6789" style="flex:1;min-width:0"></div>'+(c?'<div class="chica">¿Sos argentino y vivís en Paraguay? Elegí +595.</div>':'')+'</div>'+
+ '<div class="col"><label class="et" for="clave">Contraseña</label><div style="position:relative"><input class="campo" id="clave" type="'+(ui.verClave?'text':'password')+'" autocomplete="'+(c?'new-password':'current-password')+'" placeholder="Mínimo 8 caracteres" style="padding-right:60px"><button type="button" data-a="ojo" aria-label="'+(ui.verClave?'Ocultar':'Mostrar')+' contraseña" style="position:absolute;right:5px;top:5px;width:48px;height:48px;border:0;background:transparent">'+I.ic(P.ojo,'#C5D2D8',24,1.8)+'</button></div></div>'+
+ (c?'<div class="col"><label class="et" for="codigo">Código de invitación (opcional)</label><input class="campo" id="codigo" value="'+esc(ref)+'" autocapitalize="none" placeholder="Ej.: juanperez"></div>':'')+
+ '<div id="err" class="err" role="alert"></div>'+
+ '<button class="btn" type="submit">'+(c?'Crear cuenta':'Entrar')+'</button></form>'+
+ (c?'<p class="chica" style="text-align:center">Al continuar aceptás los Términos y la Política de privacidad.</p>':'<p class="chica" style="text-align:center">¿Problemas para entrar? Escribinos por WhatsApp a [número de soporte].</p>')+
+ '<p class="chica" style="text-align:center">Versión de prueba '+VERSION+'. Los datos se guardan solo en este dispositivo.</p>'+
+ '</div>';}
+
+function grafico7(u){var l=(u.ingresos||[]).slice(-7);if(!l.length)return '<div class="chica">Tu primer ingreso se acredita a las 00:00 (hora de Argentina).</div>';var mx=Math.max.apply(null,l.map(function(x){return x.monto;}))||1;
+ return '<div class="grafico" role="img" aria-label="Ingresos de los últimos días">'+l.map(function(x){return '<div title="'+fechaCorta(x.fecha)+'" style="height:'+Math.max(6,Math.round(x.monto/mx*100))+'%;background:'+(x.monto?'#2BD98F':'#4A5B65')+'"></div>';}).join('')+'</div><div class="chica">Ingresos de los últimos '+l.length+' días</div>';}
+function vInicio(){var u=yo(),p=plan(u),k=cuentas(u),e={ventas:184500,ingreso:k.ayer};
+ return '<div class="pant">'+
+ '<div class="fila" style="justify-content:space-between">'+logoBtn()+'<div class="col" style="gap:6px;flex:1"><div style="color:#8FA3AE">Hola, <strong style="color:#F4F7F6">'+esc(primerNombre(u))+'</strong></div>'+
+ (p?'<span class="pastilla p-verde" style="align-self:flex-start">Plan '+p.rol+' · '+p.pct+'%</span>':'<span class="pastilla p-ambar" style="align-self:flex-start">Sin plan activo</span>')+'</div>'+
+ '<a class="redondo" href="#movimientos" aria-label="Movimientos">'+I.ic(P.lista,'#F4F7F6',22,1.8)+'</a></div>'+
+ (p?
+  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div class="col" style="gap:2px"><div style="color:#8FA3AE">Tu participación</div><div class="num" style="font-size:30px">'+money(p.precio)+'</div></div><div class="col" style="gap:2px"><div style="color:#8FA3AE">Tu saldo</div><div class="num" style="font-size:30px;color:#2BD98F">'+money(k.saldo)+'</div></div></div>'+
+  '<div class="tarjeta col" style="gap:14px"><div class="fila" style="justify-content:space-between"><div class="h2" style="font-size:19px">Tus ingresos</div><span class="pastilla p-ambar" style="font-size:12px">Ficticio</span></div>'+
+  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div><div class="chica">Ingreso de ayer</div><div class="num" style="font-size:21px;color:#2BD98F">'+(e.ingreso?'▲ ':'')+money(e.ingreso)+'</div></div><div><div class="chica">Disponible hoy</div><div class="num" style="font-size:21px">'+money(k.tope)+'</div></div></div>'+
+  grafico7(u)+'<div class="chica">Se acreditan solos todos los días a las 00:00, hora de Argentina.</div></div>'+
+  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><a class="btn" href="#planes">Mejorar plan</a><a class="btn sec" href="#retiro">Retirar</a></div>'+
+  '<div class="aviso">'+I.ic(P.info,'#8FA3AE',22,1.8)+'<div>Con tu Plan '+p.rol+' te llevás el '+p.pct+'% de la ganancia real que genera tu aporte. Varía cada día y puede ser cero.</div></div>'
+ :
+  '<div class="tarjeta col" style="gap:14px"><div class="h2">Elegí tu primer plan</div><p class="sub" style="color:#C5D2D8">Desde $2 ya participás de la ganancia del negocio. Cuanto más alto el plan, mayor tu parte y más rápido tu retiro.</p><a class="btn" href="#planes">Ver planes</a></div>'+
+  '<div class="aviso">'+I.ic(P.cel,'#8FA3AE',22,1.8)+'<div>Compartí tu link de referido y sumá beneficios. <a href="#referidos">Ver mi link</a></div></div>'
+ )+'</div>'+nav('inicio');}
+
+function vPlanes(){var u=yo(),act=u.plan||0;
+ var h=PLANES.map(function(p,k){var ab=ui.abierto===k,es=p.n===act,fut=p.futuro;
+  var cls='plan'+(es?' actual':'')+(fut?' futuro':'');
+  var et=es?'Plan '+p.n+' · Tu plan':(fut?'Plan '+p.n+' · Próximamente':'Plan '+p.n);
+  var cta=es?'<div class="btn" style="background:#123D2E;color:#2BD98F">Tu plan actual</div>':(fut?'<div class="btn sec" style="border:2px dashed #4A5B65;color:#C5D2D8">'+I.ic(P.candado,'#C5D2D8',18)+'Disponible próximamente</div>':(p.n<act?'<div class="btn sec" style="color:#8FA3AE">Ya tenés un plan mayor</div>':'<a class="btn" href="#pagar/'+p.n+'">Contratar Plan '+p.rol+'</a>'));
+  return '<article class="'+cls+'"><button data-a="plan" data-v="'+k+'" aria-expanded="'+ab+'">'+
+  '<span class="insignia" style="background:'+p.color+'">'+p.n+'</span>'+
+  '<span class="col" style="gap:1px;flex:1;min-width:0"><span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:'+(es?'#2BD98F':'#8FA3AE')+'">'+et+'</span><span class="num" style="font-size:20px">'+p.rol+'</span><span class="chica">$'+p.precio+' · retiro '+p.vel+'*</span></span>'+
+  '<span class="col" style="align-items:flex-end;gap:0"><span class="num" style="font-size:26px;color:'+(fut?'#C5D2D8':'#2BD98F')+'">'+p.pct+'%</span><span style="font-size:12px;color:#8FA3AE">de la ganancia</span></span>'+
+  '<span style="transform:rotate('+(ab?180:0)+'deg);display:flex">'+I.ic(P.abajo,'#8FA3AE',20)+'</span></button>'+
+  (ab?'<div class="col" style="padding:4px 16px 18px;gap:16px"><div style="height:1px;background:#1E3A4D"></div><p style="margin:0;color:#E3EBEE">'+p.texto+'</p>'+
+  '<div class="fila" style="padding:14px;border-radius:16px;background:#0A1A24"><div class="num" style="font-size:34px;color:'+(fut?'#C5D2D8':'#2BD98F')+'">'+p.pct+'%</div><div style="font-size:15px;color:#C5D2D8">de la ganancia que genera tu aporte es para vos, todos los días.</div></div>'+
+  '<div class="fila" style="padding:14px;border-radius:16px;border:1px solid #1E3A4D"><div style="width:48px;height:48px;border-radius:14px;background:#123D2E;display:flex;align-items:center;justify-content:center;flex-shrink:0">'+I.ic(P.crono,'#2BD98F',26,1.9)+'</div><div class="col" style="gap:0"><div class="chica">Tus retiros llegan habitualmente</div><div class="num" style="font-size:22px;color:'+(fut?'#C5D2D8':'#2BD98F')+'">'+p.vel+'</div><div style="font-size:13px;color:#8FA3AE">Plazo máximo de acreditación: 24 h</div></div></div>'+
+  '<div style="font-size:15px;color:#C5D2D8">1 retiro por día: el 70% de tu ingreso diario, y el 100% acumulado los sábados.</div>'+cta+'</div>':'')+'</article>';}).join('');
+ return '<div class="pant">'+cab('Planes')+'<p class="sub" style="color:#C5D2D8">Cuanto más alto el plan, mayor la parte de la ganancia y más rápido tu retiro. Tocá un plan para ver el detalle.</p><div class="col grid-planes" style="gap:12px">'+h+'</div>'+
+ '<div class="aviso">'+I.ic(P.info,'#8FA3AE',22,1.8)+'<div>El porcentaje se aplica sobre la ganancia real del negocio. El monto que recibís cada día varía según las ventas y puede ser cero.<br>* Tiempo habitual de acreditación. Cada retiro se revisa antes de aprobarse; el plazo máximo es de 24 h.</div></div></div>'+nav('planes');}
+
+function vPagar(n){var p=PLANES[(n||3)-1];if(!p||p.futuro){location.hash='#planes';return '';}
+ var pas=ui.metodo==='pasarela',a=ui.archivo;
+ var datos=CUENTA_NEGOCIO.map(function(d,k){return '<div class="item" style="align-items:center"><div class="col" style="gap:2px;flex:1;min-width:0"><div class="chica">'+d[0]+'</div><div style="font-size:18px;font-weight:600;word-break:break-all">'+d[1]+'</div></div><button class="btn sec" style="width:auto;min-height:44px;font-size:15px" data-a="copiarDato" data-v="'+k+'">Copiar</button></div>';}).join('');
+ return '<div class="pant">'+cab('Contratar plan','planes')+
+ '<div class="fila tarjeta" style="border:2px solid #2BD98F"><span class="insignia" style="background:'+p.color+'">'+p.n+'</span><div class="col" style="gap:2px;flex:1"><div class="num" style="font-size:20px">Plan '+p.rol+'</div><div class="chica">'+p.pct+'% de la ganancia · retiro '+p.vel+'</div></div><div class="num" style="font-size:28px">$'+p.precio+'</div></div>'+
+ '<div class="col" style="gap:10px"><div class="h2" style="font-size:20px">¿Cómo querés pagar?</div>'+
+ '<button class="opcion '+(pas?'on':'')+'" data-a="metodo" data-v="pasarela" aria-pressed="'+pas+'"><span class="radio"></span><span class="col" style="gap:4px"><span class="fila" style="gap:8px;flex-wrap:wrap"><strong style="font-size:18px">[Pasarela de pagos]</strong><span class="pastilla p-verde" style="font-size:13px;padding:3px 8px">Recomendado</span></span><span class="chica">Tarjeta, débito o dinero en cuenta. Tu plan se activa al instante.</span></span></button>'+
+ '<button class="opcion '+(!pas?'on':'')+'" data-a="metodo" data-v="transferencia" aria-pressed="'+(!pas)+'"><span class="radio"></span><span class="col" style="gap:4px"><strong style="font-size:18px">Transferencia bancaria</strong><span class="chica">Transferís y subís el comprobante. Se activa al validarlo.</span></span></button></div>'+
+ (pas?'<div class="col" style="gap:14px"><button class="btn" data-a="pagarPasarela" data-v="'+p.n+'">Pagar $'+p.precio+'</button><div class="chica" style="text-align:center">Versión de prueba: el pago se simula, no se cobra nada.</div></div>'
+ :'<div class="col" style="gap:20px"><div class="col" style="gap:10px"><div class="h2" style="font-size:20px">1 · Transferí $'+p.precio+' a esta cuenta</div><div class="lista">'+datos+'</div><div class="chica">Cuenta a nombre de [Razón social], siempre la misma. Si te piden transferir a otra persona, no lo hagas.</div></div>'+
+  '<div class="col" style="gap:10px"><div class="h2" style="font-size:20px">2 · Subí el comprobante</div>'+
+  (a?'<div class="lista">'+(a.url?'<div style="background:#061118;display:flex;justify-content:center"><img src="'+a.url+'" alt="Vista previa del comprobante" style="display:block;width:100%;max-height:420px;object-fit:contain"></div>':'<div style="height:140px;background:#061118;display:flex;align-items:center;justify-content:center;color:#C5D2D8">Documento PDF</div>')+
+   '<div class="item" style="align-items:center"><div class="col" style="gap:2px;flex:1;min-width:0"><div style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+esc(a.nombre)+'</div><div style="font-size:14px;color:#2BD98F">✓ Listo · '+a.tam+'</div></div><label for="comp" class="btn sec" style="width:auto;min-height:44px;font-size:15px">Cambiar</label></div></div>'
+  :'<label for="comp" class="drop">'+'<span style="width:56px;height:56px;border-radius:16px;background:#123D2E;display:flex;align-items:center;justify-content:center">'+I.ic(P.subir,'#2BD98F',28,1.8)+'</span><strong style="font-size:18px">Elegir foto, captura o archivo</strong><span class="chica">JPG, PNG o PDF · hasta 10 MB</span></label>'+
+   '<button class="btn sec" data-a="ejemploComp" style="min-height:48px;font-size:16px">Usar un comprobante de ejemplo</button>')+
+  '<input id="comp" class="oculto" type="file" accept="image/*,application/pdf"><div class="chica">Que se vean bien el monto, la fecha y el número de operación.</div></div>'+
+  '<button class="btn" data-a="enviarComp" data-v="'+p.n+'" '+(a?'':'disabled')+'>Enviar comprobante</button></div>')+
+ '</div>';}
+
+function vReferidos(){var u=yo();var alias=u.alias||'';
+ return '<div class="pant">'+cab('Tu link')+
+ '<div class="tarjeta col" style="background:#F2B33D;color:#0A1A24;gap:16px;border-radius:24px"><div class="num" style="font-size:24px;line-height:1.2">Compartí Veritup con tu gente</div><div style="font-size:17px">Cuando alguien crea su cuenta con tu link, los dos reciben [beneficio].</div>'+
+ '<div style="border-radius:16px;background:#0A1A24;color:#F4F7F6;padding:16px"><div class="chica">veritup.com/r/</div><div id="aliasVista" class="num" style="font-size:30px;color:#F2B33D;word-break:break-all;line-height:1.15">'+esc(alias)+'</div></div>'+
+ '<button class="btn" style="background:#0A1A24;color:#F4F7F6" data-a="copiarLink">Copiar link</button></div>'+
+ '<div class="aviso">'+I.ic(P.escudo,'#2BD98F',22,1.8)+'<div>Tu link se crea con tu nombre y es único: no se puede cambiar. Así tus invitados siempre quedan registrados a tu nombre.</div></div>'+
+ '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><button class="btn" data-a="whatsapp">WhatsApp</button><button class="btn sec" data-a="compartir">Más opciones</button></div>'+
+ '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div class="tarjeta"><div class="chica">Se unieron</div><div class="num" style="font-size:28px">'+(u.invitados||0)+'</div></div><div class="tarjeta"><div class="chica">Beneficios</div><div class="num" style="font-size:28px;color:#F2B33D">[$]</div></div></div>'+
+ '</div>'+nav('referidos');}
+
+function opcionesRetiro(k){var o=[1,2,3,4].map(function(n){var m=r2(k.unidad*n);return{id:n,titulo:n===1?'1 día':n+' días',sub:'70% × '+n,monto:m,ok:k.unidad>0&&m<=k.tope+0.001,motivo:'Todavía no alcanza'};});
+ o.push({id:5,titulo:'Sábado',sub:'100% de tu saldo',monto:k.saldo,ok:k.sabado&&k.saldo>0,motivo:'Solo los sábados'});return o;}
+function vRetiro(){var u=yo(),p=plan(u),c=u.cuenta||{};
+ if(!p)return '<div class="pant">'+cab('Retirar','inicio')+'<div class="tarjeta col"><div class="h2">Todavía no tenés saldo</div><p class="sub">Contratá un plan para empezar a participar de la ganancia del negocio.</p><a class="btn" href="#planes">Ver planes</a></div></div>';
+ var k=cuentas(u),dow=diaSemana(k.hoy),lun=sumarDias(k.hoy,-((dow+6)%7)),letras=['D','L','M','M','J','V','S'];
+ var semana=[0,1,2,3,4,5,6].map(function(i){var f=sumarDias(lun,i),d=diaSemana(f);var cls=d===6?'sab':(f===k.hoy?'hoy':'');var nota=f===k.hoy?'Hoy':(d===6?'100%':'');return '<div class="'+cls+'">'+letras[d]+'<small>'+nota+'</small></div>';}).join('');
+ var ops=opcionesRetiro(k);var sel=ops.filter(function(o){return o.id===ui.retOpc&&o.ok;})[0];
+ var pct=k.saldo>0?Math.round(k.tope/k.saldo*100):0;
+ var grid=ops.map(function(o){var on=sel&&sel.id===o.id;return '<button type="button" class="opcion'+(on?' on':'')+'" data-a="retOpc" data-v="'+o.id+'" '+(o.ok&&!k.yaRetiro?'':'disabled')+' aria-pressed="'+on+'" style="flex-direction:column;align-items:flex-start;gap:4px;padding:14px;'+(o.id===5?'grid-column:1 / -1;':'')+(o.ok&&!k.yaRetiro?'':'opacity:.45;cursor:not-allowed;')+'">'+
+  '<span class="fila" style="justify-content:space-between;width:100%"><strong style="font-size:16px">'+o.titulo+'</strong><span class="chica" style="font-size:13px">'+o.sub+'</span></span>'+
+  '<span class="num" style="font-size:22px;color:'+(o.id===5?'#F2B33D':'#F4F7F6')+'">'+money(o.monto)+'</span>'+
+  (o.ok?'':'<span style="font-size:12px;color:#8FA3AE">'+o.motivo+'</span>')+'</button>';}).join('');
+ return '<div class="pant"><div class="fila"><a class="redondo" href="#inicio" aria-label="Volver">'+I.ic(P.atras)+'</a><h1 class="h1">Retirar</h1><span class="pastilla '+(k.yaRetiro?'p-ambar':'p-verde')+'" style="margin-left:auto;font-size:13px">'+(k.yaRetiro?'Ya retiraste hoy':'1 retiro disponible hoy')+'</span>'+logoBtn()+'</div>'+
+ '<div class="tarjeta col" style="gap:16px"><div class="fila" style="justify-content:space-between"><div><div class="chica">Tu saldo</div><div class="num" style="font-size:34px">'+money(k.saldo)+'</div></div><span class="pastilla p-ambar" style="font-size:12px">Ficticio</span></div>'+
+ '<div class="barra"><div style="width:'+pct+'%;background:#2BD98F"></div><div style="width:'+(100-pct)+'%;background:#F2B33D"></div></div>'+
+ '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div><div class="chica" style="color:#C5D2D8">● Disponible hoy</div><div class="num" style="font-size:20px">'+money(k.tope)+'</div></div><div><div class="chica" style="color:#C5D2D8">● Retenido hasta el sábado</div><div class="num" style="font-size:20px">'+money(k.retenido)+'</div></div></div>'+
+ '<div class="chica">Ingreso diario promedio: <strong style="color:#F4F7F6">'+money(k.promedio)+'</strong> · 70% = '+money(k.unidad)+' por día</div></div>'+
+ '<div class="col" style="gap:10px"><div class="chica">Tu semana</div><div class="semana">'+semana+'</div><div class="chica">Cada día podés retirar en múltiplos del 70% de tu ingreso diario. El resto queda retenido y se libera completo el sábado.</div></div>'+
+ '<div class="col" style="gap:10px"><div class="h2" style="font-size:20px">¿Cuánto querés retirar?</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">'+grid+'</div></div>'+
+ '<div class="fila" style="padding:16px;border-radius:18px;border:1px solid #1E3A4D"><div style="width:48px;height:48px;border-radius:14px;background:#123D2E;display:flex;align-items:center;justify-content:center;flex-shrink:0">'+I.ic(P.crono,'#2BD98F',26,1.9)+'</div><div class="col" style="gap:2px"><div style="font-size:16px">Con tu <strong>Plan '+p.rol+'</strong>, tu retiro llega habitualmente <strong style="color:#2BD98F">'+p.vel+'</strong>.</div><div style="font-size:13px;color:#8FA3AE">Revisamos cada retiro antes de aprobarlo. Plazo máximo: 24 h.</div></div></div>'+
+ '<div style="height:1px;background:#1E3A4D"></div>'+
+ '<div class="col" style="gap:4px"><h2 class="h2">Cuenta de destino</h2><p class="sub">Solo cuentas bancarias y billeteras virtuales de Argentina. Se guarda para tus próximos retiros.</p></div>'+
+ '<form id="fRetiro" class="col" style="gap:16px" novalidate>'+
+ '<div class="col"><label class="et" for="titular">Nombre y apellido del titular</label><input class="campo" id="titular" value="'+esc(c.titular||u.nombre)+'" placeholder="Como figura en el banco"></div>'+
+ '<div class="col"><div class="fila" style="justify-content:space-between"><label class="et" for="cbu">CBU / CVU</label><span id="cbuCont" class="num" style="font-size:15px;color:'+((c.cbu||'').length===22?'#2BD98F':'#8FA3AE')+'">'+(c.cbu||'').length+'/22</span></div><input class="campo" id="cbu" inputmode="numeric" value="'+esc(c.cbu||'')+'" placeholder="22 números" maxlength="22"></div>'+
+ '<div class="col"><label class="et" for="banco">Banco o billetera (Argentina)</label><input class="campo" id="banco" value="'+esc(c.banco||'')+'" placeholder="Ej.: Banco Nación, Mercado Pago"></div>'+
+ '<div class="col"><label class="et" for="doc">CUIL / CUIT / DNI</label><input class="campo" id="doc" inputmode="numeric" value="'+esc(c.doc||'')+'" placeholder="Solo números" maxlength="11"></div>'+
+ '<div class="aviso ambar">'+I.ic(P.info,'#F2B33D',22,1.8)+'<div>La cuenta tiene que estar a tu nombre. Si los datos no coinciden, el banco rechaza la transferencia.</div></div>'+
+ '<div id="err" class="err" role="alert"></div>'+
+ '<button class="btn" type="submit" '+(k.yaRetiro||!sel?'disabled':'')+'>'+(k.yaRetiro?'Ya hiciste tu retiro de hoy':(sel?'Retirar '+money(sel.monto):'Elegí un monto'))+'</button></form>'+
+ '<div class="chica" style="text-align:center">Un retiro por día. Lo que no retires queda en tu saldo y se libera completo el sábado.</div>'+
+ '<a class="btn sec" href="#movimientos">Ver mis movimientos</a></div>';}
+
+function vPerfil(){var u=yo(),p=plan(u);var tel='+'+u.pais+' '+u.tel.replace(/^(\d{2,3})\d+(\d{4})$/,'$1 •••• $2');
+ var d=ui.perfilAbierto==='datos',k=ui.perfilAbierto==='clave';
+ return '<div class="pant">'+cab('Perfil')+
+ '<div class="tarjeta col" style="align-items:center;text-align:center;gap:14px;border-radius:24px">'+
+ '<div style="width:112px;height:112px;border-radius:32px;background:'+(p?p.color:'#1E3A4D')+';color:#0A1A24;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:'+(p?'#0A1A24':'#C5D2D8')+'">Plan</span><span class="num" style="font-size:52px;line-height:1;color:'+(p?'#0A1A24':'#C5D2D8')+'">'+(p?p.n:'–')+'</span></div>'+
+ '<div><div class="num" style="font-size:30px;color:'+(p?'#2BD98F':'#C5D2D8')+'">'+(p?p.rol:'Sin plan')+'</div><div class="chica">'+(p?'$'+p.precio+' · '+p.pct+'% de la ganancia · activo':'Elegí un plan para empezar')+'</div></div>'+
+ '<div style="height:1px;width:100%;background:#1E3A4D"></div><div><div class="num" style="font-size:24px">'+esc(u.nombre)+'</div><div style="font-size:18px;color:#C5D2D8">'+esc(tel)+'</div></div><a href="#planes" style="padding:8px 16px;font-weight:600">Ver planes</a></div>'+
+ '<div class="lista">'+
+ '<a class="vinculo" href="#movimientos">'+I.ic(P.lista,'#C5D2D8',24,1.8)+'<span style="flex:1">Mis movimientos</span>'+I.ic(P.flecha,'#8FA3AE',20)+'</a>'+
+ '<a class="vinculo" href="#descargar">'+I.ic(P.cel,'#C5D2D8',24,1.8)+'<span style="flex:1">Descargar la app</span>'+I.ic(P.flecha,'#8FA3AE',20)+'</a>'+
+ '<button class="vinculo" data-a="perfil" data-v="datos" aria-expanded="'+d+'">'+I.ic(P.persona,'#C5D2D8',24,1.8)+'<span style="flex:1">Mis datos</span><span style="display:flex;transform:rotate('+(d?90:0)+'deg)">'+I.ic(P.flecha,'#8FA3AE',20)+'</span></button>'+
+ (d?'<div class="col" style="padding:12px 16px 16px;gap:12px;border-bottom:1px solid #1E3A4D"><div><div class="chica">Nombre y apellido</div><div style="font-weight:600">'+esc(u.nombre)+'</div></div><div><div class="chica">Celular</div><div style="font-weight:600">+'+u.pais+' '+esc(u.tel)+'</div></div><div><div class="chica">Miembro desde</div><div style="font-weight:600">'+esc(u.alta)+'</div></div><div><div class="chica">Cuenta para retiros</div><div style="font-weight:600">'+(u.cuenta?esc(u.cuenta.banco)+' · CBU terminado en '+esc(u.cuenta.cbu.slice(-4)):'Sin cargar')+'</div></div><div class="chica">Para cambiar tu nombre o tu número, escribinos a soporte. Así protegemos tu cuenta.</div></div>':'')+
+ '<button class="vinculo" data-a="perfil" data-v="clave" aria-expanded="'+k+'">'+I.ic(P.candado,'#C5D2D8',24,1.8)+'<span style="flex:1">Cambiar contraseña</span><span style="display:flex;transform:rotate('+(k?90:0)+'deg)">'+I.ic(P.flecha,'#8FA3AE',20)+'</span></button>'+
+ (k?'<form id="fClave" class="col" style="padding:12px 16px 16px;gap:12px" novalidate><div class="col"><label class="et" for="c1">Contraseña actual</label><input class="campo" id="c1" type="password" autocomplete="current-password"></div><div class="col"><label class="et" for="c2">Nueva contraseña</label><input class="campo" id="c2" type="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres"></div><div class="col"><label class="et" for="c3">Repetí la nueva contraseña</label><input class="campo" id="c3" type="password" autocomplete="new-password"></div><div id="err" class="err" role="alert"></div><button class="btn" type="submit">Guardar contraseña</button></form>':'')+
+ '</div>'+
+ (ui.confirmarSalir?'<div class="tarjeta col" style="background:#2A1416;border:1px solid #5C2A2A;gap:14px"><div style="font-weight:600;font-size:18px">¿Cerrar sesión en este dispositivo?</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn sec" data-a="noSalir">Cancelar</button><button class="btn" style="background:#FF6B6B" data-a="salir">Cerrar sesión</button></div></div>'
+ :'<button class="btn peligro" data-a="pedirSalir">'+I.ic(P.salir,'#FF8A8A',22,1.8)+'Cerrar sesión</button>')+
+ '<div class="chica" style="text-align:center">Veritup · versión de prueba '+VERSION+'</div></div>'+nav('perfil');}
+
+function vMovs(){var u=yo();var f=ui.filtro;acreditar(u);
+ var todos=(u.movs||[]).map(function(x){return x;});
+ (u.ingresos||[]).forEach(function(x){var p=PLANES[(x.plan||1)-1];todos.push({tipo:'ingreso',titulo:'Ingreso del día',detalle:'Plan '+p.rol+' · '+fechaCorta(x.fecha),monto:x.monto,estado:'acreditado',fecha:fechaCorta(sumarDias(x.fecha,1))+' · 00:00 (hora Argentina)',ts:tsDe(x.fecha)});});
+ todos.sort(function(a,b){return (b.ts||0)-(a.ts||0);});
+ var m=todos.filter(function(x){return f==='todo'||(f==='ingresos'&&x.tipo==='ingreso')||(f==='compras'&&x.tipo==='compra')||(f==='retiros'&&x.tipo==='retiro');});
+ var items=m.length?'<div class="lista">'+m.map(function(x){var ing=x.tipo==='ingreso',ret=x.tipo==='retiro';
+  var icono=ing?P.subir:(ret?P.bajar:P.bolsa),fondo=ing?'#123D2E':(ret?'#1E3A4D':'#123D2E'),col=ing?'#2BD98F':(ret?'#C5D2D8':'#2BD98F');
+  var pill=ing?'<span class="pastilla p-verde">'+I.ic(P.check,'#2BD98F',14,2.6)+'Acreditado</span>':estadoPill(x.estado);
+  return '<div class="item"><div style="width:44px;height:44px;flex-shrink:0;border-radius:14px;background:'+fondo+';display:flex;align-items:center;justify-content:center">'+I.ic(icono,col,22)+'</div><div class="col" style="gap:4px;flex:1;min-width:0"><div class="fila" style="justify-content:space-between;align-items:baseline;gap:10px"><span style="font-weight:600">'+esc(x.titulo)+'</span><span class="num" style="white-space:nowrap;color:'+(ing?'#2BD98F':(x.estado==='denegado'?'#8FA3AE':'#F4F7F6'))+'">'+(ing?'+ ':(ret?'− ':''))+money(x.monto)+'</span></div><div class="chica">'+esc(x.detalle)+'</div><div class="fila" style="gap:8px;flex-wrap:wrap">'+pill+'<span class="chica" style="font-size:13px">'+esc(x.fecha)+'</span></div>'+(x.nota?'<div style="font-size:14px;color:'+(x.estado==='denegado'?'#FFB3B3':'#C5D2D8')+'">'+esc(x.nota)+'</div>':'')+(x.estado==='espera'?'<button class="btn sec" style="min-height:40px;font-size:14px;margin-top:4px" data-a="demoAprobar" data-v="'+x.id+'">Demo: simular aprobación</button>':'')+'</div></div>';}).join('')+'</div>'
+ :'<div class="tarjeta col" style="align-items:center;text-align:center;gap:8px"><div style="font-weight:600">'+(f==='ingresos'?'Todavía no hay ingresos':'Todavía no hay movimientos')+'</div><div class="chica">'+(f==='ingresos'?'Tu primer ingreso se acredita solo a las 00:00, hora de Argentina, después de activar tu plan.':'Acá vas a ver tus ingresos, compras de planes y retiros.')+'</div></div>';
+ return '<div class="pant">'+cab('Movimientos','perfil')+
+ '<div class="tabs" role="tablist">'+[['todo','Todo'],['ingresos','Ingresos'],['compras','Compras'],['retiros','Retiros']].map(function(t){return '<button role="tab" data-a="filtro" data-v="'+t[0]+'" class="'+(f===t[0]?'on':'')+'" aria-selected="'+(f===t[0])+'" style="font-size:15px">'+t[1]+'</button>';}).join('')+'</div>'+
+ '<div class="fila" style="gap:14px;flex-wrap:wrap;font-size:13px;color:#C5D2D8"><span class="fila" style="gap:6px"><span style="width:10px;height:10px;border-radius:999px;background:#2BD98F"></span>Aprobado / Acreditado</span><span class="fila" style="gap:6px"><span style="width:10px;height:10px;border-radius:999px;background:#F2B33D"></span>En espera</span><span class="fila" style="gap:6px"><span style="width:10px;height:10px;border-radius:999px;background:#FF6B6B"></span>Denegado</span></div>'+
+ (u.plan?'<button class="btn sec" style="min-height:44px;font-size:15px" data-a="demoDia">Demo: avanzar 1 día (acredita el ingreso de las 00:00)</button>':'')+
+ items+'</div>';}
+
+function vDescargar(){var a=ui.so==='android';
+ return '<div class="pant">'+cab('Descargar la app','perfil')+
+ '<div class="fila tarjeta" style="gap:16px"><div style="width:72px;height:72px;border-radius:20px;background:#0A1A24;border:1px solid #1E3A4D;display:flex;align-items:center;justify-content:center;flex-shrink:0">'+I.logo(44)+'</div><div><div class="num" style="font-size:22px">Veritup</div><div class="chica">Versión '+VERSION+'</div></div></div>'+
+ '<div class="tabs" role="tablist"><button role="tab" data-a="so" data-v="android" class="'+(a?'on':'')+'" aria-selected="'+a+'">Android</button><button role="tab" data-a="so" data-v="ios" class="'+(!a?'on':'')+'" aria-selected="'+(!a)+'">iPhone</button></div>'+
+ (a?'<a class="btn" href="https://github.com/Alanrtobal01/Veritup-Apk/releases/download/demo/veritup-demo.apk" style="min-height:64px">'+I.ic(P.bajar,'#0A1A24',26,2.2)+'<span class="col" style="gap:0;line-height:1.2"><span style="font-size:19px;font-weight:700">Descargar .apk</span><span style="font-size:13px;font-weight:500">Versión '+VERSION+'</span></span></a>'+
+  '<ol class="pasos"><li><span class="n">1</span><span>Tocá <strong>Descargar .apk</strong>.</span></li><li><span class="n">2</span><span>Abrí el archivo desde las notificaciones o la carpeta <strong>Descargas</strong>.</span></li><li><span class="n">3</span><span>Si te lo pide, activá <strong>Permitir de esta fuente</strong>.</span></li><li><span class="n" style="background:#123D2E;color:#2BD98F">4</span><span>Tocá <strong>Instalar</strong> y abrí Veritup desde tu inicio.</span></li></ol>'
+ :'<p class="sub" style="color:#C5D2D8">No necesitás descargar nada: la agregás a tu pantalla de inicio y funciona como una app.</p><ol class="pasos"><li><span class="n">1</span><span>Abrí <strong>veritup.com</strong> en <strong>Safari</strong>.</span></li><li><span class="n">2</span><span>Tocá <strong>Compartir</strong> '+I.ic(P.compartir,'#4FA3FF',18)+' abajo.</span></li><li><span class="n">3</span><span>Elegí <strong>Agregar a inicio</strong>.</span></li><li><span class="n" style="background:#123D2E;color:#2BD98F">4</span><span>Tocá <strong>Agregar</strong>. El ícono aparece junto a tus apps.</span></li></ol><button class="btn" data-a="copiarWeb">Copiar veritup.com para abrir en Safari</button>')+
+ '<div class="aviso">'+I.ic(P.escudo,'#2BD98F',22,1.8)+'<div>Descargá Veritup solo desde <strong style="color:#F4F7F6">veritup.com</strong>. Nunca instales la app desde links que te manden por mensaje.</div></div></div>';}
+
+/* ---------- router ---------- */
+function render(){var h=location.hash.replace(/^#/,'')||'';var u=yo();var partes=h.split('/');var r=partes[0].split('?')[0];
+ var html;if(r==='bienvenida'||(!u&&r!=='acceso'&&!/ref=/.test(location.hash))){html=vLanding();}else if(!u){html=vAcceso();}else{
+  switch(r){case 'planes':html=vPlanes();break;case 'pagar':html=vPagar(+partes[1]);break;case 'referidos':html=vReferidos();break;case 'retiro':html=vRetiro();break;case 'perfil':html=vPerfil();break;case 'movimientos':html=vMovs();break;case 'descargar':html=vDescargar();break;default:html=vInicio();}}
+ document.getElementById('app').innerHTML='<div class="demo">VERSIÓN DE PRUEBA '+VERSION+' · montos ficticios</div>'+html;
+ var p=document.getElementById('pais');if(p&&ui.pais)p.value=ui.pais;
+ if(window.__post)window.__post();
+}
+window.addEventListener('hashchange',function(){ui.abierto=-1;ui.archivo=null;ui.confirmarSalir=false;ui.perfilAbierto='';render();window.scrollTo(0,0);});
+
+/* ---------- acciones ---------- */
+document.addEventListener('click',function(ev){var t=ev.target.closest('[data-a]');if(!t)return;var a=t.getAttribute('data-a'),v=t.getAttribute('data-v');var u=yo();
+ switch(a){
+ case 'modo':guardarCampos();ui.modoAcceso=v;render();break;
+ case 'irAcceso':ui.modoAcceso=v;if(location.hash==='#acceso')render();break;
+ case 'ojo':guardarCampos();ui.verClave=!ui.verClave;render();restaurarCampos();break;
+ case 'plan':ui.abierto=ui.abierto===+v?-1:+v;render();break;
+ case 'metodo':ui.metodo=v;render();break;
+ case 'copiarDato':copiar(CUENTA_NEGOCIO[+v][1]);break;
+ case 'pagarPasarela':contratar(+v,'Pasarela de pagos','aprobado');toast('Pago simulado: plan activo');location.hash='#inicio';break;
+ case 'ejemploComp':ui.archivo={nombre:'comprobante-ejemplo.png',tam:'84 KB',url:compEjemplo()};render();break;
+ case 'enviarComp':if(!ui.archivo)return;contratar(+v,'Transferencia · comprobante enviado','espera');toast('Recibimos tu comprobante');location.hash='#movimientos';break;
+ case 'copiarLink':copiar('https://veritup.com/r/'+(u.alias||''));break;
+ case 'whatsapp':location.href='https://wa.me/?text='+encodeURIComponent('Sumate a Veritup con mi link: https://veritup.com/r/'+(u.alias||''));break;
+ case 'compartir':if(navigator.share){navigator.share({title:'Veritup',url:'https://veritup.com/r/'+(u.alias||'')}).catch(function(){});}else{copiar('https://veritup.com/r/'+(u.alias||''));}break;
+ case 'retOpc':guardarCampos();ui.retOpc=+v;render();restaurarCampos();break;
+ case 'demoDia':u.diasSim=(u.diasSim||0)+1;acreditar(u);guardar();render();toast('Nuevo día: '+fechaCorta(hoyAR(u)));break;
+ case 'perfil':ui.perfilAbierto=ui.perfilAbierto===v?'':v;render();break;
+ case 'pedirSalir':ui.confirmarSalir=true;render();break;
+ case 'noSalir':ui.confirmarSalir=false;render();break;
+ case 'salir':S.sesion=null;guardar();ui.confirmarSalir=false;ui.modoAcceso='entrar';location.hash='';render();break;
+ case 'filtro':ui.filtro=v;render();break;
+ case 'demoAprobar':var mv=(u.movs||[]).filter(function(x){return x.id===v;})[0];if(mv){mv.estado='aprobado';mv.nota='';if(mv.tipo==='compra'&&mv.plan){u.plan=Math.max(u.plan||0,mv.plan);if(!u.desde)u.desde=hoyAR(u);}guardar();render();toast('Aprobado (simulado)');}break;
+ case 'so':ui.so=v;render();break;
+ case 'copiarWeb':copiar('https://veritup.com');break;
+ }
+});
+var tmp={};
+function guardarCampos(){tmp={};['nombre','tel','clave','codigo','titular','cbu','banco','doc'].forEach(function(id){var e=document.getElementById(id);if(e)tmp[id]=e.value;});var p=document.getElementById('pais');if(p)ui.pais=p.value;}
+function restaurarCampos(){Object.keys(tmp).forEach(function(id){var e=document.getElementById(id);if(e)e.value=tmp[id];});}
+
+function nuevoId(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function contratar(n,detalle,estado){var u=yo(),p=PLANES[n-1];u.movs=u.movs||[];
+ u.movs.push({id:nuevoId(),tipo:'compra',titulo:'Plan '+p.rol,detalle:detalle,monto:p.precio,estado:estado,fecha:hoyTxt(u),ts:ahora(u).getTime(),plan:n,nota:estado==='espera'?'Estamos validando tu comprobante.':''});
+ if(estado==='aprobado'){u.plan=Math.max(u.plan||0,n);if(!u.desde)u.desde=hoyAR(u);}ui.archivo=null;ui.filtro='todo';guardar();}
+
+document.addEventListener('input',function(ev){var t=ev.target;
+ if(t.id==='alias'){var v=t.value.toLowerCase().replace(/[^a-z0-9-]/g,'').slice(0,24);if(v!==t.value)t.value=v;var u=yo();u.alias=v;guardar();var x=document.getElementById('aliasVista');if(x)x.textContent=v;}
+ if(t.id==='cbu'||t.id==='doc'||t.id==='tel'){var d=t.value.replace(/\D/g,'');if(d!==t.value)t.value=d;}
+ if(t.id==='cbu'){var c=document.getElementById('cbuCont');if(c){c.textContent=t.value.length+'/22';c.style.color=t.value.length===22?'#2BD98F':'#8FA3AE';}}
+});
+document.addEventListener('change',function(ev){var t=ev.target;
+ if(t.id==='pais'){ui.pais=t.value;var tel=document.getElementById('tel');if(tel)tel.placeholder=t.value==='54'?'11 2345 6789':'981 123 456';}
+ if(t.id==='comp'&&t.files&&t.files[0]){var f=t.files[0];var img=/^image\//.test(f.type);var tam=f.size>1048576?(f.size/1048576).toFixed(1)+' MB':Math.max(1,Math.round(f.size/1024))+' KB';
+  if(img){var r=new FileReader();r.onload=function(){ui.archivo={nombre:f.name,tam:tam,url:r.result};render();};r.readAsDataURL(f);}else{ui.archivo={nombre:f.name,tam:tam,url:''};render();}}
+});
+document.addEventListener('submit',function(ev){ev.preventDefault();var f=ev.target;var err=document.getElementById('err');function E(m){if(err)err.textContent=m;}
+ if(f.id==='fAcceso'){var tel=(document.getElementById('tel').value||'').replace(/\D/g,''),pais=document.getElementById('pais').value,clave=document.getElementById('clave').value;var key=pais+tel;
+  if(ui.modoAcceso==='crear'){var nombre=(document.getElementById('nombre').value||'').trim().replace(/\s+/g,' ');var cod=(document.getElementById('codigo').value||'').trim().toLowerCase();
+   if(nombre.split(' ').length<2)return E('Escribí tu nombre y apellido.');
+   if(tel.length<8)return E('Revisá el número de celular.');
+   if(clave.length<8)return E('La contraseña debe tener al menos 8 caracteres.');
+   if(S.usuarios[key])return E('Ese número ya tiene una cuenta. Tocá "Entrar".');
+   var alias=aliasUnico(nombre);
+   S.usuarios[key]={nombre:nombre,tel:tel,pais:pais,clave:hash(clave),alta:new Date().toLocaleDateString('es-AR',{day:'numeric',month:'long',year:'numeric'}),plan:0,alias:alias,invitadoPor:cod,movs:[]};
+   S.sesion=key;guardar();location.hash='#inicio';render();toast('¡Bienvenido a Veritup!');
+  }else{var us=S.usuarios[key];if(!us||us.clave!==hash(clave))return E('Número o contraseña incorrectos.');S.sesion=key;guardar();location.hash='#inicio';render();}
+ }
+ if(f.id==='fRetiro'){var u=yo(),p=plan(u),k=cuentas(u);var o=opcionesRetiro(k).filter(function(x){return x.id===ui.retOpc&&x.ok;})[0];
+  var c={titular:document.getElementById('titular').value.trim().replace(/\s+/g,' '),cbu:document.getElementById('cbu').value,banco:document.getElementById('banco').value.trim(),doc:document.getElementById('doc').value};
+  if(k.yaRetiro)return E('Ya hiciste tu retiro de hoy.');
+  if(!o)return E('Elegí un monto para retirar.');
+  if(c.titular.split(' ').length<2)return E('Escribí el nombre y apellido del titular.');
+  if(c.cbu.length!==22)return E('El CBU/CVU tiene que tener 22 números.');
+  if(!c.banco)return E('Escribí el banco o la billetera.');
+  if(c.doc.length<7)return E('Revisá tu CUIL, CUIT o DNI.');
+  u.cuenta=c;var coincide=c.titular.toLowerCase()===u.nombre.toLowerCase();
+  u.movs=u.movs||[];u.movs.push({id:nuevoId(),tipo:'retiro',titulo:o.id===5?'Retiro semanal 100%':'Retiro '+o.titulo+' (70% × '+o.id+')',detalle:'A '+c.banco+' · CBU …'+c.cbu.slice(-4),monto:o.monto,estado:coincide?'espera':'denegado',fecha:hoyTxt(u),ts:ahora(u).getTime(),dia:k.hoy,nota:coincide?'Habitualmente se acredita '+p.vel+'. Plazo máximo: 24 h.':'Los datos de la cuenta no coinciden con el titular. El monto volvió a tu saldo.'});
+  ui.retOpc=0;ui.filtro='todo';guardar();toast(coincide?'Retiro solicitado':'Retiro denegado: revisá los datos');location.hash='#movimientos';
+ }
+ if(f.id==='fClave'){var u2=yo();var a1=document.getElementById('c1').value,a2=document.getElementById('c2').value,a3=document.getElementById('c3').value;
+  if(hash(a1)!==u2.clave)return E('La contraseña actual no es correcta.');if(a2.length<8)return E('La nueva contraseña debe tener al menos 8 caracteres.');if(a2!==a3)return E('Las contraseñas nuevas no coinciden.');
+  u2.clave=hash(a2);guardar();ui.perfilAbierto='';render();toast('Contraseña actualizada');}
+});
+function aliasUnico(nombre){var b=nombre.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'').slice(0,20)||'usuario';
+ var usados={};Object.keys(S.usuarios).forEach(function(k){usados[S.usuarios[k].alias]=1;});if(!usados[b])return b;
+ var n=2;while(usados[b+n])n++;return b+n;}
+function hash(s){var h=5381;for(var i=0;i<s.length;i++){h=((h<<5)+h+s.charCodeAt(i))|0;}return 'h'+(h>>>0).toString(36);}
+function compEjemplo(){var c=document.createElement('canvas');c.width=600;c.height=760;var g=c.getContext('2d');g.fillStyle='#ffffff';g.fillRect(0,0,600,760);g.fillStyle='#0A1A24';g.font='bold 34px sans-serif';g.fillText('Comprobante de transferencia',40,80);g.font='22px sans-serif';g.fillStyle='#4A5B65';
+ [['Fecha',new Date().toLocaleString('es-AR')],['Destinatario','[Razón social del negocio]'],['CBU/CVU','[0000000000000000000000]'],['Monto','$ 10,00'],['N.º de operación','EJEMPLO-000123']].forEach(function(r,i){g.fillStyle='#8FA3AE';g.fillText(r[0],40,170+i*100);g.fillStyle='#0A1A24';g.font='bold 26px sans-serif';g.fillText(r[1],40,205+i*100);g.font='22px sans-serif';});
+ g.fillStyle='#F2B33D';g.fillRect(0,700,600,60);g.fillStyle='#0A1A24';g.font='bold 22px sans-serif';g.fillText('EJEMPLO · sin validez',40,738);return c.toDataURL('image/png');}
+
+var ref=(location.hash.match(/ref=([a-z0-9-]+)/)||[])[1];if(ref){S.refPendiente=ref;guardar();}
+
+/* ===== Prueba de animaciones ===== */
+(function(){
+ var SEL='.btn,.tarjeta,.opcion,.vinculo,.drop,.plan>button,.redondo';
+ function brillo(e){var t=e.target.closest&&e.target.closest(SEL);if(!t)return null;var r=t.getBoundingClientRect();t.style.setProperty('--mx',(e.clientX-r.left)+'px');t.style.setProperty('--my',(e.clientY-r.top)+'px');return t;}
+ document.addEventListener('pointermove',brillo,{passive:true});
+ document.addEventListener('pointerdown',function(e){var t=brillo(e);if(t){t.classList.add('tocado');setTimeout(function(){t.classList.remove('tocado');},320);}
+   if(e.pointerType==='touch'&&navigator.vibrate&&e.target.closest('[data-a],a,button'))try{navigator.vibrate(6);}catch(x){}},{passive:true});
+ var ultimo=null,ruta=null;
+ document.addEventListener('click',function(e){var t=e.target.closest('[data-a]');ultimo=t?{a:t.getAttribute('data-a'),v:t.getAttribute('data-v')}:null;},true);
+ window.__post=function(){
+  var r=(location.hash||'').split('?')[0];
+  if(r!==ruta){ruta=r;var p=document.querySelector('.pant');if(p){p.classList.add('entra');setTimeout(function(){p.classList.remove('entra');},900);}}
+  if(ultimo){var sel='[data-a="'+ultimo.a+'"]'+(ultimo.v!=null?'[data-v="'+ultimo.v+'"]':'');var el=document.querySelector(sel);
+   if(el){var cl=el.classList.contains('on')||el.getAttribute('aria-pressed')==='true'||el.getAttribute('aria-expanded')==='true'?'brillo':'pop';el.classList.add(cl);setTimeout(function(){el.classList.remove(cl);},1200);
+    var art=el.closest('.plan');if(art&&el.getAttribute('aria-expanded')==='true'){art.classList.add('pop');setTimeout(function(){art.classList.remove('pop');},700);}}
+   ultimo=null;}
+ };
+})();
+render();
+})();
+</script>
+</body>
+</html>
