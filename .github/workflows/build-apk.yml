@@ -23,14 +23,18 @@ jobs:
           distribution: temurin
           java-version: 21
 
-
       - name: Instalar Capacitor
         run: npm install
 
       - name: Crear proyecto Android
         run: |
           npx cap add android
-          npx cap sync android
+
+      - name: Poner ícono de la app
+        run: npx --yes @capacitor/assets generate --android --iconBackgroundColor "#0A1A24" --iconBackgroundColorDark "#0A1A24" --splashBackgroundColor "#0A1A24" --splashBackgroundColorDark "#0A1A24"
+
+      - name: Copiar la web a la app
+        run: npx cap sync android
 
       - name: Compilar APK
         run: |
