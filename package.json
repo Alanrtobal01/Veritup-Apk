@@ -1,6 +1,6 @@
 {
   "name": "veritup-demo",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "private": true,
   "description": "Maqueta de Veritup empaquetada como app Android (versión de prueba, montos ficticios).",
   "dependencies": {

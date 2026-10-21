@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0A1A24">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Veritup">
 <title>Veritup</title>
 <style>
 :root{
@@ -176,6 +180,98 @@ body{min-height:100vh}
   .nav{max-width:560px;margin:0 auto 16px;border-radius:22px;border-bottom:1px solid var(--linea);bottom:16px}
   .toast{bottom:110px}
 }
+
+
+/* ===== Veritup 2.0 ===== */
+.nav{grid-template-columns:repeat(5,1fr)}
+.nav a{font-size:12px}
+.h1-cab{flex:1;min-width:0;font-size:clamp(24px,7vw,30px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.campana{overflow:visible!important}
+.badge{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#FF6B6B;color:#0A1A24;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px #0A1A24;animation:pop .6s var(--resorte)}
+.badge.estatica{position:static;box-shadow:none;margin-right:4px}
+.icono-caja{width:44px;height:44px;flex-shrink:0;border-radius:14px;background:#123D2E;display:flex;align-items:center;justify-content:center}
+.mini{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8FA3AE}
+.gira{display:flex;transition:transform .45s var(--resorte)}
+.linea{height:1px;background:#1E3A4D}
+.caja-negra{padding:14px;border-radius:16px;background:#0A1A24}
+.cotiz{gap:8px;padding:12px 14px;border-radius:14px;border:1px solid #1E3A4D;font-size:14px;color:#C5D2D8}
+.cotiz svg{flex-shrink:0}
+.dos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.trio .tarjeta{padding:14px 12px}
+.formula{border:1px solid rgba(43,217,143,.3)}
+.prefijo{position:absolute;left:16px;top:14px;font-family:var(--titulo);font-size:22px;font-weight:600;color:#8FA3AE}
+.chip-btn{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--borde);background:transparent;color:var(--niebla);font-weight:600;font-size:15px;transition:transform .4s var(--resorte),border-color .3s,background-color .3s}
+.chip-btn:active{transform:scale(.94)}
+@media (hover:hover){.chip-btn:hover{border-color:var(--alza);background:rgba(43,217,143,.08)}}
+.sello{gap:10px;padding:12px 14px;border-radius:14px;background:#0F2E24;color:#BFF0D9;font-size:14px}
+.sello svg{flex-shrink:0}
+.confirma{background:#0A1A24;border:1px solid #2A4A5E}
+.confirma-rojo{background:#2A1416;border:1px solid #5C2A2A}
+.btn.rojo{background:#FF6B6B;color:#0A1A24}
+.btn.oscuro{background:#0A1A24;color:#F4F7F6}
+.btn.chico{width:auto;min-height:44px;font-size:15px;padding:0 14px}
+.dos .btn.chico{width:100%}
+.btn.bloqueado{border:2px dashed #4A5B65;color:#C5D2D8}
+.vista-comp{background:#061118;display:flex;justify-content:center}
+.vista-comp img{display:block;width:100%;max-height:420px;object-fit:contain}
+.corta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.leyenda{gap:14px;flex-wrap:wrap;font-size:13px;color:#C5D2D8}
+.punto{width:10px;height:10px;border-radius:999px;display:inline-block}
+.notif.nueva{background:rgba(43,217,143,.06)}
+.punto-nuevo{width:10px;height:10px;border-radius:999px;background:#2BD98F;flex-shrink:0;box-shadow:0 0 10px rgba(43,217,143,.8)}
+.tarjeta-ambar{background:#F2B33D;color:#0A1A24;border-radius:24px}
+.link-caja{border-radius:16px;background:#0A1A24;color:#F4F7F6;padding:16px}
+.plan-grande{width:112px;height:112px;border-radius:32px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.icono-app{width:72px;height:72px;border-radius:20px;background:#0A1A24;border:1px solid #1E3A4D;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.despliegue{animation:despliega .5s var(--resorte) both}
+.destacada{border:1px solid rgba(43,217,143,.35);background:linear-gradient(180deg,#123D2E 0%,#11293A 100%)}
+.cifra{font-size:clamp(17px,5vw,26px);color:#2BD98F;white-space:nowrap}
+.pasos .n.verde{background:#123D2E;color:#2BD98F}
+.ojo{position:absolute;right:5px;top:5px;width:48px;height:48px;border:0;background:transparent;display:flex;align-items:center;justify-content:center}
+.insignia{letter-spacing:-.02em}
+input[type=date].campo{color-scheme:dark}
+.demo{position:sticky;top:0;z-index:20;padding-top:calc(6px + env(safe-area-inset-top))}
+.p-azul{background:#1A2B4D;color:#9DBBFF}
+.aviso.rojo{background:#2A1416;border-color:#5C2A2A;color:#FFB3B3}
+.enlace{background:none;border:0;padding:6px 0;color:var(--alza);font-weight:600;font-size:15px;align-self:flex-end;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.aviso .enlace{display:inline;padding:0;align-self:auto}
+.tabs-scroll{display:flex;overflow-x:auto;scrollbar-width:none}
+.tabs-scroll::-webkit-scrollbar{display:none}
+.tabs-scroll button{flex:0 0 auto;padding:0 16px}
+.cuenta-tab{display:inline-flex;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:#F2B33D;color:#0A1A24;font-size:12px;font-weight:800;align-items:center;justify-content:center;margin-left:4px}
+.area{height:auto;min-height:96px;padding:14px 16px;font-size:17px;line-height:1.45;resize:vertical;font-family:inherit}
+.noticia h3{letter-spacing:-.01em}
+@media (min-width:1100px){.grid-noticias{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}}
+@media (max-width:480px){.solo-ancho{display:none}}
+/* ===== Panel interno del equipo ===== */
+body.equipo{background:#0B0F17}
+@media (min-width:768px){body.equipo{background:radial-gradient(1000px 500px at 50% -10%,#2A2210 0%,#0B0F17 60%)}}
+.pant-equipo{max-width:820px;margin:0 auto;width:100%}
+.cab-equipo{justify-content:space-between;padding-bottom:6px;border-bottom:1px solid #2B2616}
+.marca-equipo{display:flex;align-items:center;gap:12px}
+.sello-equipo{align-self:flex-start;padding:3px 10px;border-radius:999px;background:#3D3214;color:#F2B33D;font-size:11px;font-weight:800;letter-spacing:.12em}
+.tarjeta-equipo{border:1px solid #3D3214}
+.btn-equipo{background:#F2B33D;color:#0A1A24}
+body.equipo .tabs{background:#141A24}
+body.equipo .tabs button.on{background:#F2B33D;color:#0A1A24;box-shadow:0 8px 20px -10px rgba(242,179,61,.8)}
+body.equipo .tarjeta,body.equipo .lista{background:#141A24}
+body.equipo .campo{background:#141A24;border-color:#2A3446}
+body.equipo .cuenta-tab{background:#FF6B6B}
+.decision{gap:8px}
+.btn.aprobar-g{min-height:62px;font-size:19px;font-weight:700;background:#2BD98F;color:#0A1A24;border-radius:18px;box-shadow:0 12px 30px -14px rgba(43,217,143,.85)}
+.btn.aprobar-g[disabled]{box-shadow:none}
+.btn.rechazo-l{min-height:46px;background:transparent;border:1px solid #5C2A2A;color:#FF8A8A;font-size:16px;font-weight:600}
+.chip-btn.on{background:#F2B33D;border-color:#F2B33D;color:#0A1A24}
+.trio .num{white-space:nowrap;font-size:clamp(14px,4vw,17px)!important}
+.cap-img{border-radius:12px;border:1px solid var(--borde);width:200px;height:60px;flex-shrink:0;background:#E7EEF1}
+.captcha .redondo{flex-shrink:0}
+#capIn{letter-spacing:.3em;text-transform:uppercase;font-weight:700}
+#capIn::placeholder{letter-spacing:0;text-transform:none;font-weight:400}
+.desglose{display:flex;flex-direction:column;gap:8px;padding:14px 16px;border-radius:14px;background:#0A1A24;border:1px solid var(--linea);font-size:15px;color:#C5D2D8}
+button[disabled]{cursor:not-allowed}
+.monto-ajusta{font-size:clamp(18px,5.6vw,28px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (min-width:768px){.trio .tarjeta{padding:18px}}
 </style>
 </head>
 <body>
@@ -183,35 +279,87 @@ body{min-height:100vh}
 <script>
 (function(){
 'use strict';
-var VERSION='1.0.9';
+var TZ='America/Argentina/Buenos_Aires';
 var PLANES=[
- {n:1,rol:'Explorador',precio:2,pct:25,vel:'en 12 h',color:'#C5D2D8',futuro:false,texto:'Tu primer paso. Conocé cómo funciona con lo mínimo.'},
- {n:2,rol:'Aprendiz',precio:5,pct:30,vel:'en 8 h',color:'#4FD1E8',futuro:false,texto:'Más participación y retiros más ágiles.'},
- {n:3,rol:'Socio',precio:10,pct:35,vel:'en 4 h',color:'#2BD98F',futuro:false,texto:'El equilibrio justo para empezar a crecer en serio.'},
- {n:4,rol:'Impulsor',precio:50,pct:40,vel:'en 2 h',color:'#B9A5FF',futuro:false,texto:'Para quienes quieren su dinero en el mismo día.'},
- {n:5,rol:'Estratega',precio:100,pct:50,vel:'en 1 h',color:'#7FA8FF',futuro:false,texto:'Retirás en poco tiempo, con atención preferencial.'},
- {n:6,rol:'Visionario',precio:200,pct:55,vel:'en 30 min',color:'#F2B33D',futuro:true,texto:'Para quienes miran a largo plazo.'},
- {n:7,rol:'Mentor',precio:500,pct:60,vel:'en 10 min',color:'#F7CF7A',futuro:true,texto:'Prácticamente inmediato.'},
- {n:8,rol:'Fundador',precio:700,pct:70,vel:'al instante',color:'#F4F7F6',futuro:true,texto:'El plan más alto: tu retiro se acredita en el acto.'}
+ {v:1,usd:2,pct:25,color:'#C5D2D8',futuro:false,texto:'Tu primer paso para conocer cómo funciona.'},
+ {v:2,usd:5,pct:30,color:'#4FD1E8',futuro:false,texto:'Más participación en la ganancia del negocio.'},
+ {v:3,usd:10,pct:35,color:'#2BD98F',futuro:false,texto:'El equilibrio justo para empezar a crecer.'},
+ {v:4,usd:25,pct:40,color:'#7FE3B8',futuro:false,texto:'Para acompañar el crecimiento de cerca.'},
+ {v:5,usd:50,pct:45,color:'#B9A5FF',futuro:false,texto:'Una parte mayor de cada resultado.'},
+ {v:6,usd:100,pct:50,color:'#7FA8FF',futuro:false,texto:'La mitad de la ganancia que genera tu aporte.'},
+ {v:7,usd:200,pct:55,color:'#F2B33D',futuro:true,texto:'Para quienes miran a largo plazo.'},
+ {v:8,usd:500,pct:60,color:'#F7CF7A',futuro:true,texto:'Participación preferencial.'},
+ {v:9,usd:700,pct:70,color:'#F4F7F6',futuro:true,texto:'El plan más alto de Veritup.'}
 ];
 var CUENTA_NEGOCIO=[['Titular','[Razón social del negocio]'],['CUIT','[30-00000000-0]'],['CBU / CVU','[0000000000000000000000]'],['Banco','[Nombre del banco]']];
-var CLAVE='veritup_demo_v1';
+var CLAVE='veritup_demo_v2';
+var EQUIPO={usuario:'admin.veritup',sal:'5f0c9a7e3b21d84c6e1a0f93b7d25c48',clave:'eab12c991e309a42b34f7bfb43931e9915bcf217d269b4005b0c2d211f69cb7e'};
+function sesionEquipo(){try{var t=+sessionStorage.getItem('veritup_eq')||0;if(t&&Date.now()-t<30*60*1000){sessionStorage.setItem('veritup_eq',String(Date.now()));return true;}sessionStorage.removeItem('veritup_eq');}catch(e){}return false;}
+function marcarEquipo(){try{sessionStorage.setItem('veritup_eq',String(Date.now()));}catch(e){}}
+function salirEquipo(){ui.admin=false;ui.adminTab='resumen';ui.adCuenta='';try{sessionStorage.removeItem('veritup_eq');}catch(e){}}
+var INACTIVIDAD=60*60*1000;
 var S=cargar();
-var ui={modoAcceso:'crear',verClave:false,abierto:-1,metodo:'pasarela',archivo:null,filtro:'todo',retiroModo:'sabado',so:'android',perfilAbierto:'',confirmarSalir:false};
+var ui={captcha:'',fallos:0,adCuenta:'',adFiltro:'todas',adBusca:'',adConfirm:'',adClaveTemp:'',adminTab:'resumen',admin:sesionEquipo(),pubTipo:'resultado',recEnviado:false,modoAcceso:'crear',verClave:false,abierto:-1,metodo:'pasarela',archivo:null,filtro:'todo',so:'android',perfilAbierto:'',confirmarSalir:false,confirmRescate:''};
 
-function cargar(){try{var d=JSON.parse(localStorage.getItem(CLAVE)||'null');if(d&&d.v===1)return d;}catch(e){}return{v:1,usuarios:{},sesion:null};}
+function cargar(){var d=null;try{d=JSON.parse(localStorage.getItem(CLAVE)||'null');}catch(e){}
+ if(!d||d.v!==2)d={v:2,usuarios:{},sesion:null,reportes:[],cotizacion:1600};
+ d.solicitudes=d.solicitudes||[];d.registro=d.registro||[];d.reportes=d.reportes||[];
+ Object.keys(d.usuarios).forEach(function(k){if(!d.usuarios[k].estado)d.usuarios[k].estado='aprobada';});
+ d.reportes.forEach(function(r){if(!r.tipo)r.tipo='resultado';});d.bloqueos=d.bloqueos||{};if(typeof d.comision!=='number')d.comision=10;
+ if(d.sesion&&d.actividad&&Date.now()-d.actividad>INACTIVIDAD){d.sesion=null;d.expiro=true;}return d;}
 function guardar(){try{localStorage.setItem(CLAVE,JSON.stringify(S));}catch(e){}}
 function yo(){return S.sesion?S.usuarios[S.sesion]:null;}
-function plan(u){return u&&u.plan?PLANES[u.plan-1]:null;}
 function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-function money(n){return '$ '+Number(n).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});}
-function hoyTxt(u){return ahora(u).toLocaleString('es-AR',{timeZone:'America/Argentina/Buenos_Aires',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});}
+function r2(n){return Math.round(n*100)/100;}
+function money(n){return '$ '+Number(n||0).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function pesos(n){return '$ '+Number(n||0).toLocaleString('es-AR',{maximumFractionDigits:0});}
+function ars(p){return p.usd*S.cotizacion;}
+function plan(v){return PLANES[v-1];}
+function hoyAR(){var p=new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());var o={};p.forEach(function(x){o[x.type]=x.value;});return o.year+'-'+o.month+'-'+o.day;}
+function fechaCorta(f){var p=f.split('-');return new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).toLocaleDateString('es-AR',{weekday:'short',day:'numeric',month:'short',timeZone:'UTC'});}
+function cuando(ts){return new Date(ts).toLocaleString('es-AR',{timeZone:TZ,day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});}
 function primerNombre(u){return (u.nombre||'').split(' ')[0]||'';}
-function toast(t){var x=document.createElement('div');x.className='toast';x.textContent=t;document.body.appendChild(x);setTimeout(function(){x.remove();},2200);}
+function nuevoId(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function hashViejo(s){var h=5381;for(var i=0;i<s.length;i++){h=((h<<5)+h+s.charCodeAt(i))|0;}return 'h'+(h>>>0).toString(36);}
+/* ---------- seguridad ---------- */
+var ITER=150000,INACTIVIDAD=60*60*1000;
+function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2);}).join('');}
+function salNueva(){var a=new Uint8Array(16);crypto.getRandomValues(a);return hex(a.buffer);}
+function derivar(pw,sal){var enc=new TextEncoder();return crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveBits']).then(function(k){return crypto.subtle.deriveBits({name:'PBKDF2',salt:enc.encode(sal),iterations:ITER,hash:'SHA-256'},k,256);}).then(hex);}
+function nuevaClave(pw){var sal=salNueva();return derivar(pw,sal).then(function(h){return{sal:sal,clave:h};});}
+function iguales(a,b){a=String(a);b=String(b);if(a.length!==b.length)return false;var r=0;for(var i=0;i<a.length;i++)r|=a.charCodeAt(i)^b.charCodeAt(i);return r===0;}
+function verificarClave(o,pw){if(!o)return Promise.resolve(false);if(o.sal)return derivar(pw,o.sal).then(function(h){return iguales(h,o.clave);});return Promise.resolve(iguales(o.clave,hashViejo(pw)));}
+function claveValida(pw){return pw.length>=8&&/[A-Za-zÁÉÍÓÚáéíóúñÑ]/.test(pw)&&/\d/.test(pw);}
+var CAP_CH='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+function nuevoCaptcha(){var a=new Uint32Array(5);crypto.getRandomValues(a);var t='';for(var i=0;i<5;i++)t+=CAP_CH[a[i]%CAP_CH.length];ui.captcha=t;}
+function captchaCampo(){if(!ui.captcha)nuevoCaptcha();return '<div class="col captcha"><label class="et" for="capIn">Verificación de seguridad</label><div class="fila" style="gap:10px"><canvas id="capImg" class="cap-img" width="200" height="60" role="img" aria-label="Código de verificación con 5 caracteres"></canvas><button type="button" class="redondo" data-a="otroCaptcha" aria-label="Generar otro código">'+I.ic(P.vuelta,'#F4F7F6',20,2)+'</button></div><input class="campo" id="capIn" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="5" placeholder="Escribí los 5 caracteres"></div>';}
+function dibujarCaptcha(){var c=document.getElementById('capImg');if(!c||!ui.captcha||!c.getContext)return;var g=c.getContext('2d');var R=function(a,b){return a+Math.random()*(b-a);};
+ g.fillStyle='#E7EEF1';g.fillRect(0,0,200,60);for(var i=0;i<6;i++){g.strokeStyle='rgba(10,26,36,'+R(.15,.35)+')';g.lineWidth=R(1,2.2);g.beginPath();g.moveTo(R(0,200),R(0,60));g.bezierCurveTo(R(0,200),R(0,60),R(0,200),R(0,60),R(0,200),R(0,60));g.stroke();}
+ for(var j=0;j<ui.captcha.length;j++){g.save();g.translate(22+j*36,R(36,46));g.rotate(R(-.38,.38));g.font='700 '+Math.round(R(28,34))+'px Georgia, serif';g.fillStyle=['#0A1A24','#123D2E','#3A2A6B','#5C2A2A'][j%4];g.fillText(ui.captcha[j],0,0);g.restore();}
+ for(var k=0;k<60;k++){g.fillStyle='rgba(10,26,36,'+R(.1,.4)+')';g.fillRect(R(0,200),R(0,60),1.6,1.6);}}
+function captchaOk(){var i=document.getElementById('capIn');return !!i&&!!ui.captcha&&i.value.trim().toUpperCase()===ui.captcha;}
+function captchaFallo(){nuevoCaptcha();dibujarCaptcha();var i=document.getElementById('capIn');if(i){i.value='';i.focus();}}
+function bloqueoLogin(key){var b=(S.bloqueos||{})[key];if(b&&b.hasta>Date.now())return Math.ceil((b.hasta-Date.now())/60000);return 0;}
+function falloLogin(key){S.bloqueos=S.bloqueos||{};var b=S.bloqueos[key]||{n:0,hasta:0};b.n++;if(b.n>=5){b.hasta=Date.now()+5*60*1000;b.n=0;}S.bloqueos[key]=b;ui.fallos=(ui.fallos||0)+1;guardar();}
+function ocupar(f,txt){var b=f.querySelector('button[type=submit]');if(!b)return function(){};var t0=b.innerHTML;b.disabled=true;b.textContent=txt||'Verificando…';return function(){b.disabled=false;b.innerHTML=t0;};}
+function comisionPct(){return typeof S.comision==='number'?S.comision:10;}
+function desglose(monto){var c=r2(monto*comisionPct()/100);return{comision:c,neto:r2(monto-c)};}
+function toast(t){var x=document.createElement('div');x.className='toast';x.setAttribute('role','status');x.textContent=t;document.body.appendChild(x);setTimeout(function(){x.remove();},2400);}
 function copiar(t){var ok=false;try{if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t);ok=true;}}catch(e){}
- if(!ok){try{var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();}catch(e){}}
- toast('Copiado');}
+ if(!ok){try{var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();}catch(e){}}toast('Copiado');}
 
+/* ---------- cálculos de cuenta ---------- */
+function planesDe(u,estados){return (u.planes||[]).filter(function(p){return estados.indexOf(p.estado)>=0;});}
+function capital(u){var c=0;planesDe(u,['activo','rescate']).forEach(function(p){c+=p.ars;});return r2(c);}
+function saldo(u){var s=0;(u.movs||[]).forEach(function(m){if((m.tipo==='ingreso'||m.tipo==='bono'||m.tipo==='ajuste')&&m.estado==='aprobado')s+=m.monto;if(m.tipo==='retiro'&&m.estado!=='denegado')s-=m.monto;});return r2(s);}
+function ganadoTotal(u){var s=0;(u.movs||[]).forEach(function(m){if(m.tipo==='ingreso'&&m.estado==='aprobado')s+=m.monto;});return r2(s);}
+function mejorPlan(u){var m=0;planesDe(u,['activo','rescate']).forEach(function(p){m=Math.max(m,p.v);});return m;}
+function capitalNegocio(){var c=0;Object.keys(S.usuarios).forEach(function(k){planesDe(S.usuarios[k],['activo']).forEach(function(p){c+=p.ars;});});return r2(c);}
+function noLeidas(u){return (u.notifs||[]).filter(function(n){return !n.leida;}).length;}
+function notificar(u,tipo,titulo,texto){u.notifs=u.notifs||[];u.notifs.unshift({id:nuevoId(),tipo:tipo,titulo:titulo,texto:texto,ts:Date.now(),leida:false});}
+function mov(u,m){u.movs=u.movs||[];m.id=m.id||nuevoId();m.ts=m.ts||Date.now();u.movs.push(m);return m;}
+
+/* ---------- íconos ---------- */
 var I={
  logo:function(s){return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 64 64" aria-hidden="true"><path d="M10 16 L28 50" stroke="#2BD98F" stroke-opacity=".5" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M28 50 L54 10" stroke="#2BD98F" stroke-width="7" stroke-linecap="round" fill="none"/><circle cx="54" cy="10" r="5.5" fill="#F4F7F6"/></svg>';},
  ic:function(d,c,s,w){return '<svg width="'+(s||22)+'" height="'+(s||22)+'" viewBox="0 0 24 24" fill="none" stroke="'+(c||'#F4F7F6')+'" stroke-width="'+(w||2)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+d+'"/></svg>';}
@@ -221,316 +369,505 @@ var P={atras:'M15 5l-7 7 7 7',ojo:'M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 
  check:'M5 12l5 5L20 7',reloj:'M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z',cruz:'M6 6l12 12M18 6L6 18',info:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 11v5M12 8h.01',
  candado:'M5 11h14v10H5zM8 11V8a4 4 0 0 1 8 0v3',flecha:'M9 6l6 6-6 6',abajo:'M6 9l6 6 6-6',subir:'M12 16V4M7 9l5-5 5 5M4 16v4h16v-4',bajar:'M12 4v12M7 11l5 5 5-5M5 20h14',
  bolsa:'M5 8h14l-1 12H6zM9 8a3 3 0 0 1 6 0',lista:'M4 6h16M4 12h16M4 18h10',cel:'M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM12 7v7M9.5 11.5L12 14l2.5-2.5',
- escudo:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4',crono:'M12 5a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM12 9v4l2.5 2M9 2h6',compartir:'M12 3v12M8 7l4-4 4 4M6 11H5v10h14V11h-1',salir:'M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l-5-5 5-5M5 12h11'};
+ escudo:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4',compartir:'M12 3v12M8 7l4-4 4 4M6 11H5v10h14V11h-1',salir:'M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l-5-5 5-5M5 12h11',
+ campana:'M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4',doc:'M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6',grafico:'M4 19h16M7 15l4-4 3 3 5-6',tienda:'M4 10h16l-1-5H5zM5 10v10h14V10M9 20v-5h6v5',
+ vuelta:'M4 12a8 8 0 1 0 2.5-5.8M4 4v4h4',menu:'M12 5v.01M12 12v.01M12 19v.01'};
 
-function cab(titulo,volver){return '<div class="fila">'+(volver?'<a class="redondo" href="#'+volver+'" aria-label="Volver">'+I.ic(P.atras)+'</a>':'')+'<h1 class="h1" style="flex:1">'+titulo+'</h1>'+logoBtn()+'</div>';}
+function ultimoResultado(){var l=S.reportes.filter(function(r){return r.tipo==='resultado';});return l[l.length-1];}
+function capitalActivo(u){var c=0;planesDe(u,['activo']).forEach(function(p){c+=p.ars;});return c;}
+function participacion(u){var t=capitalNegocio();return t>0?capitalActivo(u)/t*100:0;}
+function pct2(n){return Number(n||0).toLocaleString('es-AR',{maximumFractionDigits:2})+'%';}
+function estadoBanner(u){if(!u)return '';if(u.estado==='pendiente')return aviso(P.reloj,'<strong>Tu cuenta está en verificación.</strong> El equipo la revisa antes de que puedas invertir o retirar. Te avisamos por notificación.','ambar');
+ if(u.estado==='suspendida')return '<div class="aviso rojo">'+I.ic(P.candado,'#FF8A8A',22,2)+'<div><strong>Tu cuenta está suspendida.</strong> Tus inversiones siguen activas. Escribinos a soporte por WhatsApp a [número de soporte].</div></div>';
+ if(u.estado==='rechazada')return '<div class="aviso rojo">'+I.ic(P.cruz,'#FF8A8A',22,2)+'<div><strong>No pudimos verificar tu cuenta.</strong> Escribinos a soporte por WhatsApp a [número de soporte] para revisarla.</div></div>';return '';}
+function linkSeguro(l){return /^https?:\/\/[^\s"'<>]+$/i.test(l||'')?l:'';}
+function tarjetaNoticia(r,u){var res=r.tipo==='resultado';var mi=0;if(u)(u.movs||[]).forEach(function(m){if(m.tipo==='ingreso'&&m.reporteId===r.id)mi+=m.monto;});var lk=linkSeguro(r.link);
+ return '<article class="tarjeta col noticia" style="gap:12px"><div class="fila" style="justify-content:space-between;gap:10px"><span class="pastilla '+(res?(r.ganancia>0?'p-verde':'p-ambar'):'p-azul')+'" style="font-size:12px">'+(res?'Resultado del día':'Novedad')+'</span><span class="chica">'+fechaCorta(r.fecha)+'</span></div>'+
+ '<h3 class="num" style="margin:0;font-size:20px;line-height:1.25">'+esc(r.titulo||('Resultado del '+fechaCorta(r.fecha)))+'</h3>'+
+ (r.texto?'<p style="margin:0;color:#C5D2D8">'+esc(r.texto)+'</p>':'')+
+ (res?'<div class="trio"><div><div class="chica">Ingresos de minería</div><div class="num" style="font-size:17px">'+pesos(r.ventas)+'</div></div><div><div class="chica">Gastos</div><div class="num" style="font-size:17px">'+pesos(r.gastos)+'</div></div><div><div class="chica">Ganancia</div><div class="num" style="font-size:17px;color:'+(r.ganancia>0?'#2BD98F':'#C5D2D8')+'">'+pesos(r.ganancia)+'</div></div></div>'+
+  '<div class="chica">Repartido a inversores: <strong style="color:#F4F7F6">'+money(r.repartido)+'</strong> · Capital total: '+pesos(r.capital)+'</div>':'')+
+ (res&&u?'<div class="fila caja-negra" style="justify-content:space-between"><span style="color:#C5D2D8">Tu parte</span><span class="num" style="font-size:20px;color:#2BD98F">'+(mi?'+ ':'')+money(mi)+'</span></div>':'')+
+ (lk?'<a href="'+esc(lk)+'" target="_blank" rel="noopener noreferrer" style="font-weight:600">Ver panel de minería ↗</a>':'')+'</article>';}
 function logoBtn(){return '<a class="logo-btn" href="#bienvenida" aria-label="Veritup, página de inicio">'+I.logo(30)+'</a>';}
-function nav(act){var t=[['inicio','Inicio',P.casa],['planes','Planes',P.barras],['referidos','Referidos',P.amigos],['perfil','Perfil',P.persona]];
- return '<nav class="nav">'+t.map(function(x){var on=x[0]===act;return '<a href="#'+x[0]+'" class="'+(on?'on':'')+'"'+(on?' aria-current="page"':'')+'>'+I.ic(x[2],on?'#2BD98F':'#8FA3AE',24,1.8)+x[1]+'</a>';}).join('')+'</nav>';}
-function estadoPill(e){if(e==='aprobado')return '<span class="pastilla p-verde">'+I.ic(P.check,'#2BD98F',14,2.6)+'Aprobado</span>';if(e==='espera')return '<span class="pastilla p-ambar">'+I.ic(P.reloj,'#F2B33D',14,2.4)+'En espera</span>';return '<span class="pastilla p-rojo">'+I.ic(P.cruz,'#FF8A8A',14,2.6)+'Denegado</span>';}
+function campana(u){var n=noLeidas(u);return '<a class="redondo campana" href="#notificaciones" aria-label="Notificaciones'+(n?', '+n+' sin leer':'')+'">'+I.ic(P.campana,'#F4F7F6',22,1.8)+(n?'<span class="badge">'+(n>9?'9+':n)+'</span>':'')+'</a>';}
+function cab(titulo,volver,sinCampana){var u=yo();return '<div class="fila">'+(volver?'<a class="redondo" href="#'+volver+'" aria-label="Volver">'+I.ic(P.atras)+'</a>':'')+'<h1 class="h1 h1-cab">'+titulo+'</h1>'+(u&&!sinCampana?campana(u):'')+logoBtn()+'</div>';}
+function nav(act){var t=[['inicio','Inicio',P.casa],['planes','Planes',P.barras],['noticias','Noticias',P.doc],['referidos','Referidos',P.amigos],['perfil','Perfil',P.persona]];
+ return '<nav class="nav" aria-label="Principal">'+t.map(function(x){var on=x[0]===act;return '<a href="#'+x[0]+'" class="'+(on?'on':'')+'"'+(on?' aria-current="page"':'')+'>'+I.ic(x[2],on?'#2BD98F':'#8FA3AE',24,1.8)+x[1]+'</a>';}).join('')+'</nav>';}
+function pill(e){if(e==='aprobado')return '<span class="pastilla p-verde">'+I.ic(P.check,'#2BD98F',14,2.6)+'Aprobado</span>';if(e==='espera')return '<span class="pastilla p-ambar">'+I.ic(P.reloj,'#F2B33D',14,2.4)+'En revisión</span>';return '<span class="pastilla p-rojo">'+I.ic(P.cruz,'#FF8A8A',14,2.6)+'Rechazado</span>';}
+function aviso(ic,t,cls){return '<div class="aviso'+(cls?' '+cls:'')+'">'+I.ic(ic,cls==='ambar'?'#F2B33D':'#8FA3AE',22,1.8)+'<div>'+t+'</div></div>';}
+function insignia(p,s){s=s||52;return '<span class="insignia" style="width:'+s+'px;height:'+s+'px;font-size:'+Math.round(s*0.36)+'px;background:'+p.color+'">V'+p.v+'</span>';}
 
-/* ---------- fechas en hora de Argentina ---------- */
-var TZ='America/Argentina/Buenos_Aires';
-function ahora(u){return new Date(Date.now()+((u&&u.diasSim)||0)*86400000);}
-function fechaAR(d){var p=new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d);var o={};p.forEach(function(x){o[x.type]=x.value;});return o.year+'-'+o.month+'-'+o.day;}
-function hoyAR(u){return fechaAR(ahora(u));}
-function sumarDias(f,n){var p=f.split('-');return new Date(Date.UTC(+p[0],+p[1]-1,+p[2]+n)).toISOString().slice(0,10);}
-function diaSemana(f){var p=f.split('-');return new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay();}
-function fechaCorta(f){var p=f.split('-');return new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).toLocaleDateString('es-AR',{weekday:'short',day:'numeric',month:'short',timeZone:'UTC'});}
-function tsDe(f){var p=f.split('-');return Date.UTC(+p[0],+p[1]-1,+p[2]+1,3,0);}
-function r2(n){return Math.round(n*100)/100;}
-
-/* ---------- ingresos automáticos (montos ficticios) ---------- */
-var BASE=[0.02,0.04,0.08,0.35,0.70,0,0,0];
-function montoDia(u,f){var h=0;for(var i=0;i<f.length;i++)h=(h*31+f.charCodeAt(i)+u.tel.length)%997;var fac=h%9===0?0:0.6+(h%9)*0.1;return r2(BASE[(u.plan||1)-1]*fac);}
-function acreditar(u){if(!u||!u.plan||!u.desde)return;u.ingresos=u.ingresos||[];var hoy=hoyAR(u);var f=u.ultimo?sumarDias(u.ultimo,1):u.desde;var cambio=false;
- while(f<hoy){u.ingresos.push({fecha:f,monto:montoDia(u,f),plan:u.plan});u.ultimo=f;f=sumarDias(f,1);cambio=true;}if(cambio)guardar();}
-function cuentas(u){acreditar(u);var ing=0;(u.ingresos||[]).forEach(function(x){ing+=x.monto;});var ret=0;(u.movs||[]).forEach(function(m){if(m.tipo==='retiro'&&m.estado!=='denegado')ret+=m.monto;});
- var saldo=r2(ing-ret),hoy=hoyAR(u),sab=diaSemana(hoy)===6;var tope=sab?saldo:r2(Math.max(0,0.7*ing-ret));
- var ult=(u.ingresos||[]).slice(-1)[0];var ult7=(u.ingresos||[]).slice(-7),sum7=0;ult7.forEach(function(x){sum7+=x.monto;});var prom=ult7.length&&sum7>0?sum7/ult7.length:BASE[(u.plan||1)-1];var unidad=r2(0.7*prom);
- var ya=(u.movs||[]).some(function(m){return m.tipo==='retiro'&&m.dia===hoy&&m.estado!=='denegado';});
- return{ingresos:r2(ing),retirado:r2(ret),saldo:saldo,retenido:r2(saldo-tope),tope:tope,unidad:unidad,promedio:r2(prom),sabado:sab,ayer:ult?ult.monto:0,hoy:hoy,yaRetiro:ya};}
-
-/* ---------- pantallas ---------- */
-function vLanding(){var u=yo();
- var paso=function(n,ic,t,d){return '<div class="tarjeta col" style="gap:10px"><div class="fila"><span style="width:44px;height:44px;border-radius:14px;background:#123D2E;display:flex;align-items:center;justify-content:center;flex-shrink:0">'+I.ic(ic,'#2BD98F',22,1.9)+'</span><span class="chica" style="font-weight:700;color:#2BD98F">PASO '+n+'</span></div><div class="num" style="font-size:20px">'+t+'</div><div class="chica" style="color:#C5D2D8;font-size:15px">'+d+'</div></div>';};
- var chips=PLANES.filter(function(p){return !p.futuro;}).map(function(p){return '<div class="chip"><span class="insignia" style="width:36px;height:36px;border-radius:11px;font-size:16px;background:'+p.color+'">'+p.n+'</span><span class="col" style="gap:0"><span style="font-weight:600;font-size:15px">'+p.rol+' · $'+p.precio+'</span><span class="num" style="font-size:15px;color:#2BD98F">'+p.pct+'% de la ganancia</span></span></div>';}).join('');
+/* ---------- página de inicio ---------- */
+function vLanding(){var u=yo();var desde=pesos(ars(PLANES[0]));
+ var paso=function(n,ic,t,d){return '<div class="tarjeta col" style="gap:10px"><div class="fila"><span class="icono-caja">'+I.ic(ic,'#2BD98F',22,1.9)+'</span><span class="chica" style="font-weight:700;color:#2BD98F">PASO '+n+'</span></div><div class="num" style="font-size:20px">'+t+'</div><div class="chica" style="color:#C5D2D8;font-size:15px">'+d+'</div></div>';};
+ var chips=PLANES.filter(function(p){return !p.futuro;}).map(function(p){return '<div class="chip">'+insignia(p,38)+'<span class="col" style="gap:0"><span style="font-weight:600;font-size:15px">'+pesos(ars(p))+'</span><span class="num" style="font-size:15px;color:#2BD98F">'+p.pct+'% de la ganancia</span></span></div>';}).join('');
  var cta=u?'<a class="btn" href="#inicio">Ir a mi panel</a>':'<a class="btn" href="#acceso" data-a="irAcceso" data-v="crear">Crear mi cuenta gratis</a>';
  return '<div class="pant">'+
  '<div class="fila" style="justify-content:space-between"><a class="marca" href="#bienvenida" aria-label="Veritup, página de inicio">'+I.logo(36)+'veritup</a>'+
  (u?'<a class="btn sec" href="#inicio" style="width:auto;min-height:44px;font-size:16px">Mi panel</a>':'<a class="btn sec" href="#acceso" data-a="irAcceso" data-v="entrar" style="width:auto;min-height:44px;font-size:16px">Entrar</a>')+'</div>'+
- '<div class="hero col"><span class="pastilla p-verde" style="align-self:flex-start">'+I.ic(P.subir,'#2BD98F',16,2.2)+'Ingresos diarios · planes desde $2</span>'+
- '<h1 class="titular">Invertí en un negocio real.<br><span style="color:#2BD98F">Generá ingresos todos los días.</span></h1>'+
- '<p class="grande">Elegí un plan, sumate a la ganancia del negocio y recibí tu parte cada día a las 00:00. Retirala a tu cuenta o billetera de Argentina.</p>'+
+ '<div class="hero col"><span class="pastilla p-verde" style="align-self:flex-start">'+I.ic(P.escudo,'#2BD98F',16,2.2)+'Resultados publicados · planes desde '+desde+'</span>'+
+ '<h1 class="titular">Invertí en un negocio real.<br><span style="color:#2BD98F">Ganá con sus resultados.</span></h1>'+
+ '<p class="grande">Elegí un plan en pesos, seguí las noticias diarias de la minería y recibí tu parte de cada ganancia, según lo que invertiste. Retirá cuando quieras a tu cuenta o billetera.</p>'+
  '<div class="col" style="gap:10px;max-width:420px">'+cta+(u?'':'<a class="btn sec" href="#acceso" data-a="irAcceso" data-v="entrar">Ya tengo cuenta</a>')+'</div></div>'+
  '<div class="datos3">'+
- '<div class="tarjeta"><span class="num" style="font-size:clamp(18px,5.2vw,26px);color:#2BD98F;white-space:nowrap">$2</span><span class="chica" style="font-size:13px">para empezar a invertir</span></div>'+
- '<div class="tarjeta"><span class="num" style="font-size:clamp(18px,5.2vw,26px);color:#2BD98F;white-space:nowrap">25–70%</span><span class="chica" style="font-size:13px">de la ganancia de tu aporte</span></div>'+
- '<div class="tarjeta"><span class="num" style="font-size:clamp(18px,5.2vw,26px);color:#2BD98F;white-space:nowrap">00:00</span><span class="chica" style="font-size:13px">tu ingreso, acreditado cada día</span></div></div>'+
- '<div class="col" style="gap:12px"><h2 class="h2">Así generás ingresos</h2><div class="pasos3">'+
- paso(1,P.bolsa,'Elegí tu plan','Desde $2. Cuanto más alto, mayor tu parte de la ganancia.')+
- paso(2,P.subir,'Recibí ingresos diarios','Tu parte se acredita sola todos los días a las 00:00, hora de Argentina.')+
- paso(3,P.bajar,'Retirá a tu cuenta','Hasta el 70% cada día, o el 100% acumulado los sábados.')+
+ '<div class="tarjeta"><span class="num cifra">'+desde+'</span><span class="chica" style="font-size:13px">para empezar a invertir</span></div>'+
+ '<div class="tarjeta"><span class="num cifra">25–70%</span><span class="chica" style="font-size:13px">de la ganancia de tu aporte</span></div>'+
+ '<div class="tarjeta"><span class="num cifra">24 h</span><span class="chica" style="font-size:13px">para acreditar tus retiros</span></div></div>'+
+ '<div class="col" style="gap:12px"><h2 class="h2">Así funciona</h2><div class="pasos3">'+
+ paso(1,P.bolsa,'Elegí tu plan','De V1 a V9, en pesos. Cuanto más alto, mayor tu parte de la ganancia.')+
+ paso(2,P.doc,'Seguí las noticias diarias','El negocio publica cada día lo que generó la minería. Tu parte se acredita al publicarse.')+
+ paso(3,P.bajar,'Retirá o recuperá tu capital','Retirás tus ganancias cuando quieras y podés pedir la devolución de tu capital.')+
  '</div></div>'+
- '<div class="col" style="gap:10px"><div class="fila" style="justify-content:space-between"><h2 class="h2">Planes de inversión</h2><span class="chica">y más por desbloquear</span></div><div class="chips">'+chips+'</div></div>'+
- '<div class="tarjeta col" style="gap:14px;border:1px solid rgba(43,217,143,.35);background:linear-gradient(180deg,#123D2E 0%,#11293A 100%)"><div class="num" style="font-size:24px;line-height:1.2">Tu dinero, trabajando todos los días.</div><div style="color:#C5D2D8">Creá tu cuenta en menos de un minuto, solo con tu celular.</div>'+cta+'</div>'+
- '<p class="chica" style="text-align:center;margin:0">Los ingresos dependen de la ganancia real del negocio: varían cada día y pueden ser cero. Invertir implica riesgos. Versión de prueba '+VERSION+'.</p>'+
+ '<div class="col" style="gap:12px"><div class="fila" style="justify-content:space-between"><h2 class="h2">Últimas noticias</h2><a href="#noticias" style="font-weight:600">Ver todas</a></div>'+(S.reportes.length?'<div class="col grid-noticias" style="gap:12px">'+S.reportes.slice(-2).reverse().map(function(r){return tarjetaNoticia(r,null);}).join('')+'</div>':'<div class="tarjeta"><div class="chica">Muy pronto vas a ver acá los resultados diarios de la minería.</div></div>')+'</div>'+'<div class="col" style="gap:10px"><div class="fila" style="justify-content:space-between"><h2 class="h2">Planes de inversión</h2><span class="chica">V7 a V9 muy pronto</span></div><div class="chips">'+chips+'</div></div>'+
+ '<div class="tarjeta col destacada" style="gap:14px"><div class="num" style="font-size:24px;line-height:1.2">Transparencia en cada peso.</div><div style="color:#C5D2D8">Creá tu cuenta en menos de un minuto, solo con tu celular.</div>'+cta+'</div>'+
+ '<p class="chica" style="text-align:center;margin:0">Las ganancias dependen de los resultados reales del negocio: pueden variar o ser cero. Invertir implica riesgos.</p>'+
  '</div>';}
 
-function vAcceso(){var c=ui.modoAcceso==='crear';var ref=(location.hash.match(/ref=([a-z0-9-]+)/)||[])[1]||S.refPendiente||'';
- return '<div class="pant">'+
- '<a class="marca" href="#bienvenida" aria-label="Veritup, página de inicio">'+I.logo(36)+'veritup</a>'+
+/* ---------- acceso ---------- */
+function vAcceso(){var m=ui.modoAcceso,c=m==='crear';var ref=(location.hash.match(/ref=([a-z0-9-]+)/)||[])[1]||S.refPendiente||'';
+ var marca='<a class="marca" href="#bienvenida" aria-label="Veritup, página de inicio">'+I.logo(36)+'veritup</a>';
+ var telCampo='<div class="col"><label class="et" for="tel">Número de celular</label><div class="fila" style="gap:8px"><select class="campo" id="pais" aria-label="Código de país"><option value="54">AR +54</option><option value="595">PY +595</option></select><input class="campo" id="tel" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="11 2345 6789" style="flex:1;min-width:0"></div>'+(c?'<div class="chica">¿Sos argentino y vivís en Paraguay? Elegí +595.</div>':'')+'</div>';
+ var claveCampo=function(lbl,auto){return '<div class="col"><label class="et" for="clave">'+lbl+'</label><div style="position:relative"><input class="campo" id="clave" type="'+(ui.verClave?'text':'password')+'" autocomplete="'+auto+'" placeholder="'+(auto==='new-password'?'Mínimo 8, con letras y números':'Tu contraseña')+'" style="padding-right:60px"><button type="button" class="ojo" data-a="ojo" aria-label="'+(ui.verClave?'Ocultar':'Mostrar')+' contraseña">'+I.ic(P.ojo,'#C5D2D8',24,1.8)+'</button></div>'+(auto==='new-password'?'<div class="chica">Usá al menos 8 caracteres, con letras y números.</div>':'')+'</div>';};
+ if(m==='recuperar'){
+  if(ui.recEnviado)return '<div class="pant">'+marca+'<div class="tarjeta col" style="align-items:center;text-align:center;gap:14px"><span class="icono-caja" style="width:64px;height:64px">'+I.ic(P.check,'#2BD98F',32,2.4)+'</span><div class="h2">Solicitud enviada</div><div style="color:#C5D2D8">El equipo verifica tus datos y activa tu nueva contraseña. Suele tardar menos de 24 h hábiles. Después vas a poder entrar con ella.</div><button class="btn" data-a="modo" data-v="entrar">Volver a entrar</button></div></div>';
+  return '<div class="pant">'+marca+'<div class="col"><h1 class="h1">Recuperar acceso</h1><p class="sub">Pedí una nueva contraseña. Para proteger tu cuenta, el equipo verifica tus datos antes de activarla.</p></div>'+
+  '<form id="fRecuperar" class="col" style="gap:16px" novalidate><div class="col"><label class="et" for="nombre">Nombre y apellido</label><input class="campo" id="nombre" autocomplete="name" placeholder="Como figura en tu cuenta"></div>'+telCampo+claveCampo('Nueva contraseña','new-password')+captchaCampo()+
+  '<div id="err" class="err" role="alert"></div><button class="btn" type="submit">Enviar solicitud</button></form><button class="btn sec" data-a="modo" data-v="entrar">Volver a entrar</button></div>';}
+ return '<div class="pant">'+marca+
+ (S.expiro&&!c?aviso(P.reloj,'Tu sesión se cerró por inactividad. Volvé a entrar para continuar.','ambar'):'')+
  (c&&ref?'<div class="tarjeta" style="background:#F2B33D;color:#0A1A24;padding:14px 16px">Te invitó <strong>'+esc(ref)+'</strong>. Su beneficio ya está aplicado.</div>':'')+
- '<div class="col"><h1 class="h1">'+(c?'Creá tu cuenta':'Hola de nuevo')+'</h1><p class="sub">'+(c?'Una cuenta por persona. Lleva menos de un minuto.':'Entrá con tu número y contraseña.')+'</p></div>'+
+ '<div class="col"><h1 class="h1">'+(c?'Creá tu cuenta':'Hola de nuevo')+'</h1><p class="sub">'+(c?'Una cuenta por persona. El equipo la verifica antes de que puedas invertir.':'Entrá con tu número y contraseña.')+'</p></div>'+
  '<div class="tabs" role="tablist"><button role="tab" data-a="modo" data-v="crear" class="'+(c?'on':'')+'" aria-selected="'+c+'">Crear cuenta</button><button role="tab" data-a="modo" data-v="entrar" class="'+(!c?'on':'')+'" aria-selected="'+(!c)+'">Entrar</button></div>'+
  '<form id="fAcceso" class="col" style="gap:16px" novalidate>'+
  (c?'<div class="col"><label class="et" for="nombre">Nombre y apellido</label><input class="campo" id="nombre" autocomplete="name" autocapitalize="words" placeholder="Como figura en tu DNI"></div>':'')+
- '<div class="col"><label class="et" for="tel">Número de celular</label><div class="fila" style="gap:8px"><select class="campo" id="pais" aria-label="Código de país"><option value="54">AR +54</option><option value="595">PY +595</option></select><input class="campo" id="tel" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="11 2345 6789" style="flex:1;min-width:0"></div>'+(c?'<div class="chica">¿Sos argentino y vivís en Paraguay? Elegí +595.</div>':'')+'</div>'+
- '<div class="col"><label class="et" for="clave">Contraseña</label><div style="position:relative"><input class="campo" id="clave" type="'+(ui.verClave?'text':'password')+'" autocomplete="'+(c?'new-password':'current-password')+'" placeholder="Mínimo 8 caracteres" style="padding-right:60px"><button type="button" data-a="ojo" aria-label="'+(ui.verClave?'Ocultar':'Mostrar')+' contraseña" style="position:absolute;right:5px;top:5px;width:48px;height:48px;border:0;background:transparent">'+I.ic(P.ojo,'#C5D2D8',24,1.8)+'</button></div></div>'+
- (c?'<div class="col"><label class="et" for="codigo">Código de invitación (opcional)</label><input class="campo" id="codigo" value="'+esc(ref)+'" autocapitalize="none" placeholder="Ej.: juanperez"></div>':'')+
+ telCampo+claveCampo('Contraseña',c?'new-password':'current-password')+
+ (c?'<div class="col"><label class="et" for="codigo">Código de invitación (opcional)</label><input class="campo" id="codigo" value="'+esc(ref)+'" autocapitalize="none" placeholder="Ej.: anagomez"></div>'+captchaCampo():(ui.fallos>=3?captchaCampo():'')+'<button type="button" class="enlace" data-a="modo" data-v="recuperar">¿Olvidaste tu contraseña?</button>')+
  '<div id="err" class="err" role="alert"></div>'+
  '<button class="btn" type="submit">'+(c?'Crear cuenta':'Entrar')+'</button></form>'+
- (c?'<p class="chica" style="text-align:center">Al continuar aceptás los Términos y la Política de privacidad.</p>':'<p class="chica" style="text-align:center">¿Problemas para entrar? Escribinos por WhatsApp a [número de soporte].</p>')+
- '<p class="chica" style="text-align:center">Versión de prueba '+VERSION+'. Los datos se guardan solo en este dispositivo.</p>'+
+ (c?'<p class="chica" style="text-align:center">Al continuar aceptás los Términos, la Política de privacidad y el Reglamento.</p>':'<p class="chica" style="text-align:center">¿Problemas para entrar? Escribinos por WhatsApp a [número de soporte].</p>')+
  '</div>';}
-
-function grafico7(u){var l=(u.ingresos||[]).slice(-7);if(!l.length)return '<div class="chica">Tu primer ingreso se acredita a las 00:00 (hora de Argentina).</div>';var mx=Math.max.apply(null,l.map(function(x){return x.monto;}))||1;
- return '<div class="grafico" role="img" aria-label="Ingresos de los últimos días">'+l.map(function(x){return '<div title="'+fechaCorta(x.fecha)+'" style="height:'+Math.max(6,Math.round(x.monto/mx*100))+'%;background:'+(x.monto?'#2BD98F':'#4A5B65')+'"></div>';}).join('')+'</div><div class="chica">Ingresos de los últimos '+l.length+' días</div>';}
-function vInicio(){var u=yo(),p=plan(u),k=cuentas(u),e={ventas:184500,ingreso:k.ayer};
+/* ---------- inicio ---------- */
+function vInicio(){var u=yo();var act=planesDe(u,['activo','rescate']);var ult=S.reportes[S.reportes.length-1];var part=participacion(u);
  return '<div class="pant">'+
- '<div class="fila" style="justify-content:space-between">'+logoBtn()+'<div class="col" style="gap:6px;flex:1"><div style="color:#8FA3AE">Hola, <strong style="color:#F4F7F6">'+esc(primerNombre(u))+'</strong></div>'+
- (p?'<span class="pastilla p-verde" style="align-self:flex-start">Plan '+p.rol+' · '+p.pct+'%</span>':'<span class="pastilla p-ambar" style="align-self:flex-start">Sin plan activo</span>')+'</div>'+
- '<a class="redondo" href="#movimientos" aria-label="Movimientos">'+I.ic(P.lista,'#F4F7F6',22,1.8)+'</a></div>'+
- (p?
-  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div class="col" style="gap:2px"><div style="color:#8FA3AE">Tu participación</div><div class="num" style="font-size:30px">'+money(p.precio)+'</div></div><div class="col" style="gap:2px"><div style="color:#8FA3AE">Tu saldo</div><div class="num" style="font-size:30px;color:#2BD98F">'+money(k.saldo)+'</div></div></div>'+
-  '<div class="tarjeta col" style="gap:14px"><div class="fila" style="justify-content:space-between"><div class="h2" style="font-size:19px">Tus ingresos</div><span class="pastilla p-ambar" style="font-size:12px">Ficticio</span></div>'+
-  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div><div class="chica">Ingreso de ayer</div><div class="num" style="font-size:21px;color:#2BD98F">'+(e.ingreso?'▲ ':'')+money(e.ingreso)+'</div></div><div><div class="chica">Disponible hoy</div><div class="num" style="font-size:21px">'+money(k.tope)+'</div></div></div>'+
-  grafico7(u)+'<div class="chica">Se acreditan solos todos los días a las 00:00, hora de Argentina.</div></div>'+
-  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><a class="btn" href="#planes">Mejorar plan</a><a class="btn sec" href="#retiro">Retirar</a></div>'+
-  '<div class="aviso">'+I.ic(P.info,'#8FA3AE',22,1.8)+'<div>Con tu Plan '+p.rol+' te llevás el '+p.pct+'% de la ganancia real que genera tu aporte. Varía cada día y puede ser cero.</div></div>'
- :
-  '<div class="tarjeta col" style="gap:14px"><div class="h2">Elegí tu primer plan</div><p class="sub" style="color:#C5D2D8">Desde $2 ya participás de la ganancia del negocio. Cuanto más alto el plan, mayor tu parte y más rápido tu retiro.</p><a class="btn" href="#planes">Ver planes</a></div>'+
-  '<div class="aviso">'+I.ic(P.cel,'#8FA3AE',22,1.8)+'<div>Compartí tu link de referido y sumá beneficios. <a href="#referidos">Ver mi link</a></div></div>'
- )+'</div>'+nav('inicio');}
-
-function vPlanes(){var u=yo(),act=u.plan||0;
- var h=PLANES.map(function(p,k){var ab=ui.abierto===k,es=p.n===act,fut=p.futuro;
-  var cls='plan'+(es?' actual':'')+(fut?' futuro':'');
-  var et=es?'Plan '+p.n+' · Tu plan':(fut?'Plan '+p.n+' · Próximamente':'Plan '+p.n);
-  var cta=es?'<div class="btn" style="background:#123D2E;color:#2BD98F">Tu plan actual</div>':(fut?'<div class="btn sec" style="border:2px dashed #4A5B65;color:#C5D2D8">'+I.ic(P.candado,'#C5D2D8',18)+'Disponible próximamente</div>':(p.n<act?'<div class="btn sec" style="color:#8FA3AE">Ya tenés un plan mayor</div>':'<a class="btn" href="#pagar/'+p.n+'">Contratar Plan '+p.rol+'</a>'));
-  return '<article class="'+cls+'"><button data-a="plan" data-v="'+k+'" aria-expanded="'+ab+'">'+
-  '<span class="insignia" style="background:'+p.color+'">'+p.n+'</span>'+
-  '<span class="col" style="gap:1px;flex:1;min-width:0"><span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:'+(es?'#2BD98F':'#8FA3AE')+'">'+et+'</span><span class="num" style="font-size:20px">'+p.rol+'</span><span class="chica">$'+p.precio+' · retiro '+p.vel+'*</span></span>'+
+ '<div class="fila">'+logoBtn()+'<div class="col" style="gap:6px;flex:1;min-width:0"><div style="color:#8FA3AE">Hola, <strong style="color:#F4F7F6">'+esc(primerNombre(u))+'</strong></div>'+
+ (act.length?'<span class="pastilla p-verde" style="align-self:flex-start">'+act.length+(act.length===1?' inversión activa':' inversiones activas')+'</span>':'<span class="pastilla p-ambar" style="align-self:flex-start">Sin inversiones</span>')+'</div>'+campana(u)+'</div>'+
+ estadoBanner(u)+
+ '<div class="dos"><div class="tarjeta col" style="gap:2px"><div class="chica">Capital invertido</div><div class="num monto-ajusta">'+money(capital(u))+'</div></div><div class="tarjeta col" style="gap:2px"><div class="chica">Saldo disponible</div><div class="num monto-ajusta" style="color:#2BD98F">'+money(saldo(u))+'</div></div></div>'+
+ (act.length?'<div class="tarjeta col" style="gap:10px"><div class="fila" style="justify-content:space-between"><span class="chica">Tu participación en el capital</span><span class="num" style="font-size:20px;color:#2BD98F">'+pct2(part)+'</span></div><div class="barra" style="background:#0A1A24"><div style="width:'+Math.min(100,Math.max(part,1.5))+'%;background:#2BD98F;border-radius:999px"></div></div><div class="chica">Cuanto más invertís, mayor es tu parte de cada ganancia.</div></div>'
+ :(u.estado==='aprobada'?'<div class="tarjeta col destacada" style="gap:12px"><div class="h2">Elegí tu primer plan</div><p class="sub" style="color:#C5D2D8">Desde '+pesos(ars(PLANES[0]))+' ya participás de los resultados del negocio.</p><a class="btn" href="#planes">Ver planes</a></div>':''))+
+ '<div class="col" style="gap:10px"><div class="fila" style="justify-content:space-between"><h2 class="h2" style="font-size:19px">Hoy en Veritup</h2><a href="#noticias" style="font-weight:600">Ver noticias</a></div>'+
+ (ult?tarjetaNoticia(ult,u):'<div class="tarjeta"><div class="chica">El negocio todavía no publicó noticias. Cuando publique el resultado del día, tu parte se acredita sola y te avisamos.</div></div>')+'</div>'+
+ '<div class="dos"><a class="btn" href="#planes">Invertir</a><a class="btn sec" href="#retiro">Retirar</a></div>'+
+ aviso(P.info,'Tus ganancias salen de los resultados reales de la minería y se reparten según lo que invertiste. Pueden variar o ser cero.')+
+ '</div>'+nav('inicio');}
+/* ---------- planes ---------- */
+function vPlanes(){
+ var h=PLANES.map(function(p,k){var ab=ui.abierto===k,fut=p.futuro;
+  var cta=fut?'<div class="btn sec bloqueado">'+I.ic(P.candado,'#C5D2D8',18)+'Disponible próximamente</div>':'<a class="btn" href="#pagar/'+p.v+'">Contratar Plan V'+p.v+'</a>';
+  return '<article class="plan'+(fut?' futuro':'')+'"><button data-a="plan" data-v="'+k+'" aria-expanded="'+ab+'">'+insignia(p)+
+  '<span class="col" style="gap:1px;flex:1;min-width:0"><span class="mini">Plan V'+p.v+(fut?' · Próximamente':'')+'</span><span class="num" style="font-size:20px">'+pesos(ars(p))+'</span><span class="chica">USD '+p.usd+'</span></span>'+
   '<span class="col" style="align-items:flex-end;gap:0"><span class="num" style="font-size:26px;color:'+(fut?'#C5D2D8':'#2BD98F')+'">'+p.pct+'%</span><span style="font-size:12px;color:#8FA3AE">de la ganancia</span></span>'+
-  '<span style="transform:rotate('+(ab?180:0)+'deg);display:flex">'+I.ic(P.abajo,'#8FA3AE',20)+'</span></button>'+
-  (ab?'<div class="col" style="padding:4px 16px 18px;gap:16px"><div style="height:1px;background:#1E3A4D"></div><p style="margin:0;color:#E3EBEE">'+p.texto+'</p>'+
-  '<div class="fila" style="padding:14px;border-radius:16px;background:#0A1A24"><div class="num" style="font-size:34px;color:'+(fut?'#C5D2D8':'#2BD98F')+'">'+p.pct+'%</div><div style="font-size:15px;color:#C5D2D8">de la ganancia que genera tu aporte es para vos, todos los días.</div></div>'+
-  '<div class="fila" style="padding:14px;border-radius:16px;border:1px solid #1E3A4D"><div style="width:48px;height:48px;border-radius:14px;background:#123D2E;display:flex;align-items:center;justify-content:center;flex-shrink:0">'+I.ic(P.crono,'#2BD98F',26,1.9)+'</div><div class="col" style="gap:0"><div class="chica">Tus retiros llegan habitualmente</div><div class="num" style="font-size:22px;color:'+(fut?'#C5D2D8':'#2BD98F')+'">'+p.vel+'</div><div style="font-size:13px;color:#8FA3AE">Plazo máximo de acreditación: 24 h</div></div></div>'+
-  '<div style="font-size:15px;color:#C5D2D8">1 retiro por día: el 70% de tu ingreso diario, y el 100% acumulado los sábados.</div>'+cta+'</div>':'')+'</article>';}).join('');
- return '<div class="pant">'+cab('Planes')+'<p class="sub" style="color:#C5D2D8">Cuanto más alto el plan, mayor la parte de la ganancia y más rápido tu retiro. Tocá un plan para ver el detalle.</p><div class="col grid-planes" style="gap:12px">'+h+'</div>'+
- '<div class="aviso">'+I.ic(P.info,'#8FA3AE',22,1.8)+'<div>El porcentaje se aplica sobre la ganancia real del negocio. El monto que recibís cada día varía según las ventas y puede ser cero.<br>* Tiempo habitual de acreditación. Cada retiro se revisa antes de aprobarse; el plazo máximo es de 24 h.</div></div></div>'+nav('planes');}
+  '<span class="gira" style="transform:rotate('+(ab?180:0)+'deg)">'+I.ic(P.abajo,'#8FA3AE',20)+'</span></button>'+
+  (ab?'<div class="col" style="padding:4px 16px 18px;gap:14px"><div class="linea"></div><p style="margin:0;color:#E3EBEE">'+p.texto+'</p>'+
+  '<div class="fila caja-negra"><div class="num" style="font-size:34px;color:'+(fut?'#C5D2D8':'#2BD98F')+'">'+p.pct+'%</div><div style="font-size:15px;color:#C5D2D8">de la ganancia que genera tu aporte es para vos, cada vez que el negocio publica un resultado.</div></div>'+
+  '<div class="fila" style="padding:14px;border-radius:16px;border:1px solid #1E3A4D"><span class="icono-caja">'+I.ic(P.vuelta,'#2BD98F',22,1.9)+'</span><div style="font-size:15px;color:#C5D2D8">Tu capital es tuyo: podés pedir su devolución cuando quieras, con 7 días de aviso.</div></div>'+cta+'</div>':'')+'</article>';}).join('');
+ return '<div class="pant">'+cab('Planes')+'<p class="sub" style="color:#C5D2D8">Cuanto más alto el plan, mayor tu parte de la ganancia. Tocá un plan para ver el detalle.</p>'+
+ '<div class="fila cotiz">'+I.ic(P.info,'#8FA3AE',18,1.8)+'<span>Precios en pesos con cotización de referencia Veritup: <strong>'+pesos(S.cotizacion)+' por USD</strong>.</span></div>'+
+ '<div class="col grid-planes" style="gap:12px">'+h+'</div>'+
+ aviso(P.info,'El porcentaje se aplica sobre la ganancia real del negocio, en proporción a tu aporte. Los resultados pueden variar o ser cero.')+'</div>'+nav('planes');}
 
-function vPagar(n){var p=PLANES[(n||3)-1];if(!p||p.futuro){location.hash='#planes';return '';}
- var pas=ui.metodo==='pasarela',a=ui.archivo;
- var datos=CUENTA_NEGOCIO.map(function(d,k){return '<div class="item" style="align-items:center"><div class="col" style="gap:2px;flex:1;min-width:0"><div class="chica">'+d[0]+'</div><div style="font-size:18px;font-weight:600;word-break:break-all">'+d[1]+'</div></div><button class="btn sec" style="width:auto;min-height:44px;font-size:15px" data-a="copiarDato" data-v="'+k+'">Copiar</button></div>';}).join('');
+/* ---------- pagar ---------- */
+function vPagar(v){var p=plan(v||3);if(!p||p.futuro){location.hash='#planes';return '';}
+ var yu=yo();if(yu.estado!=='aprobada')return '<div class="pant">'+cab('Contratar plan','planes')+estadoBanner(yu)+'<a class="btn sec" href="#inicio">Volver al inicio</a></div>';
+ var pas=ui.metodo==='pasarela',a=ui.archivo;var precio=ars(p);
+ var datos=CUENTA_NEGOCIO.map(function(d,k){return '<div class="item" style="align-items:center"><div class="col" style="gap:2px;flex:1;min-width:0"><div class="chica">'+d[0]+'</div><div style="font-size:18px;font-weight:600;word-break:break-all">'+d[1]+'</div></div><button class="btn sec chico" data-a="copiarDato" data-v="'+k+'">Copiar</button></div>';}).join('');
  return '<div class="pant">'+cab('Contratar plan','planes')+
- '<div class="fila tarjeta" style="border:2px solid #2BD98F"><span class="insignia" style="background:'+p.color+'">'+p.n+'</span><div class="col" style="gap:2px;flex:1"><div class="num" style="font-size:20px">Plan '+p.rol+'</div><div class="chica">'+p.pct+'% de la ganancia · retiro '+p.vel+'</div></div><div class="num" style="font-size:28px">$'+p.precio+'</div></div>'+
+ '<div class="fila tarjeta" style="border:2px solid #2BD98F">'+insignia(p)+'<div class="col" style="gap:2px;flex:1"><div class="num" style="font-size:20px">Plan V'+p.v+'</div><div class="chica">'+p.pct+'% de la ganancia · USD '+p.usd+'</div></div><div class="num" style="font-size:24px">'+pesos(precio)+'</div></div>'+
  '<div class="col" style="gap:10px"><div class="h2" style="font-size:20px">¿Cómo querés pagar?</div>'+
  '<button class="opcion '+(pas?'on':'')+'" data-a="metodo" data-v="pasarela" aria-pressed="'+pas+'"><span class="radio"></span><span class="col" style="gap:4px"><span class="fila" style="gap:8px;flex-wrap:wrap"><strong style="font-size:18px">[Pasarela de pagos]</strong><span class="pastilla p-verde" style="font-size:13px;padding:3px 8px">Recomendado</span></span><span class="chica">Tarjeta, débito o dinero en cuenta. Tu plan se activa al instante.</span></span></button>'+
  '<button class="opcion '+(!pas?'on':'')+'" data-a="metodo" data-v="transferencia" aria-pressed="'+(!pas)+'"><span class="radio"></span><span class="col" style="gap:4px"><strong style="font-size:18px">Transferencia bancaria</strong><span class="chica">Transferís y subís el comprobante. Se activa al validarlo.</span></span></button></div>'+
- (pas?'<div class="col" style="gap:14px"><button class="btn" data-a="pagarPasarela" data-v="'+p.n+'">Pagar $'+p.precio+'</button><div class="chica" style="text-align:center">Versión de prueba: el pago se simula, no se cobra nada.</div></div>'
- :'<div class="col" style="gap:20px"><div class="col" style="gap:10px"><div class="h2" style="font-size:20px">1 · Transferí $'+p.precio+' a esta cuenta</div><div class="lista">'+datos+'</div><div class="chica">Cuenta a nombre de [Razón social], siempre la misma. Si te piden transferir a otra persona, no lo hagas.</div></div>'+
+ (pas?'<div class="col" style="gap:14px"><button class="btn" data-a="pagarPasarela" data-v="'+p.v+'">Pagar '+pesos(precio)+'</button><div class="chica" style="text-align:center">Pago seguro procesado por [Pasarela de pagos].</div></div>'
+ :'<div class="col" style="gap:20px"><div class="col" style="gap:10px"><div class="h2" style="font-size:20px">1 · Transferí '+pesos(precio)+' a esta cuenta</div><div class="lista">'+datos+'</div><div class="chica">Cuenta a nombre de [Razón social], siempre la misma. Si te piden transferir a otra persona, no lo hagas.</div></div>'+
   '<div class="col" style="gap:10px"><div class="h2" style="font-size:20px">2 · Subí el comprobante</div>'+
-  (a?'<div class="lista">'+(a.url?'<div style="background:#061118;display:flex;justify-content:center"><img src="'+a.url+'" alt="Vista previa del comprobante" style="display:block;width:100%;max-height:420px;object-fit:contain"></div>':'<div style="height:140px;background:#061118;display:flex;align-items:center;justify-content:center;color:#C5D2D8">Documento PDF</div>')+
-   '<div class="item" style="align-items:center"><div class="col" style="gap:2px;flex:1;min-width:0"><div style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+esc(a.nombre)+'</div><div style="font-size:14px;color:#2BD98F">✓ Listo · '+a.tam+'</div></div><label for="comp" class="btn sec" style="width:auto;min-height:44px;font-size:15px">Cambiar</label></div></div>'
-  :'<label for="comp" class="drop">'+'<span style="width:56px;height:56px;border-radius:16px;background:#123D2E;display:flex;align-items:center;justify-content:center">'+I.ic(P.subir,'#2BD98F',28,1.8)+'</span><strong style="font-size:18px">Elegir foto, captura o archivo</strong><span class="chica">JPG, PNG o PDF · hasta 10 MB</span></label>'+
+  (a?'<div class="lista">'+(a.url?'<div class="vista-comp"><img src="'+a.url+'" alt="Vista previa del comprobante"></div>':'<div class="vista-comp" style="height:140px;color:#C5D2D8;align-items:center">Documento PDF</div>')+
+   '<div class="item" style="align-items:center"><div class="col" style="gap:2px;flex:1;min-width:0"><div class="corta" style="font-weight:600">'+esc(a.nombre)+'</div><div style="font-size:14px;color:#2BD98F">✓ Listo · '+a.tam+'</div></div><label for="comp" class="btn sec chico">Cambiar</label></div></div>'
+  :'<label for="comp" class="drop"><span class="icono-caja" style="width:56px;height:56px">'+I.ic(P.subir,'#2BD98F',28,1.8)+'</span><strong style="font-size:18px">Elegir foto, captura o archivo</strong><span class="chica">JPG, PNG o PDF · hasta 10 MB</span></label>'+
    '<button class="btn sec" data-a="ejemploComp" style="min-height:48px;font-size:16px">Usar un comprobante de ejemplo</button>')+
   '<input id="comp" class="oculto" type="file" accept="image/*,application/pdf"><div class="chica">Que se vean bien el monto, la fecha y el número de operación.</div></div>'+
-  '<button class="btn" data-a="enviarComp" data-v="'+p.n+'" '+(a?'':'disabled')+'>Enviar comprobante</button></div>')+
+  '<button class="btn" data-a="enviarComp" data-v="'+p.v+'" '+(a?'':'disabled')+'>Enviar comprobante</button></div>')+
  '</div>';}
 
-function vReferidos(){var u=yo();var alias=u.alias||'';
- return '<div class="pant">'+cab('Tu link')+
- '<div class="tarjeta col" style="background:#F2B33D;color:#0A1A24;gap:16px;border-radius:24px"><div class="num" style="font-size:24px;line-height:1.2">Compartí Veritup con tu gente</div><div style="font-size:17px">Cuando alguien crea su cuenta con tu link, los dos reciben [beneficio].</div>'+
- '<div style="border-radius:16px;background:#0A1A24;color:#F4F7F6;padding:16px"><div class="chica">veritup.com/r/</div><div id="aliasVista" class="num" style="font-size:30px;color:#F2B33D;word-break:break-all;line-height:1.15">'+esc(alias)+'</div></div>'+
- '<button class="btn" style="background:#0A1A24;color:#F4F7F6" data-a="copiarLink">Copiar link</button></div>'+
- '<div class="aviso">'+I.ic(P.escudo,'#2BD98F',22,1.8)+'<div>Tu link se crea con tu nombre y es único: no se puede cambiar. Así tus invitados siempre quedan registrados a tu nombre.</div></div>'+
- '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><button class="btn" data-a="whatsapp">WhatsApp</button><button class="btn sec" data-a="compartir">Más opciones</button></div>'+
- '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div class="tarjeta"><div class="chica">Se unieron</div><div class="num" style="font-size:28px">'+(u.invitados||0)+'</div></div><div class="tarjeta"><div class="chica">Beneficios</div><div class="num" style="font-size:28px;color:#F2B33D">[$]</div></div></div>'+
- '</div>'+nav('referidos');}
-
-function opcionesRetiro(k){var o=[1,2,3,4].map(function(n){var m=r2(k.unidad*n);return{id:n,titulo:n===1?'1 día':n+' días',sub:'70% × '+n,monto:m,ok:k.unidad>0&&m<=k.tope+0.001,motivo:'Todavía no alcanza'};});
- o.push({id:5,titulo:'Sábado',sub:'100% de tu saldo',monto:k.saldo,ok:k.sabado&&k.saldo>0,motivo:'Solo los sábados'});return o;}
-function vRetiro(){var u=yo(),p=plan(u),c=u.cuenta||{};
- if(!p)return '<div class="pant">'+cab('Retirar','inicio')+'<div class="tarjeta col"><div class="h2">Todavía no tenés saldo</div><p class="sub">Contratá un plan para empezar a participar de la ganancia del negocio.</p><a class="btn" href="#planes">Ver planes</a></div></div>';
- var k=cuentas(u),dow=diaSemana(k.hoy),lun=sumarDias(k.hoy,-((dow+6)%7)),letras=['D','L','M','M','J','V','S'];
- var semana=[0,1,2,3,4,5,6].map(function(i){var f=sumarDias(lun,i),d=diaSemana(f);var cls=d===6?'sab':(f===k.hoy?'hoy':'');var nota=f===k.hoy?'Hoy':(d===6?'100%':'');return '<div class="'+cls+'">'+letras[d]+'<small>'+nota+'</small></div>';}).join('');
- var ops=opcionesRetiro(k);var sel=ops.filter(function(o){return o.id===ui.retOpc&&o.ok;})[0];
- var pct=k.saldo>0?Math.round(k.tope/k.saldo*100):0;
- var grid=ops.map(function(o){var on=sel&&sel.id===o.id;return '<button type="button" class="opcion'+(on?' on':'')+'" data-a="retOpc" data-v="'+o.id+'" '+(o.ok&&!k.yaRetiro?'':'disabled')+' aria-pressed="'+on+'" style="flex-direction:column;align-items:flex-start;gap:4px;padding:14px;'+(o.id===5?'grid-column:1 / -1;':'')+(o.ok&&!k.yaRetiro?'':'opacity:.45;cursor:not-allowed;')+'">'+
-  '<span class="fila" style="justify-content:space-between;width:100%"><strong style="font-size:16px">'+o.titulo+'</strong><span class="chica" style="font-size:13px">'+o.sub+'</span></span>'+
-  '<span class="num" style="font-size:22px;color:'+(o.id===5?'#F2B33D':'#F4F7F6')+'">'+money(o.monto)+'</span>'+
-  (o.ok?'':'<span style="font-size:12px;color:#8FA3AE">'+o.motivo+'</span>')+'</button>';}).join('');
- return '<div class="pant"><div class="fila"><a class="redondo" href="#inicio" aria-label="Volver">'+I.ic(P.atras)+'</a><h1 class="h1">Retirar</h1><span class="pastilla '+(k.yaRetiro?'p-ambar':'p-verde')+'" style="margin-left:auto;font-size:13px">'+(k.yaRetiro?'Ya retiraste hoy':'1 retiro disponible hoy')+'</span>'+logoBtn()+'</div>'+
- '<div class="tarjeta col" style="gap:16px"><div class="fila" style="justify-content:space-between"><div><div class="chica">Tu saldo</div><div class="num" style="font-size:34px">'+money(k.saldo)+'</div></div><span class="pastilla p-ambar" style="font-size:12px">Ficticio</span></div>'+
- '<div class="barra"><div style="width:'+pct+'%;background:#2BD98F"></div><div style="width:'+(100-pct)+'%;background:#F2B33D"></div></div>'+
- '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div><div class="chica" style="color:#C5D2D8">● Disponible hoy</div><div class="num" style="font-size:20px">'+money(k.tope)+'</div></div><div><div class="chica" style="color:#C5D2D8">● Retenido hasta el sábado</div><div class="num" style="font-size:20px">'+money(k.retenido)+'</div></div></div>'+
- '<div class="chica">Ingreso diario promedio: <strong style="color:#F4F7F6">'+money(k.promedio)+'</strong> · 70% = '+money(k.unidad)+' por día</div></div>'+
- '<div class="col" style="gap:10px"><div class="chica">Tu semana</div><div class="semana">'+semana+'</div><div class="chica">Cada día podés retirar en múltiplos del 70% de tu ingreso diario. El resto queda retenido y se libera completo el sábado.</div></div>'+
- '<div class="col" style="gap:10px"><div class="h2" style="font-size:20px">¿Cuánto querés retirar?</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">'+grid+'</div></div>'+
- '<div class="fila" style="padding:16px;border-radius:18px;border:1px solid #1E3A4D"><div style="width:48px;height:48px;border-radius:14px;background:#123D2E;display:flex;align-items:center;justify-content:center;flex-shrink:0">'+I.ic(P.crono,'#2BD98F',26,1.9)+'</div><div class="col" style="gap:2px"><div style="font-size:16px">Con tu <strong>Plan '+p.rol+'</strong>, tu retiro llega habitualmente <strong style="color:#2BD98F">'+p.vel+'</strong>.</div><div style="font-size:13px;color:#8FA3AE">Revisamos cada retiro antes de aprobarlo. Plazo máximo: 24 h.</div></div></div>'+
- '<div style="height:1px;background:#1E3A4D"></div>'+
- '<div class="col" style="gap:4px"><h2 class="h2">Cuenta de destino</h2><p class="sub">Solo cuentas bancarias y billeteras virtuales de Argentina. Se guarda para tus próximos retiros.</p></div>'+
+/* ---------- reportes ---------- */
+function vNoticias(){var u=yo();var l=S.reportes.slice().reverse();
+ var items=l.length?l.map(function(r){return tarjetaNoticia(r,u);}).join(''):'<div class="tarjeta col" style="align-items:center;text-align:center;gap:8px"><span class="icono-caja">'+I.ic(P.doc,'#2BD98F',22,1.9)+'</span><div style="font-weight:600">Todavía no hay noticias</div><div class="chica">Acá vas a ver cada día lo que generó la minería y las novedades del negocio.</div></div>';
+ return '<div class="pant">'+cab('Noticias',u?'':'bienvenida')+'<p class="sub" style="color:#C5D2D8">Lo que pasa en el negocio, día a día. De acá salen tus ingresos.</p>'+
+ '<div class="tarjeta col formula" style="gap:8px"><div class="chica" style="font-weight:700;color:#2BD98F">CÓMO SE CALCULA TU PARTE</div><div style="font-size:16px">Ganancia del día × % de tu plan × (lo que invertiste ÷ capital total invertido)</div><div class="chica">Ejemplo: si invertiste $100.000 de un total de $1.000.000, te corresponde el 10% de la parte de los inversores. Quien invirtió $50.000 recibe la mitad que vos.</div>'+(u&&capitalActivo(u)?'<div class="fila caja-negra" style="justify-content:space-between"><span style="color:#C5D2D8">Tu participación hoy</span><span class="num" style="font-size:20px;color:#2BD98F">'+pct2(participacion(u))+'</span></div>':'')+'</div>'+
+ '<div class="col grid-noticias" style="gap:12px">'+items+'</div></div>'+(u?nav('noticias'):'');}
+/* ---------- retiro y capital ---------- */
+function desgloseHtml(m){var d=desglose(m);return '<div class="fila" style="justify-content:space-between"><span>Comisión ('+comisionPct()+'%)</span><span class="num">− '+money(d.comision)+'</span></div><div class="fila" style="justify-content:space-between"><strong>Recibís en tu cuenta</strong><strong class="num" style="color:#2BD98F;font-size:20px">'+money(d.neto)+'</strong></div>';}
+function actualizarDesglose(){var m=document.getElementById('monto'),d=document.getElementById('desglose');if(!m||!d)return;d.innerHTML=desgloseHtml(r2(parseFloat((m.value||'').replace(',','.'))||0));}
+function vRetiro(){var u=yo(),c=u.cuenta||{},sd=saldo(u);var act=planesDe(u,['activo','rescate']);
+ var caps=act.length?act.map(function(p){var pl=plan(p.v);var enR=p.estado==='rescate';var conf=ui.confirmRescate===p.id;
+  return '<div class="item" style="flex-direction:column;align-items:stretch;gap:12px"><div class="fila">'+insignia(pl,44)+'<div class="col" style="gap:2px;flex:1"><div style="font-weight:600">Plan V'+pl.v+'</div><div class="chica">Desde '+fechaCorta(p.desde)+'</div></div><div class="num" style="font-size:18px">'+money(p.ars)+'</div></div>'+
+  (enR?'<div class="fila" style="gap:8px">'+pill('espera')+'<span class="chica">Devolución pedida. Llega en hasta 7 días.</span></div>'
+  :(conf?'<div class="tarjeta col confirma" style="gap:12px"><div style="font-weight:600">¿Pedir la devolución de '+money(p.ars)+'?</div><div class="chica" style="color:#C5D2D8">El Plan V'+pl.v+' deja de participar de las ganancias y tu capital se transfiere a tu cuenta en hasta 7 días.</div><div class="dos"><button class="btn sec" data-a="noRescate">Cancelar</button><button class="btn" data-a="siRescate" data-v="'+p.id+'">Confirmar</button></div></div>'
+  :'<button class="btn sec chico" style="align-self:flex-start" data-a="pedirRescate" data-v="'+p.id+'">'+I.ic(P.vuelta,'#F4F7F6',18,2)+'Pedir devolución del capital</button>'))+'</div>';}).join('')
+  :'<div class="item"><div class="chica">No tenés capital invertido. <a href="#planes">Ver planes</a></div></div>';
+ return '<div class="pant">'+cab('Retirar','inicio')+estadoBanner(u)+
+ '<div class="tarjeta col" style="gap:6px"><div class="chica">Saldo disponible para retirar</div><div class="num" style="font-size:36px;color:#2BD98F">'+money(sd)+'</div><div class="chica">Ganancias acreditadas: '+money(ganadoTotal(u))+'</div></div>'+
  '<form id="fRetiro" class="col" style="gap:16px" novalidate>'+
+ '<div class="col"><label class="et" for="monto">¿Cuánto querés retirar?</label><div style="position:relative"><span class="prefijo" aria-hidden="true">$</span><input class="campo num" id="monto" inputmode="decimal" placeholder="0,00" style="padding-left:40px;font-size:22px"></div>'+
+ '<div id="desglose" class="desglose">'+desgloseHtml(0)+'</div>'+
+ '<div class="fila" style="gap:8px;flex-wrap:wrap"><button type="button" class="chip-btn" data-a="pctRet" data-v="25">25%</button><button type="button" class="chip-btn" data-a="pctRet" data-v="50">50%</button><button type="button" class="chip-btn" data-a="pctRet" data-v="100">Todo</button></div></div>'+
+ '<div class="col" style="gap:4px;margin-top:6px"><h2 class="h2">Cuenta de destino</h2><p class="sub">Solo cuentas bancarias y billeteras virtuales de Argentina. Se guarda para tus próximos retiros.</p></div>'+
  '<div class="col"><label class="et" for="titular">Nombre y apellido del titular</label><input class="campo" id="titular" value="'+esc(c.titular||u.nombre)+'" placeholder="Como figura en el banco"></div>'+
  '<div class="col"><div class="fila" style="justify-content:space-between"><label class="et" for="cbu">CBU / CVU</label><span id="cbuCont" class="num" style="font-size:15px;color:'+((c.cbu||'').length===22?'#2BD98F':'#8FA3AE')+'">'+(c.cbu||'').length+'/22</span></div><input class="campo" id="cbu" inputmode="numeric" value="'+esc(c.cbu||'')+'" placeholder="22 números" maxlength="22"></div>'+
  '<div class="col"><label class="et" for="banco">Banco o billetera (Argentina)</label><input class="campo" id="banco" value="'+esc(c.banco||'')+'" placeholder="Ej.: Banco Nación, Mercado Pago"></div>'+
  '<div class="col"><label class="et" for="doc">CUIL / CUIT / DNI</label><input class="campo" id="doc" inputmode="numeric" value="'+esc(c.doc||'')+'" placeholder="Solo números" maxlength="11"></div>'+
- '<div class="aviso ambar">'+I.ic(P.info,'#F2B33D',22,1.8)+'<div>La cuenta tiene que estar a tu nombre. Si los datos no coinciden, el banco rechaza la transferencia.</div></div>'+
+ aviso(P.info,'La cuenta tiene que estar a tu nombre. Si los datos no coinciden, el banco rechaza la transferencia.','ambar')+
  '<div id="err" class="err" role="alert"></div>'+
- '<button class="btn" type="submit" '+(k.yaRetiro||!sel?'disabled':'')+'>'+(k.yaRetiro?'Ya hiciste tu retiro de hoy':(sel?'Retirar '+money(sel.monto):'Elegí un monto'))+'</button></form>'+
- '<div class="chica" style="text-align:center">Un retiro por día. Lo que no retires queda en tu saldo y se libera completo el sábado.</div>'+
+ '<button class="btn" type="submit" '+(sd>0?'':'disabled')+'>'+(sd>0?'Solicitar retiro':'Todavía no tenés saldo para retirar')+'</button></form>'+
+ '<div class="fila sello">'+I.ic(P.escudo,'#2BD98F',20,1.9)+'<span>Comisión por retiro: '+comisionPct()+'%, cubre los costos de conversión y transferencia. La devolución de tu capital no tiene comisión. Se acredita en hasta 24 h hábiles.</span></div>'+
+ '<div class="col" style="gap:10px;margin-top:8px"><h2 class="h2">Tu capital invertido</h2><div class="lista">'+caps+'</div></div>'+
  '<a class="btn sec" href="#movimientos">Ver mis movimientos</a></div>';}
 
-function vPerfil(){var u=yo(),p=plan(u);var tel='+'+u.pais+' '+u.tel.replace(/^(\d{2,3})\d+(\d{4})$/,'$1 •••• $2');
- var d=ui.perfilAbierto==='datos',k=ui.perfilAbierto==='clave';
- return '<div class="pant">'+cab('Perfil')+
- '<div class="tarjeta col" style="align-items:center;text-align:center;gap:14px;border-radius:24px">'+
- '<div style="width:112px;height:112px;border-radius:32px;background:'+(p?p.color:'#1E3A4D')+';color:#0A1A24;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:'+(p?'#0A1A24':'#C5D2D8')+'">Plan</span><span class="num" style="font-size:52px;line-height:1;color:'+(p?'#0A1A24':'#C5D2D8')+'">'+(p?p.n:'–')+'</span></div>'+
- '<div><div class="num" style="font-size:30px;color:'+(p?'#2BD98F':'#C5D2D8')+'">'+(p?p.rol:'Sin plan')+'</div><div class="chica">'+(p?'$'+p.precio+' · '+p.pct+'% de la ganancia · activo':'Elegí un plan para empezar')+'</div></div>'+
- '<div style="height:1px;width:100%;background:#1E3A4D"></div><div><div class="num" style="font-size:24px">'+esc(u.nombre)+'</div><div style="font-size:18px;color:#C5D2D8">'+esc(tel)+'</div></div><a href="#planes" style="padding:8px 16px;font-weight:600">Ver planes</a></div>'+
- '<div class="lista">'+
- '<a class="vinculo" href="#movimientos">'+I.ic(P.lista,'#C5D2D8',24,1.8)+'<span style="flex:1">Mis movimientos</span>'+I.ic(P.flecha,'#8FA3AE',20)+'</a>'+
- '<a class="vinculo" href="#descargar">'+I.ic(P.cel,'#C5D2D8',24,1.8)+'<span style="flex:1">Descargar la app</span>'+I.ic(P.flecha,'#8FA3AE',20)+'</a>'+
- '<button class="vinculo" data-a="perfil" data-v="datos" aria-expanded="'+d+'">'+I.ic(P.persona,'#C5D2D8',24,1.8)+'<span style="flex:1">Mis datos</span><span style="display:flex;transform:rotate('+(d?90:0)+'deg)">'+I.ic(P.flecha,'#8FA3AE',20)+'</span></button>'+
- (d?'<div class="col" style="padding:12px 16px 16px;gap:12px;border-bottom:1px solid #1E3A4D"><div><div class="chica">Nombre y apellido</div><div style="font-weight:600">'+esc(u.nombre)+'</div></div><div><div class="chica">Celular</div><div style="font-weight:600">+'+u.pais+' '+esc(u.tel)+'</div></div><div><div class="chica">Miembro desde</div><div style="font-weight:600">'+esc(u.alta)+'</div></div><div><div class="chica">Cuenta para retiros</div><div style="font-weight:600">'+(u.cuenta?esc(u.cuenta.banco)+' · CBU terminado en '+esc(u.cuenta.cbu.slice(-4)):'Sin cargar')+'</div></div><div class="chica">Para cambiar tu nombre o tu número, escribinos a soporte. Así protegemos tu cuenta.</div></div>':'')+
- '<button class="vinculo" data-a="perfil" data-v="clave" aria-expanded="'+k+'">'+I.ic(P.candado,'#C5D2D8',24,1.8)+'<span style="flex:1">Cambiar contraseña</span><span style="display:flex;transform:rotate('+(k?90:0)+'deg)">'+I.ic(P.flecha,'#8FA3AE',20)+'</span></button>'+
- (k?'<form id="fClave" class="col" style="padding:12px 16px 16px;gap:12px" novalidate><div class="col"><label class="et" for="c1">Contraseña actual</label><input class="campo" id="c1" type="password" autocomplete="current-password"></div><div class="col"><label class="et" for="c2">Nueva contraseña</label><input class="campo" id="c2" type="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres"></div><div class="col"><label class="et" for="c3">Repetí la nueva contraseña</label><input class="campo" id="c3" type="password" autocomplete="new-password"></div><div id="err" class="err" role="alert"></div><button class="btn" type="submit">Guardar contraseña</button></form>':'')+
- '</div>'+
- (ui.confirmarSalir?'<div class="tarjeta col" style="background:#2A1416;border:1px solid #5C2A2A;gap:14px"><div style="font-weight:600;font-size:18px">¿Cerrar sesión en este dispositivo?</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn sec" data-a="noSalir">Cancelar</button><button class="btn" style="background:#FF6B6B" data-a="salir">Cerrar sesión</button></div></div>'
- :'<button class="btn peligro" data-a="pedirSalir">'+I.ic(P.salir,'#FF8A8A',22,1.8)+'Cerrar sesión</button>')+
- '<div class="chica" style="text-align:center">Veritup · versión de prueba '+VERSION+'</div></div>'+nav('perfil');}
-
-function vMovs(){var u=yo();var f=ui.filtro;acreditar(u);
- var todos=(u.movs||[]).map(function(x){return x;});
- (u.ingresos||[]).forEach(function(x){var p=PLANES[(x.plan||1)-1];todos.push({tipo:'ingreso',titulo:'Ingreso del día',detalle:'Plan '+p.rol+' · '+fechaCorta(x.fecha),monto:x.monto,estado:'acreditado',fecha:fechaCorta(sumarDias(x.fecha,1))+' · 00:00 (hora Argentina)',ts:tsDe(x.fecha)});});
- todos.sort(function(a,b){return (b.ts||0)-(a.ts||0);});
- var m=todos.filter(function(x){return f==='todo'||(f==='ingresos'&&x.tipo==='ingreso')||(f==='compras'&&x.tipo==='compra')||(f==='retiros'&&x.tipo==='retiro');});
- var items=m.length?'<div class="lista">'+m.map(function(x){var ing=x.tipo==='ingreso',ret=x.tipo==='retiro';
-  var icono=ing?P.subir:(ret?P.bajar:P.bolsa),fondo=ing?'#123D2E':(ret?'#1E3A4D':'#123D2E'),col=ing?'#2BD98F':(ret?'#C5D2D8':'#2BD98F');
-  var pill=ing?'<span class="pastilla p-verde">'+I.ic(P.check,'#2BD98F',14,2.6)+'Acreditado</span>':estadoPill(x.estado);
-  return '<div class="item"><div style="width:44px;height:44px;flex-shrink:0;border-radius:14px;background:'+fondo+';display:flex;align-items:center;justify-content:center">'+I.ic(icono,col,22)+'</div><div class="col" style="gap:4px;flex:1;min-width:0"><div class="fila" style="justify-content:space-between;align-items:baseline;gap:10px"><span style="font-weight:600">'+esc(x.titulo)+'</span><span class="num" style="white-space:nowrap;color:'+(ing?'#2BD98F':(x.estado==='denegado'?'#8FA3AE':'#F4F7F6'))+'">'+(ing?'+ ':(ret?'− ':''))+money(x.monto)+'</span></div><div class="chica">'+esc(x.detalle)+'</div><div class="fila" style="gap:8px;flex-wrap:wrap">'+pill+'<span class="chica" style="font-size:13px">'+esc(x.fecha)+'</span></div>'+(x.nota?'<div style="font-size:14px;color:'+(x.estado==='denegado'?'#FFB3B3':'#C5D2D8')+'">'+esc(x.nota)+'</div>':'')+(x.estado==='espera'?'<button class="btn sec" style="min-height:40px;font-size:14px;margin-top:4px" data-a="demoAprobar" data-v="'+x.id+'">Demo: simular aprobación</button>':'')+'</div></div>';}).join('')+'</div>'
- :'<div class="tarjeta col" style="align-items:center;text-align:center;gap:8px"><div style="font-weight:600">'+(f==='ingresos'?'Todavía no hay ingresos':'Todavía no hay movimientos')+'</div><div class="chica">'+(f==='ingresos'?'Tu primer ingreso se acredita solo a las 00:00, hora de Argentina, después de activar tu plan.':'Acá vas a ver tus ingresos, compras de planes y retiros.')+'</div></div>';
+/* ---------- movimientos ---------- */
+function vMovs(){var u=yo();var f=ui.filtro;var m=(u.movs||[]).slice().sort(function(a,b){return b.ts-a.ts;}).filter(function(x){return f==='todo'||(f==='ingresos'&&(x.tipo==='ingreso'||x.tipo==='bono'))||(f==='compras'&&x.tipo==='compra')||(f==='retiros'&&(x.tipo==='retiro'||x.tipo==='rescate'));});
+ var items=m.length?'<div class="lista">'+m.map(function(x){var ing=x.tipo==='ingreso'||x.tipo==='bono'||(x.tipo==='ajuste'&&x.monto>=0),sal=x.tipo==='retiro'||x.tipo==='rescate'||(x.tipo==='ajuste'&&x.monto<0);
+  var ic=ing?P.subir:(sal?P.bajar:P.bolsa);
+  return '<div class="item"><span class="icono-caja" style="background:'+(sal?'#1E3A4D':'#123D2E')+'">'+I.ic(ic,sal?'#C5D2D8':'#2BD98F',22)+'</span><div class="col" style="gap:4px;flex:1;min-width:0"><div class="fila" style="justify-content:space-between;align-items:baseline;gap:10px"><span style="font-weight:600">'+esc(x.titulo)+'</span><span class="num" style="white-space:nowrap;color:'+(x.estado==='denegado'?'#8FA3AE':(ing?'#2BD98F':'#F4F7F6'))+'">'+(ing?'+ ':(sal?'− ':''))+money(Math.abs(x.monto))+'</span></div><div class="chica">'+esc(x.detalle)+'</div><div class="fila" style="gap:8px;flex-wrap:wrap">'+pill(x.estado)+'<span class="chica" style="font-size:13px">'+cuando(x.ts)+'</span></div>'+(x.nota?'<div style="font-size:14px;color:'+(x.estado==='denegado'?'#FFB3B3':'#C5D2D8')+'">'+esc(x.nota)+'</div>':'')+'</div></div>';}).join('')+'</div>'
+ :'<div class="tarjeta col" style="align-items:center;text-align:center;gap:8px"><div style="font-weight:600">Todavía no hay movimientos</div><div class="chica">Acá vas a ver tus ganancias, compras de planes, retiros y devoluciones.</div></div>';
  return '<div class="pant">'+cab('Movimientos','perfil')+
  '<div class="tabs" role="tablist">'+[['todo','Todo'],['ingresos','Ingresos'],['compras','Compras'],['retiros','Retiros']].map(function(t){return '<button role="tab" data-a="filtro" data-v="'+t[0]+'" class="'+(f===t[0]?'on':'')+'" aria-selected="'+(f===t[0])+'" style="font-size:15px">'+t[1]+'</button>';}).join('')+'</div>'+
- '<div class="fila" style="gap:14px;flex-wrap:wrap;font-size:13px;color:#C5D2D8"><span class="fila" style="gap:6px"><span style="width:10px;height:10px;border-radius:999px;background:#2BD98F"></span>Aprobado / Acreditado</span><span class="fila" style="gap:6px"><span style="width:10px;height:10px;border-radius:999px;background:#F2B33D"></span>En espera</span><span class="fila" style="gap:6px"><span style="width:10px;height:10px;border-radius:999px;background:#FF6B6B"></span>Denegado</span></div>'+
- (u.plan?'<button class="btn sec" style="min-height:44px;font-size:15px" data-a="demoDia">Demo: avanzar 1 día (acredita el ingreso de las 00:00)</button>':'')+
+ '<div class="fila leyenda"><span class="fila" style="gap:6px"><span class="punto" style="background:#2BD98F"></span>Aprobado</span><span class="fila" style="gap:6px"><span class="punto" style="background:#F2B33D"></span>En revisión</span><span class="fila" style="gap:6px"><span class="punto" style="background:#FF6B6B"></span>Rechazado</span></div>'+
  items+'</div>';}
 
+/* ---------- notificaciones ---------- */
+var ESTILO_N={ok:['#123D2E','#2BD98F',P.check],no:['#3D1A1C','#FF8A8A',P.cruz],'in':['#123D2E','#2BD98F',P.subir],out:['#1E3A4D','#C5D2D8',P.bajar],info:['#1E3A4D','#7FA8FF',P.campana]};
+function vNotifs(){var u=yo();var l=u.notifs||[];
+ var items=l.length?'<div class="lista">'+l.map(function(n){var e=ESTILO_N[n.tipo]||ESTILO_N.info;return '<div class="item notif'+(n.leida?'':' nueva')+'"><span class="icono-caja" style="background:'+e[0]+'">'+I.ic(e[2],e[1],22,2.2)+'</span><div class="col" style="gap:3px;flex:1;min-width:0"><div class="fila" style="justify-content:space-between;gap:10px"><strong style="font-size:16px">'+esc(n.titulo)+'</strong>'+(n.leida?'':'<span class="punto-nuevo" aria-label="Nueva"></span>')+'</div><div style="font-size:15px;color:#C5D2D8">'+esc(n.texto)+'</div><div class="chica" style="font-size:13px">'+cuando(n.ts)+'</div></div></div>';}).join('')+'</div>'
+ :'<div class="tarjeta col" style="align-items:center;text-align:center;gap:8px"><span class="icono-caja">'+I.ic(P.campana,'#2BD98F',22,1.9)+'</span><div style="font-weight:600">No tenés notificaciones</div><div class="chica">Te avisamos acá cada aprobación, rechazo, ingreso o egreso de tu cuenta.</div></div>';
+ l.forEach(function(n){n.leida=true;});guardar();
+ return '<div class="pant">'+cab('Notificaciones','inicio',true)+items+'</div>';}
+
+/* ---------- referidos ---------- */
+function vReferidos(){var u=yo();var alias=u.alias||'';var n=0;Object.keys(S.usuarios).forEach(function(k){if(S.usuarios[k].invitadoPor===alias)n++;});
+ return '<div class="pant">'+cab('Tu link')+
+ '<div class="tarjeta col tarjeta-ambar" style="gap:16px"><div class="num" style="font-size:24px;line-height:1.2">Compartí Veritup con tu gente</div><div style="font-size:17px">Cuando alguien crea su cuenta con tu link, los dos reciben [beneficio].</div>'+
+ '<div class="link-caja"><div class="chica">veritup.com/r/</div><div id="aliasVista" class="num" style="font-size:30px;color:#F2B33D;word-break:break-all;line-height:1.15">'+esc(alias)+'</div></div>'+
+ '<button class="btn oscuro" data-a="copiarLink">Copiar link</button></div>'+
+ aviso(P.escudo,'Tu link se crea con tu nombre y es único: no se puede cambiar. Si otra persona tiene tu mismo nombre, se le agrega un número.')+
+ '<div class="dos"><button class="btn" data-a="whatsapp">WhatsApp</button><button class="btn sec" data-a="compartir">Más opciones</button></div>'+
+ '<div class="dos"><div class="tarjeta"><div class="chica">Se unieron</div><div class="num" style="font-size:28px">'+n+'</div></div><div class="tarjeta"><div class="chica">Beneficios</div><div class="num" style="font-size:28px;color:#F2B33D">[$]</div></div></div>'+
+ '</div>'+nav('referidos');}
+
+/* ---------- perfil ---------- */
+function vPerfil(){var u=yo();var mv=mejorPlan(u),p=mv?plan(mv):null;var tel='+'+u.pais+' '+u.tel.replace(/^(\d{2,3})\d+(\d{4})$/,'$1 •••• $2');
+ var d=ui.perfilAbierto==='datos',k=ui.perfilAbierto==='clave';var nl=noLeidas(u);
+ function link(h,ic,t,extra){return '<a class="vinculo" href="#'+h+'">'+I.ic(ic,'#C5D2D8',24,1.8)+'<span style="flex:1">'+t+'</span>'+(extra||'')+I.ic(P.flecha,'#8FA3AE',20)+'</a>';}
+ return '<div class="pant">'+cab('Perfil')+
+ '<div class="tarjeta col" style="align-items:center;text-align:center;gap:14px;border-radius:24px">'+
+ '<div class="plan-grande" style="background:'+(p?p.color:'#1E3A4D')+';color:'+(p?'#0A1A24':'#C5D2D8')+'"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Plan</span><span class="num" style="font-size:48px;line-height:1">'+(p?'V'+p.v:'–')+'</span></div>'+
+ '<div><div class="num" style="font-size:26px;color:'+(p?'#2BD98F':'#C5D2D8')+'">'+(p?p.pct+'% de la ganancia':'Sin plan activo')+'</div><div class="chica">Capital invertido: '+money(capital(u))+'</div></div>'+
+ '<div class="linea" style="width:100%"></div><div><div class="num" style="font-size:24px">'+esc(u.nombre)+'</div><div style="font-size:18px;color:#C5D2D8">'+esc(tel)+'</div></div><a href="#planes" style="padding:8px 16px;font-weight:600">Ver planes</a></div>'+
+ '<div class="lista">'+
+ link('notificaciones',P.campana,'Notificaciones',nl?'<span class="badge estatica">'+nl+'</span>':'')+
+ link('movimientos',P.lista,'Mis movimientos')+
+ link('noticias',P.doc,'Noticias')+
+ link('descargar',P.cel,'Instalar la app')+
+ '<button class="vinculo" data-a="perfil" data-v="datos" aria-expanded="'+d+'">'+I.ic(P.persona,'#C5D2D8',24,1.8)+'<span style="flex:1">Mis datos</span><span class="gira" style="transform:rotate('+(d?90:0)+'deg)">'+I.ic(P.flecha,'#8FA3AE',20)+'</span></button>'+
+ (d?'<div class="col despliegue" style="padding:12px 16px 16px;gap:12px;border-bottom:1px solid #1E3A4D"><div><div class="chica">Nombre y apellido</div><div style="font-weight:600">'+esc(u.nombre)+'</div></div><div><div class="chica">Celular</div><div style="font-weight:600">+'+u.pais+' '+esc(u.tel)+'</div></div><div><div class="chica">Miembro desde</div><div style="font-weight:600">'+esc(u.alta)+'</div></div><div><div class="chica">Cuenta para retiros</div><div style="font-weight:600">'+(u.cuenta?esc(u.cuenta.banco)+' · CBU terminado en '+esc(u.cuenta.cbu.slice(-4)):'Sin cargar')+'</div></div><div class="chica">Para cambiar tu nombre o tu número, escribinos a soporte. Así protegemos tu cuenta.</div></div>':'')+
+ '<button class="vinculo" data-a="perfil" data-v="clave" aria-expanded="'+k+'">'+I.ic(P.candado,'#C5D2D8',24,1.8)+'<span style="flex:1">Cambiar contraseña</span><span class="gira" style="transform:rotate('+(k?90:0)+'deg)">'+I.ic(P.flecha,'#8FA3AE',20)+'</span></button>'+
+ (k?'<form id="fClave" class="col despliegue" style="padding:12px 16px 16px;gap:12px" novalidate><div class="col"><label class="et" for="c1">Contraseña actual</label><input class="campo" id="c1" type="password" autocomplete="current-password"></div><div class="col"><label class="et" for="c2">Nueva contraseña</label><input class="campo" id="c2" type="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres"></div><div class="col"><label class="et" for="c3">Repetí la nueva contraseña</label><input class="campo" id="c3" type="password" autocomplete="new-password"></div><div id="err" class="err" role="alert"></div><button class="btn" type="submit">Guardar contraseña</button></form>':'')+
+ '</div>'+
+ 
+ (ui.confirmarSalir?'<div class="tarjeta col confirma-rojo" style="gap:14px"><div style="font-weight:600;font-size:18px">¿Cerrar sesión en este dispositivo?</div><div class="dos"><button class="btn sec" data-a="noSalir">Cancelar</button><button class="btn rojo" data-a="salir">Cerrar sesión</button></div></div>'
+ :'<button class="btn peligro" data-a="pedirSalir">'+I.ic(P.salir,'#FF8A8A',22,1.8)+'Cerrar sesión</button>')+
+ '</div>'+nav('perfil');}
+
+/* ---------- instalar ---------- */
 function vDescargar(){var a=ui.so==='android';
- return '<div class="pant">'+cab('Descargar la app','perfil')+
- '<div class="fila tarjeta" style="gap:16px"><div style="width:72px;height:72px;border-radius:20px;background:#0A1A24;border:1px solid #1E3A4D;display:flex;align-items:center;justify-content:center;flex-shrink:0">'+I.logo(44)+'</div><div><div class="num" style="font-size:22px">Veritup</div><div class="chica">Versión '+VERSION+'</div></div></div>'+
+ return '<div class="pant">'+cab('Instalar la app','perfil')+
+ '<div class="fila tarjeta" style="gap:16px"><div class="icono-app">'+I.logo(44)+'</div><div><div class="num" style="font-size:22px">Veritup</div><div class="chica">Tu inversión, siempre a mano</div></div></div>'+
  '<div class="tabs" role="tablist"><button role="tab" data-a="so" data-v="android" class="'+(a?'on':'')+'" aria-selected="'+a+'">Android</button><button role="tab" data-a="so" data-v="ios" class="'+(!a?'on':'')+'" aria-selected="'+(!a)+'">iPhone</button></div>'+
- (a?'<a class="btn" href="https://github.com/Alanrtobal01/Veritup-Apk/releases/download/demo/veritup-demo.apk" style="min-height:64px">'+I.ic(P.bajar,'#0A1A24',26,2.2)+'<span class="col" style="gap:0;line-height:1.2"><span style="font-size:19px;font-weight:700">Descargar .apk</span><span style="font-size:13px;font-weight:500">Versión '+VERSION+'</span></span></a>'+
-  '<ol class="pasos"><li><span class="n">1</span><span>Tocá <strong>Descargar .apk</strong>.</span></li><li><span class="n">2</span><span>Abrí el archivo desde las notificaciones o la carpeta <strong>Descargas</strong>.</span></li><li><span class="n">3</span><span>Si te lo pide, activá <strong>Permitir de esta fuente</strong>.</span></li><li><span class="n" style="background:#123D2E;color:#2BD98F">4</span><span>Tocá <strong>Instalar</strong> y abrí Veritup desde tu inicio.</span></li></ol>'
- :'<p class="sub" style="color:#C5D2D8">No necesitás descargar nada: la agregás a tu pantalla de inicio y funciona como una app.</p><ol class="pasos"><li><span class="n">1</span><span>Abrí <strong>veritup.com</strong> en <strong>Safari</strong>.</span></li><li><span class="n">2</span><span>Tocá <strong>Compartir</strong> '+I.ic(P.compartir,'#4FA3FF',18)+' abajo.</span></li><li><span class="n">3</span><span>Elegí <strong>Agregar a inicio</strong>.</span></li><li><span class="n" style="background:#123D2E;color:#2BD98F">4</span><span>Tocá <strong>Agregar</strong>. El ícono aparece junto a tus apps.</span></li></ol><button class="btn" data-a="copiarWeb">Copiar veritup.com para abrir en Safari</button>')+
- '<div class="aviso">'+I.ic(P.escudo,'#2BD98F',22,1.8)+'<div>Descargá Veritup solo desde <strong style="color:#F4F7F6">veritup.com</strong>. Nunca instales la app desde links que te manden por mensaje.</div></div></div>';}
+ '<p class="sub" style="color:#C5D2D8">No necesitás descargar nada: la agregás a tu pantalla de inicio y se abre como una app.</p>'+
+ (a?'<a class="btn" href="https://github.com/Alanrtobal01/Veritup-Apk/releases/download/demo/veritup-demo.apk" style="min-height:64px">'+I.ic(P.bajar||'M12 4v12M7 11l5 5 5-5M5 20h14','#0A1A24',26,2.2)+'<span style="font-size:19px;font-weight:700">Descargar .apk</span></a><p class="chica">O instalala desde el navegador:</p><ol class="pasos"><li><span class="n">1</span><span>Abrí <strong>veritup.com</strong> en <strong>Chrome</strong>.</span></li><li><span class="n">2</span><span>Tocá el menú <strong>⋮</strong> arriba a la derecha.</span></li><li><span class="n">3</span><span>Elegí <strong>Instalar app</strong> o <strong>Agregar a pantalla principal</strong>.</span></li><li><span class="n verde">4</span><span>Confirmá. El ícono de Veritup aparece junto a tus apps.</span></li></ol>'
+ :'<ol class="pasos"><li><span class="n">1</span><span>Abrí <strong>veritup.com</strong> en <strong>Safari</strong>.</span></li><li><span class="n">2</span><span>Tocá <strong>Compartir</strong> '+I.ic(P.compartir,'#4FA3FF',18)+' abajo.</span></li><li><span class="n">3</span><span>Elegí <strong>Agregar a inicio</strong>.</span></li><li><span class="n verde">4</span><span>Tocá <strong>Agregar</strong>. El ícono aparece junto a tus apps.</span></li></ol>')+
+ '<button class="btn" data-a="copiarWeb">Copiar veritup.com</button>'+
+ aviso(P.escudo,'Entrá a Veritup solo desde <strong style="color:#F4F7F6">veritup.com</strong>. Nunca instales nada desde links que te manden por mensaje.')+'</div>';}
+
+/* ---------- panel del negocio (demo) ---------- */
+function pendientes(){var l=[];Object.keys(S.usuarios).forEach(function(k){var u=S.usuarios[k];(u.movs||[]).forEach(function(m){if(m.estado==='espera')l.push({u:u,k:k,m:m});});});return l.sort(function(a,b){return a.m.ts-b.m.ts;});}
+function cabEquipo(){return '<div class="fila cab-equipo"><div class="marca-equipo">'+I.logo(30)+'<div class="col" style="gap:2px"><strong style="font-family:var(--titulo);font-size:20px;letter-spacing:-.02em">veritup</strong><span class="sello-equipo">PANEL INTERNO</span></div></div>'+(ui.admin?'<button class="redondo" data-a="salirAdmin" aria-label="Cerrar sesión del equipo">'+I.ic(P.salir,'#F2B33D',22,1.8)+'</button>':'')+'</div>';}
+function vAdmin(){
+ if(ui.admin&&!sesionEquipo()){salirEquipo();}
+ if(!ui.admin){var bl=bloqueoEquipo();
+  return '<div class="pant pant-equipo">'+cabEquipo()+
+  '<form id="fAdmin" class="tarjeta col tarjeta-equipo" style="gap:14px;max-width:460px;width:100%;align-self:center" novalidate><div class="fila"><span class="icono-caja" style="background:#3D3214">'+I.ic(P.candado,'#F2B33D',22,1.9)+'</span><div class="col" style="gap:2px"><strong>Acceso del equipo</strong><span class="chica">Uso exclusivo del personal de Veritup.</span></div></div>'+
+  '<div class="col"><label class="et" for="auser">Usuario</label><input class="campo" id="auser" autocomplete="username" autocapitalize="none" '+(bl?'disabled':'')+'></div>'+
+  '<div class="col"><label class="et" for="apass">Contraseña</label><input class="campo" id="apass" type="password" autocomplete="current-password" '+(bl?'disabled':'')+'></div>'+(bl?'':captchaCampo())+
+  '<div id="err" class="err" role="alert">'+(bl?'Demasiados intentos. Probá de nuevo en '+bl+' s.':'')+'</div><button class="btn btn-equipo" type="submit" '+(bl?'disabled':'')+'>Entrar al panel</button>'+
+  '<div class="chica">La sesión se cierra sola tras 30 minutos sin actividad. 5 intentos fallidos bloquean el acceso por 1 minuto.</div></form></div>';}
+ marcarEquipo();
+ var cuentasP=Object.keys(S.usuarios).filter(function(k){return S.usuarios[k].estado==='pendiente';}).length;
+ var ops=pendientes().length;var cl=S.solicitudes.filter(function(x){return x.estado==='espera';}).length;
+ var tabs=[['resumen','Resumen',0],['cuentas','Cuentas',cuentasP],['operaciones','Operaciones',ops],['claves','Contraseñas',cl],['publicar','Publicar',0],['ajustes','Ajustes',0]];
+ var t=ui.adminTab;
+ var cuerpo={resumen:adResumen,cuentas:adCuentas,operaciones:adOperaciones,claves:adClaves,publicar:adPublicar,ajustes:adAjustes}[t]||adResumen;
+ return '<div class="pant pant-equipo">'+cabEquipo()+
+ '<div class="tabs tabs-scroll" role="tablist">'+tabs.map(function(x){return '<button role="tab" data-a="adminTab" data-v="'+x[0]+'" class="'+(t===x[0]?'on':'')+'" aria-selected="'+(t===x[0])+'">'+x[1]+(x[2]?' <span class="cuenta-tab">'+x[2]+'</span>':'')+'</button>';}).join('')+'</div>'+
+ cuerpo({cuentasP:cuentasP,ops:ops,cl:cl})+'</div>';}
+function bloqueoEquipo(){try{var h=+sessionStorage.getItem('veritup_eq_bloq')||0;var r=Math.ceil((h-Date.now())/1000);return r>0?r:0;}catch(e){return 0;}}
+function botonesDecision(aA,aR,v,txtA,deshab){return '<div class="col decision"><button class="btn aprobar-g" data-a="'+aA+'" data-v="'+v+'" '+(deshab?'disabled':'')+'>'+I.ic(P.check,'#0A1A24',22,2.6)+(txtA||'Autorizar')+'</button><button class="btn rechazo-l" data-a="'+aR+'" data-v="'+v+'">Rechazar</button></div>';}
+function pillCuenta(e){return e==='aprobada'?'<span class="pastilla p-verde" style="font-size:12px">Verificada</span>':(e==='pendiente'?'<span class="pastilla p-ambar" style="font-size:12px">Por verificar</span>':(e==='suspendida'?'<span class="pastilla p-rojo" style="font-size:12px">Suspendida</span>':'<span class="pastilla p-rojo" style="font-size:12px">Rechazada</span>'));}
+function adResumen(c){var n=Object.keys(S.usuarios).length;var ult=ultimoResultado();
+ var q=function(tab,num,txt){return '<button class="opcion" data-a="adminTab" data-v="'+tab+'" style="justify-content:space-between"><span>'+txt+'</span><span class="num" style="font-size:22px;color:'+(num?'#F2B33D':'#8FA3AE')+'">'+num+'</span></button>';};
+ return '<div class="trio"><div class="tarjeta"><div class="chica">Inversores</div><div class="num" style="font-size:22px">'+n+'</div></div><div class="tarjeta"><div class="chica">Capital activo</div><div class="num monto-ajusta" style="font-size:clamp(14px,4.2vw,20px)">'+pesos(capitalNegocio())+'</div></div><div class="tarjeta"><div class="chica">Último resultado</div><div class="num" style="font-size:16px">'+(ult?fechaCorta(ult.fecha):'—')+'</div></div></div>'+
+ '<div class="col" style="gap:10px"><h2 class="h2" style="font-size:19px">Para revisar</h2>'+q('cuentas',c.cuentasP,'Cuentas por verificar')+q('operaciones',c.ops,'Pagos, retiros y devoluciones')+q('claves',c.cl,'Solicitudes de contraseña')+'</div>'+
+ (ult&&ult.fecha===hoyAR()?aviso(P.check,'Ya publicaste el resultado de hoy.'):aviso(P.info,'Todavía no publicaste el resultado de hoy. <button class="enlace" data-a="adminTab" data-v="publicar">Publicar ahora</button>','ambar'));}
+function adCuentas(){if(ui.adCuenta&&S.usuarios[ui.adCuenta])return adCuenta(ui.adCuenta);
+ var f=ui.adFiltro,q=(ui.adBusca||'').toLowerCase();
+ var ks=Object.keys(S.usuarios).filter(function(k){var u=S.usuarios[k];var okF=f==='todas'||(f==='pendiente'&&u.estado==='pendiente')||(f==='aprobada'&&u.estado==='aprobada')||(f==='otras'&&(u.estado==='suspendida'||u.estado==='rechazada'));var okQ=!q||u.nombre.toLowerCase().indexOf(q)>=0||k.indexOf(q.replace(/\D/g,'')||'§')>=0;return okF&&okQ;})
+  .sort(function(a,b){var o={pendiente:0,suspendida:1,rechazada:2,aprobada:3};return o[S.usuarios[a].estado]-o[S.usuarios[b].estado];});
+ var chips=[['todas','Todas'],['pendiente','Por verificar'],['aprobada','Verificadas'],['otras','Suspendidas y rechazadas']].map(function(c){return '<button type="button" class="chip-btn'+(f===c[0]?' on':'')+'" data-a="adFiltro" data-v="'+c[0]+'">'+c[1]+'</button>';}).join('');
+ var lista=ks.length?'<div class="lista">'+ks.map(function(k){var u=S.usuarios[k];
+  return '<div class="item" style="flex-direction:column;align-items:stretch;gap:12px"><div class="fila" style="justify-content:space-between;gap:10px"><div class="col" style="gap:2px;min-width:0"><strong>'+esc(u.nombre)+'</strong><span class="chica">+'+u.pais+' '+esc(u.tel)+' · alta '+esc(u.alta)+'</span><span class="chica">Capital '+money(capital(u))+' · saldo '+money(saldo(u))+(u.invitadoPor?' · invitado por '+esc(u.invitadoPor):'')+'</span></div>'+pillCuenta(u.estado)+'</div>'+
+  (u.estado==='pendiente'?botonesDecision('aprobarCuenta','rechazarCuenta',k,'Autorizar cuenta'):'')+
+  '<button class="btn sec chico" style="width:100%" data-a="abrirCuenta" data-v="'+k+'">Gestionar cuenta</button></div>';}).join('')+'</div>'
+  :'<div class="tarjeta"><div class="chica">No hay cuentas con ese filtro.</div></div>';
+ return '<div class="col" style="gap:10px"><div style="position:relative"><input class="campo" id="adBusca" value="'+esc(ui.adBusca)+'" placeholder="Buscar por nombre o teléfono" aria-label="Buscar cuentas" autocomplete="off"></div><div class="fila" style="gap:8px;flex-wrap:wrap">'+chips+'</div></div>'+lista;}
+function adCuenta(k){var u=S.usuarios[k];var e=u.estado;var conf=ui.adConfirm;
+ var planes=(u.planes||[]).length?'<div class="lista">'+u.planes.slice().reverse().map(function(p){var pl=plan(p.v);var et={activo:'Activo',rescate:'Devolución pedida',pendiente:'Pago en revisión',finalizado:'Finalizado',rechazado:'Rechazado'}[p.estado]||p.estado;return '<div class="item" style="align-items:center">'+insignia(pl,40)+'<div class="col" style="gap:2px;flex:1"><strong>Plan V'+pl.v+'</strong><span class="chica">'+et+' · desde '+fechaCorta(p.desde)+'</span></div><span class="num">'+money(p.ars)+'</span></div>';}).join('')+'</div>':'<div class="tarjeta"><div class="chica">Sin inversiones.</div></div>';
+ var movs=(u.movs||[]).slice().sort(function(a,b){return b.ts-a.ts;}).slice(0,8);
+ var lm=movs.length?'<div class="lista">'+movs.map(function(m){var neg=m.tipo==='retiro'||m.tipo==='rescate'||(m.tipo==='ajuste'&&m.monto<0);return '<div class="item" style="align-items:center"><div class="col" style="gap:2px;flex:1;min-width:0"><strong style="font-size:15px">'+esc(m.titulo)+'</strong><span class="chica">'+cuando(m.ts)+'</span></div><div class="col" style="align-items:flex-end;gap:4px"><span class="num" style="white-space:nowrap">'+(neg?'− ':'+ ')+money(Math.abs(m.monto))+'</span>'+pill(m.estado)+'</div></div>';}).join('')+'</div>':'<div class="tarjeta"><div class="chica">Sin movimientos.</div></div>';
+ var estadoAcc=e==='aprobada'?(conf==='suspender'?'<div class="tarjeta col confirma-rojo" style="gap:12px"><strong>¿Suspender esta cuenta?</strong><div class="chica" style="color:#C5D2D8">No va a poder invertir ni retirar. Sus inversiones siguen activas y recibiendo ganancias.</div><div class="dos"><button class="btn sec" data-a="adConfirm" data-v="">Cancelar</button><button class="btn rojo" data-a="suspenderCuenta" data-v="'+k+'">Suspender</button></div></div>':'<button class="btn rechazo-l" data-a="adConfirm" data-v="suspender">'+I.ic(P.candado,'#FF8A8A',20,2)+'Suspender cuenta</button>')
+  :botonesDecision('aprobarCuenta','rechazarCuenta',k,e==='suspendida'?'Reactivar cuenta':'Autorizar cuenta');
+ if(e!=='pendiente'&&e!=='aprobada')estadoAcc=estadoAcc.replace('<button class="btn rechazo-l" data-a="rechazarCuenta" data-v="'+k+'">Rechazar</button>','');
+ return '<button class="enlace" style="align-self:flex-start" data-a="abrirCuenta" data-v="">← Volver a cuentas</button>'+
+ '<div class="tarjeta col" style="gap:12px"><div class="fila" style="justify-content:space-between;gap:10px"><div class="col" style="gap:2px;min-width:0"><div class="num" style="font-size:22px">'+esc(u.nombre)+'</div><span class="chica">+'+u.pais+' '+esc(u.tel)+' · '+esc(u.alias)+'</span></div>'+pillCuenta(e)+'</div>'+
+ '<div class="trio"><div><div class="chica">Capital</div><div class="num" style="font-size:17px">'+money(capital(u))+'</div></div><div><div class="chica">Saldo</div><div class="num" style="font-size:17px;color:#2BD98F">'+money(saldo(u))+'</div></div><div><div class="chica">Participación</div><div class="num" style="font-size:17px">'+pct2(participacion(u))+'</div></div></div>'+estadoAcc+'</div>'+
+ '<form id="fEditar" class="tarjeta col" style="gap:12px" novalidate><div class="h2" style="font-size:19px">Datos de la cuenta</div><div class="col"><label class="et" for="eNombre">Nombre y apellido</label><input class="campo" id="eNombre" value="'+esc(u.nombre)+'"></div>'+
+ '<div class="col"><label class="et" for="eTel">Celular</label><div class="fila" style="gap:8px"><select class="campo" id="ePais" aria-label="Código de país"><option value="54"'+(u.pais==='54'?' selected':'')+'>AR +54</option><option value="595"'+(u.pais==='595'?' selected':'')+'>PY +595</option></select><input class="campo" id="eTel" inputmode="numeric" value="'+esc(u.tel)+'" style="flex:1;min-width:0"></div></div><div id="errE" class="err" role="alert"></div><button class="btn sec" type="submit">Guardar datos</button></form>'+
+ '<div class="tarjeta col" style="gap:12px"><div class="h2" style="font-size:19px">Contraseña</div>'+(ui.adClaveTemp?'<div class="caja-negra col" style="gap:6px"><span class="chica">Contraseña temporal (mostrala una sola vez):</span><span class="num" style="font-size:24px;color:#F2B33D;letter-spacing:.06em">'+esc(ui.adClaveTemp)+'</span><span class="chica">Pasásela al inversor por un canal seguro y pedile que la cambie desde su perfil.</span></div>':'<div class="chica">Genera una contraseña temporal y reemplaza la actual.</div>')+'<button class="btn sec" data-a="claveTemp" data-v="'+k+'">'+I.ic(P.vuelta,'#F4F7F6',20,2)+'Restablecer contraseña</button></div>'+
+ '<form id="fAjuste" class="tarjeta col" style="gap:12px" novalidate><div class="h2" style="font-size:19px">Ajustar saldo</div><div class="chica">Para correcciones. Queda registrado y el inversor recibe una notificación.</div><div class="dos"><div class="col"><label class="et" for="ajMonto">Monto</label><input class="campo" id="ajMonto" inputmode="decimal" placeholder="Ej.: 1500 o -1500"></div><div class="col"><label class="et" for="ajMotivo">Motivo</label><input class="campo" id="ajMotivo" maxlength="80" placeholder="Ej.: corrección"></div></div><div id="errA" class="err" role="alert"></div><button class="btn sec" type="submit">Aplicar ajuste</button></form>'+
+ '<div class="col" style="gap:10px"><h2 class="h2" style="font-size:19px">Inversiones</h2>'+planes+'</div>'+
+ '<div class="col" style="gap:10px"><h2 class="h2" style="font-size:19px">Últimos movimientos</h2>'+lm+'</div>'+
+ (conf==='eliminar'?'<div class="tarjeta col confirma-rojo" style="gap:12px"><strong>¿Eliminar la cuenta de '+esc(u.nombre)+'?</strong><div class="chica" style="color:#C5D2D8">'+(capital(u)>0||saldo(u)>0?'Ojo: todavía tiene '+money(capital(u))+' invertidos y '+money(saldo(u))+' de saldo. Resolvé eso antes de eliminarla.':'Se borran sus datos de la app. No se puede deshacer.')+'</div><div class="dos"><button class="btn sec" data-a="adConfirm" data-v="">Cancelar</button><button class="btn rojo" data-a="eliminarCuenta" data-v="'+k+'" '+(capital(u)>0||saldo(u)>0?'disabled':'')+'>Eliminar</button></div></div>'
+ :'<button class="btn peligro" data-a="adConfirm" data-v="eliminar">Eliminar cuenta</button>');}
+function adOperaciones(){var pend=pendientes();
+ return pend.length?'<div class="lista">'+pend.map(function(x){var t={compra:'Pago de plan',retiro:'Retiro',rescate:'Devolución de capital'}[x.m.tipo]||x.m.tipo;
+  return '<div class="item" style="flex-direction:column;align-items:stretch;gap:12px"><div class="fila" style="justify-content:space-between;gap:10px"><div class="col" style="gap:2px;min-width:0"><strong>'+t+'</strong><span style="font-size:15px">'+esc(x.u.nombre)+'</span><span class="chica">'+esc(x.m.detalle)+' · '+cuando(x.m.ts)+'</span>'+(x.m.tipo==='retiro'&&x.m.neto!=null?'<span class="chica" style="color:#F2B33D">Transferir '+money(x.m.neto)+' · comisión '+money(x.m.comision)+'</span>':'')+'</div><span class="num" style="white-space:nowrap;font-size:20px">'+money(x.m.monto)+'</span></div>'+
+  botonesDecision('aprobar','rechazar',x.k+'|'+x.m.id,'Autorizar '+(x.m.tipo==='compra'?'pago':(x.m.tipo==='retiro'?'retiro':'devolución')))+'</div>';}).join('')+'</div>'
+ :'<div class="tarjeta"><div class="chica">No hay operaciones pendientes.</div></div>';}
+function adClaves(){var pend=S.solicitudes.filter(function(x){return x.estado==='espera';});
+ var lp=pend.length?'<div class="lista">'+pend.map(function(x){var u=S.usuarios[x.key];var ok=!!u&&u.nombre.toLowerCase()===x.nombre.toLowerCase();
+  return '<div class="item" style="flex-direction:column;align-items:stretch;gap:10px"><div class="col" style="gap:4px"><strong>'+esc(x.nombre)+'</strong><span class="chica">+'+esc(x.key.replace(/^(54|595)/,'$1 '))+' · '+cuando(x.ts)+'</span>'+(ok?'<span class="pastilla p-verde" style="font-size:12px;align-self:flex-start">'+I.ic(P.check,'#2BD98F',13,2.6)+'Nombre y número coinciden</span>':'<span class="pastilla p-rojo" style="font-size:12px;align-self:flex-start">'+I.ic(P.cruz,'#FF8A8A',13,2.6)+(u?'El nombre no coincide':'No existe una cuenta con ese número')+'</span>')+'<span class="chica">Antes de aprobar, confirmá la identidad por WhatsApp.</span></div>'+
+  botonesDecision('aprobarClave','rechazarClave',x.id,'Autorizar nueva contraseña',!u)+'</div>';}).join('')+'</div>'
+ :'<div class="tarjeta"><div class="chica">No hay solicitudes pendientes.</div></div>';
+ var reg=S.registro.slice(-12).reverse();
+ var lr=reg.length?'<div class="lista">'+reg.map(function(r){return '<div class="item"><span class="icono-caja" style="background:#1E3A4D">'+I.ic(P.candado,'#C5D2D8',20,1.9)+'</span><div class="col" style="gap:2px"><strong style="font-size:15px">'+esc(r.nombre)+'</strong><span class="chica">'+esc(r.detalle)+' · '+cuando(r.ts)+'</span></div></div>';}).join('')+'</div>':'<div class="tarjeta"><div class="chica">Sin cambios registrados.</div></div>';
+ return '<div class="col" style="gap:10px"><h2 class="h2" style="font-size:19px">Solicitudes de nueva contraseña</h2>'+lp+'</div><div class="col" style="gap:10px"><h2 class="h2" style="font-size:19px">Registro de actividad</h2>'+lr+'</div>';}
+function adPublicar(){var res=ui.pubTipo==='resultado';var cap=capitalNegocio();
+ var lista=S.reportes.slice(-5).reverse().map(function(r){return '<div class="item"><span class="icono-caja" style="background:'+(r.tipo==='resultado'?'#123D2E':'#1E3A4D')+'">'+I.ic(r.tipo==='resultado'?P.grafico:P.doc,r.tipo==='resultado'?'#2BD98F':'#7FA8FF',20,1.9)+'</span><div class="col" style="gap:2px;min-width:0"><strong class="corta" style="font-size:15px">'+esc(r.titulo)+'</strong><span class="chica">'+fechaCorta(r.fecha)+(r.tipo==='resultado'?' · repartido '+money(r.repartido):' · novedad')+'</span></div></div>';}).join('');
+ return '<div class="dos"><button class="opcion '+(res?'on':'')+'" data-a="pubTipo" data-v="resultado" aria-pressed="'+res+'"><span class="radio"></span><span class="col" style="gap:2px"><strong>Resultado del día</strong><span class="chica">Reparte ganancias</span></span></button><button class="opcion '+(!res?'on':'')+'" data-a="pubTipo" data-v="aviso" aria-pressed="'+(!res)+'"><span class="radio"></span><span class="col" style="gap:2px"><strong>Novedad</strong><span class="chica">Solo informa</span></span></button></div>'+
+ '<form id="fReporte" class="tarjeta col" style="gap:14px" novalidate>'+
+ '<div class="col"><label class="et" for="rTitulo">Título</label><input class="campo" id="rTitulo" maxlength="80" placeholder="'+(res?'Ej.: Buen día de minería':'Ej.: Sumamos 10 equipos nuevos')+'"></div>'+
+ '<div class="col"><label class="et" for="rNota">Texto para los inversores'+(res?' (opcional)':'')+'</label><textarea class="campo area" id="rNota" rows="3" maxlength="400" placeholder="Contá en pocas palabras qué pasó hoy."></textarea></div>'+
+ (res?'<div class="dos"><div class="col"><label class="et" for="rFecha">Fecha</label><input class="campo" id="rFecha" type="date" value="'+hoyAR()+'"></div><div class="col"><label class="et" for="rCap">Capital total invertido</label><input class="campo" id="rCap" inputmode="numeric" value="'+Math.round(cap)+'"></div></div>'+
+ '<div class="dos"><div class="col"><label class="et" for="rVentas">Ingresos de minería</label><input class="campo" id="rVentas" inputmode="numeric" placeholder="0"></div><div class="col"><label class="et" for="rGastos">Gastos (energía y mantenimiento)</label><input class="campo" id="rGastos" inputmode="numeric" placeholder="0"></div></div>'+
+ '<div class="col"><label class="et" for="rLink">Link al panel de minería (opcional)</label><input class="campo" id="rLink" inputmode="url" placeholder="https://"></div>'+
+ '<div class="fila caja-negra" style="justify-content:space-between"><span style="color:#C5D2D8">Ganancia del día</span><span id="rGan" class="num" style="font-size:22px">$ 0</span></div><div id="rPrev" class="chica">Cargá ingresos y gastos para ver cuánto se reparte.</div>':'')+
+ '<div id="err" class="err" role="alert"></div><button class="btn" type="submit">'+(res?'Publicar y repartir':'Publicar novedad')+'</button></form>'+
+ (lista?'<div class="col" style="gap:10px"><h2 class="h2" style="font-size:19px">Últimas publicaciones</h2><div class="lista">'+lista+'</div></div>':'');}
+function adAjustes(){return '<form id="fComision" class="tarjeta col" style="gap:12px" novalidate><div class="h2" style="font-size:20px">Comisión por retiro</div><div class="chica">Porcentaje que se descuenta de cada retiro de ganancias. No se aplica a la devolución de capital.</div><div class="fila" style="gap:10px"><input class="campo" id="comis" inputmode="decimal" value="'+comisionPct()+'" aria-label="Porcentaje de comisión" style="flex:1"><span class="num" style="font-size:20px">%</span><button class="btn" type="submit" style="width:auto">Guardar</button></div></form>'+
+ '<form id="fCotiz" class="tarjeta col" style="gap:12px" novalidate><div class="h2" style="font-size:20px">Cotización de referencia</div><div class="chica">Se usa para mostrar el precio de cada plan en pesos.</div><div class="fila" style="gap:10px"><input class="campo" id="cotiz" inputmode="numeric" value="'+S.cotizacion+'" aria-label="Pesos por USD" style="flex:1"><button class="btn" type="submit" style="width:auto">Guardar</button></div></form>'+
+ aviso(P.escudo,'Para máxima seguridad, este panel puede vivir en un dominio propio (por ejemplo, admin.veritup.com), con un usuario por persona del equipo y verificación en dos pasos.','ambar')+
+ '<button class="btn peligro" data-a="salirAdmin">'+I.ic(P.salir,'#FF8A8A',22,1.8)+'Cerrar sesión del equipo</button>';}
+function previewReporte(){if(!document.getElementById('rVentas'))return;var v=+(document.getElementById('rVentas').value||0),g=+(document.getElementById('rGastos').value||0),c=+(document.getElementById('rCap').value||0);var gan=v-g;
+ var e=document.getElementById('rGan');if(e){e.textContent=pesos(gan);e.style.color=gan>0?'#2BD98F':'#C5D2D8';}
+ if(!document.getElementById('rVentas'))return;var rep=0,cant=0;if(gan>0&&c>0){Object.keys(S.usuarios).forEach(function(k){planesDe(S.usuarios[k],['activo']).forEach(function(p){rep+=gan*plan(p.v).pct/100*p.ars/c;cant++;});});}
+ var pv=document.getElementById('rPrev');if(pv)pv.textContent=gan>0?'Se reparten '+money(rep)+' entre '+cant+(cant===1?' inversión activa':' inversiones activas')+'. El negocio conserva '+money(gan-rep)+'.':(v||g?'Sin ganancia: no hay reparto. Igual se publica el resultado.':'Cargá ingresos y gastos para ver cuánto se reparte.');}
+function publicar(o){var gan=o.ventas-o.gastos;var r={id:nuevoId(),tipo:o.tipo,fecha:o.fecha,titulo:o.titulo,texto:o.texto,link:o.link,ventas:o.ventas,gastos:o.gastos,ganancia:gan,capital:o.capital,repartido:0};
+ Object.keys(S.usuarios).forEach(function(k){var u=S.usuarios[k];if(u.estado!=='aprobada'&&u.estado!=='suspendida')return;var tot=0;
+  if(o.tipo==='resultado'){planesDe(u,['activo']).forEach(function(p){var pl=plan(p.v);var m=gan>0?r2(gan*pl.pct/100*p.ars/o.capital):0;if(m>0){mov(u,{tipo:'ingreso',titulo:'Ganancia · Plan V'+pl.v,detalle:'Resultado del '+fechaCorta(o.fecha),monto:m,estado:'aprobado',reporteId:r.id});tot+=m;}});}
+  if(tot>0){r.repartido+=tot;notificar(u,'in','Ingreso acreditado','+'+money(tot)+' por el resultado del '+fechaCorta(o.fecha)+'. Ya está en tu saldo.');}
+  else notificar(u,'info',o.tipo==='resultado'?'Nuevo resultado publicado':'Novedad de Veritup',o.titulo);});
+ r.repartido=r2(r.repartido);S.reportes.push(r);S.reportes.sort(function(a,b){return a.fecha<b.fecha?-1:(a.fecha>b.fecha?1:0);});guardar();return r;}
+function resolver(k,id,aprobar){var u=S.usuarios[k];if(!u)return;var m=(u.movs||[]).filter(function(x){return x.id===id;})[0];if(!m||m.estado!=='espera')return;
+ var p=m.planId?(u.planes||[]).filter(function(x){return x.id===m.planId;})[0]:null;
+ if(m.tipo==='compra'){if(aprobar){m.estado='aprobado';m.nota='';if(p){p.estado='activo';p.desde=hoyAR();}notificar(u,'ok','Plan activado','Validamos tu pago. Tu Plan V'+(p?p.v:'')+' ya participa de las ganancias.');}
+  else{m.estado='denegado';m.nota='No pudimos validar el comprobante. Si pagaste, escribinos a soporte.';if(p)p.estado='rechazado';notificar(u,'no','Pago rechazado','No pudimos validar el comprobante del Plan V'+(p?p.v:'')+'.');}}
+ if(m.tipo==='retiro'){if(aprobar){m.estado='aprobado';m.nota='Transferencia enviada: '+money(m.neto!=null?m.neto:m.monto)+(m.comision?' (comisión '+money(m.comision)+')':'')+'.';notificar(u,'out','Retiro aprobado','Enviamos '+money(m.neto!=null?m.neto:m.monto)+' a tu cuenta '+m.detalle.replace(/^A /,'')+'.');}
+  else{m.estado='denegado';m.nota='Los datos de la cuenta no coinciden con el titular. El monto volvió a tu saldo.';notificar(u,'no','Retiro rechazado','Revisá tu cuenta de destino. '+money(m.monto)+' volvieron a tu saldo.');}}
+ if(m.tipo==='rescate'){if(aprobar){m.estado='aprobado';m.nota='Capital transferido.';if(p)p.estado='finalizado';notificar(u,'out','Capital devuelto','Transferimos '+money(m.monto)+' del Plan V'+(p?p.v:'')+' a tu cuenta.');}
+  else{m.estado='denegado';m.nota='Revisá tu cuenta de destino y volvé a pedirlo.';if(p)p.estado='activo';notificar(u,'no','Devolución rechazada','No pudimos transferir tu capital. Revisá tu cuenta de destino.');}}
+ guardar();}
 
 /* ---------- router ---------- */
-function render(){var h=location.hash.replace(/^#/,'')||'';var u=yo();var partes=h.split('/');var r=partes[0].split('?')[0];
- var html;if(r==='bienvenida'||(!u&&r!=='acceso'&&!/ref=/.test(location.hash))){html=vLanding();}else if(!u){html=vAcceso();}else{
-  switch(r){case 'planes':html=vPlanes();break;case 'pagar':html=vPagar(+partes[1]);break;case 'referidos':html=vReferidos();break;case 'retiro':html=vRetiro();break;case 'perfil':html=vPerfil();break;case 'movimientos':html=vMovs();break;case 'descargar':html=vDescargar();break;default:html=vInicio();}}
- document.getElementById('app').innerHTML='<div class="demo">VERSIÓN DE PRUEBA '+VERSION+' · montos ficticios</div>'+html;
+function render(){var u=yo();var partes=(location.hash.replace(/^#/,'')||'').split('/');var r=partes[0].split('?')[0];
+ var html;if(r==='equipo'){html=vAdmin();}else if(r==='noticias'&&!u){html=vNoticias();}else if(r==='bienvenida'||(!u&&r!=='acceso'&&!/ref=/.test(location.hash))){html=vLanding();}else if(!u){html=vAcceso();}else{
+  switch(r){case 'planes':html=vPlanes();break;case 'pagar':html=vPagar(+partes[1]);break;case 'noticias':case 'reportes':html=vNoticias();break;case 'referidos':html=vReferidos();break;case 'retiro':html=vRetiro();break;case 'perfil':html=vPerfil();break;case 'movimientos':html=vMovs();break;case 'notificaciones':html=vNotifs();break;case 'descargar':html=vDescargar();break;default:html=vInicio();}}
+ document.body.classList.toggle('equipo',r==='equipo');document.getElementById('app').innerHTML='<div class="demo">VERSIÓN DE PRUEBA · montos ficticios</div>'+html;dibujarCaptcha();if(S.sesion){S.actividad=Date.now();try{localStorage.setItem(CLAVE,JSON.stringify(S));}catch(e){}}
  var p=document.getElementById('pais');if(p&&ui.pais)p.value=ui.pais;
- if(window.__post)window.__post();
-}
-window.addEventListener('hashchange',function(){ui.abierto=-1;ui.archivo=null;ui.confirmarSalir=false;ui.perfilAbierto='';render();window.scrollTo(0,0);});
+ if(window.__post)window.__post();}
+window.addEventListener('hashchange',function(){ui.captcha='';ui.abierto=-1;ui.archivo=null;ui.metodo='pasarela';ui.confirmarSalir=false;ui.perfilAbierto='';ui.confirmRescate='';render();window.scrollTo(0,0);});
 
 /* ---------- acciones ---------- */
-document.addEventListener('click',function(ev){var t=ev.target.closest('[data-a]');if(!t)return;var a=t.getAttribute('data-a'),v=t.getAttribute('data-v');var u=yo();
+var tmp={};
+function guardarCampos(){tmp={};['nombre','tel','clave','codigo','titular','cbu','banco','doc','monto'].forEach(function(id){var e=document.getElementById(id);if(e)tmp[id]=e.value;});var p=document.getElementById('pais');if(p)ui.pais=p.value;}
+function restaurarCampos(){Object.keys(tmp).forEach(function(id){var e=document.getElementById(id);if(e)e.value=tmp[id];});}
+function activarPlan(v,via,estado){var u=yo(),p=plan(v);u.planes=u.planes||[];var inv={id:nuevoId(),v:v,usd:p.usd,ars:ars(p),estado:estado==='aprobado'?'activo':'pendiente',desde:hoyAR()};u.planes.push(inv);
+ mov(u,{tipo:'compra',titulo:'Plan V'+v,detalle:via,monto:inv.ars,estado:estado,planId:inv.id,nota:estado==='espera'?'Estamos validando tu comprobante.':''});
+ if(estado==='aprobado')notificar(u,'ok','Pago aprobado','Tu Plan V'+v+' está activo y ya participa de las ganancias.');else notificar(u,'info','Comprobante recibido','Estamos validando tu pago del Plan V'+v+'. Te avisamos al terminar.');
+ ui.archivo=null;ui.filtro='todo';guardar();}
+var toques={n:0,t:0};
+document.addEventListener('click',function(ev){var mk=ev.target.closest&&ev.target.closest('.marca');
+ if(mk){var now=Date.now();toques.n=(now-toques.t<1500)?toques.n+1:1;toques.t=now;if(toques.n>=5){toques.n=0;ev.preventDefault();location.hash='#equipo';return;}}
+ var t=ev.target.closest('[data-a]');if(!t)return;var a=t.getAttribute('data-a'),v=t.getAttribute('data-v');var u=yo();
  switch(a){
- case 'modo':guardarCampos();ui.modoAcceso=v;render();break;
+ case 'modo':guardarCampos();ui.modoAcceso=v;ui.recEnviado=false;ui.captcha='';S.expiro=false;render();break;
+ case 'otroCaptcha':captchaFallo();break;
  case 'irAcceso':ui.modoAcceso=v;if(location.hash==='#acceso')render();break;
  case 'ojo':guardarCampos();ui.verClave=!ui.verClave;render();restaurarCampos();break;
  case 'plan':ui.abierto=ui.abierto===+v?-1:+v;render();break;
  case 'metodo':ui.metodo=v;render();break;
  case 'copiarDato':copiar(CUENTA_NEGOCIO[+v][1]);break;
- case 'pagarPasarela':contratar(+v,'Pasarela de pagos','aprobado');toast('Pago simulado: plan activo');location.hash='#inicio';break;
+ case 'pagarPasarela':activarPlan(+v,'Pasarela de pagos','aprobado');toast('Pago simulado: plan activo');location.hash='#inicio';break;
  case 'ejemploComp':ui.archivo={nombre:'comprobante-ejemplo.png',tam:'84 KB',url:compEjemplo()};render();break;
- case 'enviarComp':if(!ui.archivo)return;contratar(+v,'Transferencia · comprobante enviado','espera');toast('Recibimos tu comprobante');location.hash='#movimientos';break;
+ case 'enviarComp':if(!ui.archivo)return;activarPlan(+v,'Transferencia · comprobante enviado','espera');toast('Recibimos tu comprobante');location.hash='#movimientos';break;
  case 'copiarLink':copiar('https://veritup.com/r/'+(u.alias||''));break;
  case 'whatsapp':location.href='https://wa.me/?text='+encodeURIComponent('Sumate a Veritup con mi link: https://veritup.com/r/'+(u.alias||''));break;
  case 'compartir':if(navigator.share){navigator.share({title:'Veritup',url:'https://veritup.com/r/'+(u.alias||'')}).catch(function(){});}else{copiar('https://veritup.com/r/'+(u.alias||''));}break;
- case 'retOpc':guardarCampos();ui.retOpc=+v;render();restaurarCampos();break;
- case 'demoDia':u.diasSim=(u.diasSim||0)+1;acreditar(u);guardar();render();toast('Nuevo día: '+fechaCorta(hoyAR(u)));break;
+ case 'pctRet':var m=document.getElementById('monto');if(m){var val=r2(saldo(u)*(+v)/100);m.value=val.toFixed(2).replace('.',',');actualizarDesglose();}break;
+ case 'pedirRescate':guardarCampos();ui.confirmRescate=v;render();restaurarCampos();break;
+ case 'noRescate':guardarCampos();ui.confirmRescate='';render();restaurarCampos();break;
+ case 'siRescate':var pl=(u.planes||[]).filter(function(x){return x.id===v;})[0];if(!pl)break;
+  if(!u.cuenta){ui.confirmRescate='';render();var er=document.getElementById('err');if(er)er.textContent='Para pedir la devolución, primero cargá tu cuenta de destino y hacé un retiro, o escribí tus datos y tocá "Solicitar retiro".';toast('Cargá tu cuenta de destino');break;}
+  pl.estado='rescate';mov(u,{tipo:'rescate',titulo:'Devolución de capital · Plan V'+pl.v,detalle:'A '+u.cuenta.banco+' · CBU …'+u.cuenta.cbu.slice(-4),monto:pl.ars,estado:'espera',planId:pl.id,nota:'Llega en hasta 7 días.'});
+  notificar(u,'info','Devolución solicitada','Pediste la devolución de '+money(pl.ars)+' del Plan V'+pl.v+'. Llega en hasta 7 días.');ui.confirmRescate='';guardar();render();toast('Devolución solicitada');break;
  case 'perfil':ui.perfilAbierto=ui.perfilAbierto===v?'':v;render();break;
  case 'pedirSalir':ui.confirmarSalir=true;render();break;
  case 'noSalir':ui.confirmarSalir=false;render();break;
- case 'salir':S.sesion=null;guardar();ui.confirmarSalir=false;ui.modoAcceso='entrar';location.hash='';render();break;
+ case 'salir':S.sesion=null;guardar();ui.confirmarSalir=false;ui.modoAcceso='entrar';location.hash='#bienvenida';render();break;
  case 'filtro':ui.filtro=v;render();break;
- case 'demoAprobar':var mv=(u.movs||[]).filter(function(x){return x.id===v;})[0];if(mv){mv.estado='aprobado';mv.nota='';if(mv.tipo==='compra'&&mv.plan){u.plan=Math.max(u.plan||0,mv.plan);if(!u.desde)u.desde=hoyAR(u);}guardar();render();toast('Aprobado (simulado)');}break;
  case 'so':ui.so=v;render();break;
  case 'copiarWeb':copiar('https://veritup.com');break;
+ case 'adminTab':ui.adminTab=v;render();window.scrollTo(0,0);break;
+ case 'pubTipo':ui.pubTipo=v;render();break;
+ case 'salirAdmin':salirEquipo();render();toast('Sesión del equipo cerrada');break;
+ case 'abrirCuenta':ui.adCuenta=v;ui.adConfirm='';ui.adClaveTemp='';render();window.scrollTo(0,0);break;
+ case 'adFiltro':ui.adFiltro=v;render();break;
+ case 'adConfirm':ui.adConfirm=v;render();break;
+ case 'suspenderCuenta':var su2=S.usuarios[v];if(su2){su2.estado='suspendida';notificar(su2,'no','Cuenta suspendida','Tus inversiones siguen activas. Escribinos a soporte para más información.');S.registro.push({nombre:su2.nombre,detalle:'Cuenta suspendida por el equipo',ts:Date.now()});ui.adConfirm='';guardar();render();toast('Cuenta suspendida');}break;
+ case 'eliminarCuenta':var du=S.usuarios[v];if(du&&!(capital(du)>0)&&!(saldo(du)>0)){S.registro.push({nombre:du.nombre,detalle:'Cuenta eliminada por el equipo',ts:Date.now()});delete S.usuarios[v];if(S.sesion===v)S.sesion=null;ui.adCuenta='';ui.adConfirm='';guardar();render();toast('Cuenta eliminada');}break;
+ case 'claveTemp':var tu=S.usuarios[v];if(tu){var ra=new Uint32Array(2);crypto.getRandomValues(ra);var tmpc='Vt-'+(ra[0]%900000+100000)+'-'+CAP_CH[ra[1]%CAP_CH.length]+CAP_CH[(ra[1]>>8)%CAP_CH.length];nuevaClave(tmpc).then(function(nc){tu.sal=nc.sal;tu.clave=nc.clave;guardar();});ui.adClaveTemp=tmpc;notificar(tu,'info','Contraseña restablecida','El equipo te generó una contraseña temporal. Cambiala desde tu perfil.');S.registro.push({nombre:tu.nombre,detalle:'Contraseña temporal generada por el equipo',ts:Date.now()});guardar();render();}break;
+ case 'aprobarCuenta':case 'rechazarCuenta':var cu=S.usuarios[v];if(cu){var okc=a==='aprobarCuenta';var eraSusp=cu.estado==='suspendida';cu.estado=okc?'aprobada':'rechazada';ui.adConfirm='';
+  notificar(cu,okc?'ok':'no',okc?(eraSusp?'Cuenta reactivada':'Cuenta verificada'):'No pudimos verificar tu cuenta',okc?'¡Listo! Ya podés invertir y retirar.':'Escribinos a soporte para revisarla.');guardar();render();toast(okc?'Cuenta verificada':'Cuenta rechazada');}break;
+ case 'aprobarClave':case 'rechazarClave':var sq=S.solicitudes.filter(function(x){return x.id===v;})[0];if(sq&&sq.estado==='espera'){var okq=a==='aprobarClave';var su=S.usuarios[sq.key];sq.estado=okq?'aprobado':'denegado';
+  if(su){if(okq){su.sal=sq.sal;su.clave=sq.nueva;S.registro.push({nombre:su.nombre,detalle:'Contraseña restablecida por el equipo',ts:Date.now()});}notificar(su,okq?'ok':'no',okq?'Contraseña restablecida':'Solicitud de contraseña rechazada',okq?'Ya podés entrar con tu nueva contraseña.':'No pudimos verificar tu identidad. Escribinos a soporte.');}
+  guardar();render();toast(okq?'Contraseña aprobada':'Solicitud rechazada');}break;
+ case 'aprobar':case 'rechazar':var q=v.split('|');resolver(q[0],q[1],a==='aprobar');render();toast(a==='aprobar'?'Aprobado':'Rechazado');break;
  }
 });
-var tmp={};
-function guardarCampos(){tmp={};['nombre','tel','clave','codigo','titular','cbu','banco','doc'].forEach(function(id){var e=document.getElementById(id);if(e)tmp[id]=e.value;});var p=document.getElementById('pais');if(p)ui.pais=p.value;}
-function restaurarCampos(){Object.keys(tmp).forEach(function(id){var e=document.getElementById(id);if(e)e.value=tmp[id];});}
-
-function nuevoId(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
-function contratar(n,detalle,estado){var u=yo(),p=PLANES[n-1];u.movs=u.movs||[];
- u.movs.push({id:nuevoId(),tipo:'compra',titulo:'Plan '+p.rol,detalle:detalle,monto:p.precio,estado:estado,fecha:hoyTxt(u),ts:ahora(u).getTime(),plan:n,nota:estado==='espera'?'Estamos validando tu comprobante.':''});
- if(estado==='aprobado'){u.plan=Math.max(u.plan||0,n);if(!u.desde)u.desde=hoyAR(u);}ui.archivo=null;ui.filtro='todo';guardar();}
-
 document.addEventListener('input',function(ev){var t=ev.target;
- if(t.id==='alias'){var v=t.value.toLowerCase().replace(/[^a-z0-9-]/g,'').slice(0,24);if(v!==t.value)t.value=v;var u=yo();u.alias=v;guardar();var x=document.getElementById('aliasVista');if(x)x.textContent=v;}
- if(t.id==='cbu'||t.id==='doc'||t.id==='tel'){var d=t.value.replace(/\D/g,'');if(d!==t.value)t.value=d;}
+ if(t.id==='adBusca'){ui.adBusca=t.value;var pos=t.selectionStart;render();var nb=document.getElementById('adBusca');if(nb){nb.focus();try{nb.setSelectionRange(pos,pos);}catch(e){}}return;}
+ if(t.id==='comis'){var cm2=t.value.replace(/[^\d,.]/g,'');if(cm2!==t.value)t.value=cm2;}
+ if(t.id==='cbu'||t.id==='doc'||t.id==='tel'||t.id==='rVentas'||t.id==='rGastos'||t.id==='rCap'||t.id==='cotiz'){var d=t.value.replace(/\D/g,'');if(d!==t.value)t.value=d;}
+ if(t.id==='monto'){var d2=t.value.replace(/[^\d,]/g,'');if(d2!==t.value)t.value=d2;actualizarDesglose();}
+ if(t.id==='capIn'){var cv=t.value.toUpperCase().replace(/[^A-Z0-9]/g,'');if(cv!==t.value)t.value=cv;}
  if(t.id==='cbu'){var c=document.getElementById('cbuCont');if(c){c.textContent=t.value.length+'/22';c.style.color=t.value.length===22?'#2BD98F':'#8FA3AE';}}
+ if(t.id==='rVentas'||t.id==='rGastos'||t.id==='rCap')previewReporte();
 });
 document.addEventListener('change',function(ev){var t=ev.target;
  if(t.id==='pais'){ui.pais=t.value;var tel=document.getElementById('tel');if(tel)tel.placeholder=t.value==='54'?'11 2345 6789':'981 123 456';}
  if(t.id==='comp'&&t.files&&t.files[0]){var f=t.files[0];var img=/^image\//.test(f.type);var tam=f.size>1048576?(f.size/1048576).toFixed(1)+' MB':Math.max(1,Math.round(f.size/1024))+' KB';
   if(img){var r=new FileReader();r.onload=function(){ui.archivo={nombre:f.name,tam:tam,url:r.result};render();};r.readAsDataURL(f);}else{ui.archivo={nombre:f.name,tam:tam,url:''};render();}}
 });
+function aliasUnico(nombre){var b=nombre.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'').slice(0,20)||'usuario';
+ var usados={};Object.keys(S.usuarios).forEach(function(k){usados[S.usuarios[k].alias]=1;});if(!usados[b])return b;var n=2;while(usados[b+n])n++;return b+n;}
 document.addEventListener('submit',function(ev){ev.preventDefault();var f=ev.target;var err=document.getElementById('err');function E(m){if(err)err.textContent=m;}
  if(f.id==='fAcceso'){var tel=(document.getElementById('tel').value||'').replace(/\D/g,''),pais=document.getElementById('pais').value,clave=document.getElementById('clave').value;var key=pais+tel;
   if(ui.modoAcceso==='crear'){var nombre=(document.getElementById('nombre').value||'').trim().replace(/\s+/g,' ');var cod=(document.getElementById('codigo').value||'').trim().toLowerCase();
    if(nombre.split(' ').length<2)return E('Escribí tu nombre y apellido.');
    if(tel.length<8)return E('Revisá el número de celular.');
-   if(clave.length<8)return E('La contraseña debe tener al menos 8 caracteres.');
+   if(!claveValida(clave))return E('La contraseña debe tener al menos 8 caracteres, con letras y números.');
+   if(!captchaOk()){captchaFallo();return E('El código de verificación no coincide. Probá con el nuevo.');}
    if(S.usuarios[key])return E('Ese número ya tiene una cuenta. Tocá "Entrar".');
-   var alias=aliasUnico(nombre);
-   S.usuarios[key]={nombre:nombre,tel:tel,pais:pais,clave:hash(clave),alta:new Date().toLocaleDateString('es-AR',{day:'numeric',month:'long',year:'numeric'}),plan:0,alias:alias,invitadoPor:cod,movs:[]};
-   S.sesion=key;guardar();location.hash='#inicio';render();toast('¡Bienvenido a Veritup!');
-  }else{var us=S.usuarios[key];if(!us||us.clave!==hash(clave))return E('Número o contraseña incorrectos.');S.sesion=key;guardar();location.hash='#inicio';render();}
+   var inv=null;if(cod){Object.keys(S.usuarios).forEach(function(k){if(S.usuarios[k].alias===cod)inv=S.usuarios[k];});}
+   var libre=ocupar(f,'Creando tu cuenta…');
+   nuevaClave(clave).then(function(nc){
+    var u={estado:'pendiente',nombre:nombre,tel:tel,pais:pais,sal:nc.sal,clave:nc.clave,alta:new Date().toLocaleDateString('es-AR',{day:'numeric',month:'long',year:'numeric',timeZone:TZ}),alias:aliasUnico(nombre),invitadoPor:inv?cod:'',planes:[],movs:[],notifs:[]};
+    notificar(u,'info','¡Bienvenido a Veritup!','Tu cuenta está en verificación. Te avisamos cuando puedas invertir.');
+    if(inv)notificar(inv,'info','Se sumó alguien con tu link',primerNombre(u)+' creó su cuenta con tu link. Los dos reciben [beneficio].');
+    S.usuarios[key]=u;S.sesion=key;S.refPendiente='';ui.captcha='';guardar();location.hash='#inicio';render();toast('¡Bienvenido a Veritup!');
+   }).catch(function(){libre();E('No pudimos crear la cuenta. Intentá de nuevo.');});
+  }else{var bl=bloqueoLogin(key);if(bl)return E('Por seguridad, este número está bloqueado '+bl+' min por intentos fallidos.');
+   if(ui.fallos>=3&&document.getElementById('capIn')&&!captchaOk()){captchaFallo();return E('El código de verificación no coincide.');}
+   var us=S.usuarios[key];var libre2=ocupar(f);
+   verificarClave(us,clave).then(function(ok){
+    if(!ok){libre2();falloLogin(key);var mostrar=ui.fallos>=3&&!document.getElementById('capIn');if(mostrar){guardarCampos();render();restaurarCampos();err=document.getElementById('err');}else if(document.getElementById('capIn'))captchaFallo();
+     var b2=bloqueoLogin(key);return E(b2?'Demasiados intentos. Este número quedó bloqueado '+b2+' min.':'Número o contraseña incorrectos.');}
+    var fin=function(){if(S.bloqueos)delete S.bloqueos[key];ui.fallos=0;ui.captcha='';S.expiro=false;S.sesion=key;guardar();location.hash='#inicio';render();};
+    if(!us.sal){nuevaClave(clave).then(function(nc){us.sal=nc.sal;us.clave=nc.clave;fin();});}else fin();
+   });}
  }
- if(f.id==='fRetiro'){var u=yo(),p=plan(u),k=cuentas(u);var o=opcionesRetiro(k).filter(function(x){return x.id===ui.retOpc&&x.ok;})[0];
+ if(f.id==='fRetiro'){var u=yo();var sd=saldo(u);var dsg;var monto=r2(parseFloat((document.getElementById('monto').value||'').replace(',','.'))||0);
   var c={titular:document.getElementById('titular').value.trim().replace(/\s+/g,' '),cbu:document.getElementById('cbu').value,banco:document.getElementById('banco').value.trim(),doc:document.getElementById('doc').value};
-  if(k.yaRetiro)return E('Ya hiciste tu retiro de hoy.');
-  if(!o)return E('Elegí un monto para retirar.');
+  if(u.estado!=='aprobada')return E('Tu cuenta tiene que estar verificada para retirar.');
+  if(!(monto>0))return E('Escribí cuánto querés retirar.');
+  if(monto>sd+0.001)return E('No podés retirar más de tu saldo disponible ('+money(sd)+').');
   if(c.titular.split(' ').length<2)return E('Escribí el nombre y apellido del titular.');
   if(c.cbu.length!==22)return E('El CBU/CVU tiene que tener 22 números.');
   if(!c.banco)return E('Escribí el banco o la billetera.');
   if(c.doc.length<7)return E('Revisá tu CUIL, CUIT o DNI.');
-  u.cuenta=c;var coincide=c.titular.toLowerCase()===u.nombre.toLowerCase();
-  u.movs=u.movs||[];u.movs.push({id:nuevoId(),tipo:'retiro',titulo:o.id===5?'Retiro semanal 100%':'Retiro '+o.titulo+' (70% × '+o.id+')',detalle:'A '+c.banco+' · CBU …'+c.cbu.slice(-4),monto:o.monto,estado:coincide?'espera':'denegado',fecha:hoyTxt(u),ts:ahora(u).getTime(),dia:k.hoy,nota:coincide?'Habitualmente se acredita '+p.vel+'. Plazo máximo: 24 h.':'Los datos de la cuenta no coinciden con el titular. El monto volvió a tu saldo.'});
-  ui.retOpc=0;ui.filtro='todo';guardar();toast(coincide?'Retiro solicitado':'Retiro denegado: revisá los datos');location.hash='#movimientos';
+  dsg=desglose(monto);u.cuenta=c;mov(u,{tipo:'retiro',titulo:'Retiro de ganancias',detalle:'A '+c.banco+' · CBU …'+c.cbu.slice(-4),monto:monto,comision:dsg.comision,neto:dsg.neto,estado:'espera',nota:'Recibís '+money(dsg.neto)+' (comisión '+comisionPct()+'%: '+money(dsg.comision)+'). Se acredita en hasta 24 h hábiles.'});
+  notificar(u,'out','Retiro solicitado','Se descontaron '+money(monto)+' de tu saldo. Vas a recibir '+money(dsg.neto)+' (comisión '+money(dsg.comision)+').');
+  ui.filtro='todo';guardar();toast('Retiro solicitado');location.hash='#movimientos';
  }
  if(f.id==='fClave'){var u2=yo();var a1=document.getElementById('c1').value,a2=document.getElementById('c2').value,a3=document.getElementById('c3').value;
-  if(hash(a1)!==u2.clave)return E('La contraseña actual no es correcta.');if(a2.length<8)return E('La nueva contraseña debe tener al menos 8 caracteres.');if(a2!==a3)return E('Las contraseñas nuevas no coinciden.');
-  u2.clave=hash(a2);guardar();ui.perfilAbierto='';render();toast('Contraseña actualizada');}
+  if(!claveValida(a2))return E('La nueva contraseña debe tener al menos 8 caracteres, con letras y números.');if(a2!==a3)return E('Las contraseñas nuevas no coinciden.');if(a1===a2)return E('La nueva contraseña tiene que ser distinta de la actual.');
+  var libre3=ocupar(f);verificarClave(u2,a1).then(function(ok){if(!ok){libre3();return E('La contraseña actual no es correcta.');}return nuevaClave(a2).then(function(nc){
+  u2.sal=nc.sal;u2.clave=nc.clave;S.registro.push({nombre:u2.nombre,detalle:'Cambio desde el perfil',ts:Date.now()});notificar(u2,'info','Contraseña actualizada','Si no fuiste vos, escribinos a soporte.');guardar();ui.perfilAbierto='';render();toast('Contraseña actualizada');});});}
+ if(f.id==='fReporte'){var res=ui.pubTipo==='resultado';var ti=document.getElementById('rTitulo').value.trim(),tx=document.getElementById('rNota').value.trim();
+  if(!ti)return E('Escribí un título.');
+  if(!res){if(!tx)return E('Escribí el texto de la novedad.');publicar({tipo:'aviso',fecha:hoyAR(),titulo:ti,texto:tx,link:'',ventas:0,gastos:0,capital:0});render();toast('Novedad publicada');return;}
+  var fe=document.getElementById('rFecha').value,ve=+(document.getElementById('rVentas').value||0),ga=+(document.getElementById('rGastos').value||0),ca=+(document.getElementById('rCap').value||0),lk=document.getElementById('rLink').value.trim();
+  if(!fe)return E('Elegí la fecha del resultado.');if(!ve&&!ga)return E('Cargá los ingresos y los gastos.');
+  if(lk&&!linkSeguro(lk))return E('El link tiene que empezar con https://');
+  if(S.reportes.some(function(r){return r.tipo==='resultado'&&r.fecha===fe;}))return E('Ya hay un resultado publicado para esa fecha.');
+  var min=capitalNegocio();if(ca<=0)return E('Escribí el capital total invertido.');if(ca<min)return E('El capital total no puede ser menor al capital activo de los inversores ('+pesos(min)+').');
+  var rr=publicar({tipo:'resultado',fecha:fe,titulo:ti,texto:tx,link:lk,ventas:ve,gastos:ga,capital:ca});render();toast(rr.ganancia>0?'Publicado: se repartieron '+money(rr.repartido):'Resultado publicado');}
+ if(f.id==='fAdmin'){if(bloqueoEquipo())return;var us=(document.getElementById('auser').value||'').trim().toLowerCase(),pw=document.getElementById('apass').value;
+  if(!captchaOk()){captchaFallo();return E('El código de verificación no coincide.');}
+  var libreA=ocupar(f);derivar(pw,EQUIPO.sal).then(function(h){libreA();
+  if(!iguales(us,EQUIPO.usuario)|!iguales(h,EQUIPO.clave)){var n=0;try{n=(+sessionStorage.getItem('veritup_eq_int')||0)+1;sessionStorage.setItem('veritup_eq_int',String(n));if(n>=5){sessionStorage.setItem('veritup_eq_bloq',String(Date.now()+60000));sessionStorage.setItem('veritup_eq_int','0');render();return;}}catch(e){}captchaFallo();return E('Usuario o contraseña incorrectos.'+(n?' Intento '+n+' de 5.':''));}
+  try{sessionStorage.setItem('veritup_eq_int','0');}catch(e){}ui.admin=true;ui.captcha='';marcarEquipo();ui.adminTab='resumen';render();toast('Bienvenido al panel del equipo');});}
+ if(f.id==='fEditar'){var eu=S.usuarios[ui.adCuenta];if(!eu)return;var en=document.getElementById('eNombre').value.trim().replace(/\s+/g,' '),ep=document.getElementById('ePais').value,et=document.getElementById('eTel').value.replace(/\D/g,'');var ee=document.getElementById('errE');
+  if(en.split(' ').length<2){ee.textContent='Escribí nombre y apellido.';return;}if(et.length<8){ee.textContent='Revisá el número de celular.';return;}
+  var nk=ep+et;if(nk!==ui.adCuenta&&S.usuarios[nk]){ee.textContent='Ese número ya pertenece a otra cuenta.';return;}
+  var cambios=[];if(en!==eu.nombre)cambios.push('nombre');if(nk!==ui.adCuenta)cambios.push('celular');if(!cambios.length){ee.textContent='No hay cambios para guardar.';return;}
+  eu.nombre=en;eu.pais=ep;eu.tel=et;if(nk!==ui.adCuenta){S.usuarios[nk]=eu;delete S.usuarios[ui.adCuenta];S.solicitudes.forEach(function(x){if(x.key===ui.adCuenta)x.key=nk;});if(S.sesion===ui.adCuenta)S.sesion=nk;ui.adCuenta=nk;}
+  notificar(eu,'info','Datos actualizados','El equipo actualizó tu '+cambios.join(' y ')+'.');S.registro.push({nombre:en,detalle:'Datos editados por el equipo ('+cambios.join(', ')+')',ts:Date.now()});guardar();render();toast('Datos guardados');}
+ if(f.id==='fAjuste'){var au=S.usuarios[ui.adCuenta];if(!au)return;var am=r2(parseFloat((document.getElementById('ajMonto').value||'').replace(',','.'))||0),amo=document.getElementById('ajMotivo').value.trim();var ea=document.getElementById('errA');
+  if(!am){ea.textContent='Escribí un monto distinto de cero (usá "-" para descontar).';return;}if(!amo){ea.textContent='Escribí el motivo del ajuste.';return;}if(am<0&&-am>saldo(au)+0.001){ea.textContent='El descuento no puede superar el saldo ('+money(saldo(au))+').';return;}
+  mov(au,{tipo:'ajuste',titulo:'Ajuste de saldo',detalle:amo,monto:am,estado:'aprobado'});notificar(au,am>0?'in':'out',am>0?'Saldo acreditado':'Saldo descontado',(am>0?'+':'−')+money(Math.abs(am))+' · '+amo);
+  S.registro.push({nombre:au.nombre,detalle:'Ajuste de saldo '+(am>0?'+':'−')+money(Math.abs(am))+' ('+amo+')',ts:Date.now()});guardar();render();toast('Ajuste aplicado');}
+ if(f.id==='fRecuperar'){var rn=(document.getElementById('nombre').value||'').trim().replace(/\s+/g,' '),rt=(document.getElementById('tel').value||'').replace(/\D/g,''),rp=document.getElementById('pais').value,rc=document.getElementById('clave').value;
+  if(rn.split(' ').length<2)return E('Escribí tu nombre y apellido.');if(rt.length<8)return E('Revisá el número de celular.');if(!claveValida(rc))return E('La nueva contraseña debe tener al menos 8 caracteres, con letras y números.');
+  if(!captchaOk()){captchaFallo();return E('El código de verificación no coincide. Probá con el nuevo.');}
+  var rk=rp+rt;if(S.solicitudes.some(function(x){return x.key===rk&&x.estado==='espera';}))return E('Ya hay una solicitud en revisión para este número.');
+  var libreR=ocupar(f,'Enviando…');nuevaClave(rc).then(function(nc){S.solicitudes.push({id:nuevoId(),key:rk,nombre:rn,sal:nc.sal,nueva:nc.clave,ts:Date.now(),estado:'espera'});
+  if(S.usuarios[rk])notificar(S.usuarios[rk],'info','Pediste una nueva contraseña','Si no fuiste vos, escribinos a soporte.');
+  ui.captcha='';guardar();ui.recEnviado=true;render();}).catch(function(){libreR();E('No pudimos enviar la solicitud.');});}
+ if(f.id==='fComision'){var cm=parseFloat((document.getElementById('comis').value||'').replace(',','.'));if(!(cm>=0&&cm<=50)){toast('Escribí un porcentaje entre 0 y 50');return;}S.comision=r2(cm);S.registro.push({nombre:'Equipo',detalle:'Comisión de retiro: '+S.comision+'%',ts:Date.now()});guardar();render();toast('Comisión guardada');}
+ if(f.id==='fCotiz'){var cz=+(document.getElementById('cotiz').value||0);if(cz<1){toast('Escribí una cotización válida');return;}S.cotizacion=cz;guardar();render();toast('Cotización guardada');}
 });
-function aliasUnico(nombre){var b=nombre.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'').slice(0,20)||'usuario';
- var usados={};Object.keys(S.usuarios).forEach(function(k){usados[S.usuarios[k].alias]=1;});if(!usados[b])return b;
- var n=2;while(usados[b+n])n++;return b+n;}
-function hash(s){var h=5381;for(var i=0;i<s.length;i++){h=((h<<5)+h+s.charCodeAt(i))|0;}return 'h'+(h>>>0).toString(36);}
-function compEjemplo(){var c=document.createElement('canvas');c.width=600;c.height=760;var g=c.getContext('2d');g.fillStyle='#ffffff';g.fillRect(0,0,600,760);g.fillStyle='#0A1A24';g.font='bold 34px sans-serif';g.fillText('Comprobante de transferencia',40,80);g.font='22px sans-serif';g.fillStyle='#4A5B65';
- [['Fecha',new Date().toLocaleString('es-AR')],['Destinatario','[Razón social del negocio]'],['CBU/CVU','[0000000000000000000000]'],['Monto','$ 10,00'],['N.º de operación','EJEMPLO-000123']].forEach(function(r,i){g.fillStyle='#8FA3AE';g.fillText(r[0],40,170+i*100);g.fillStyle='#0A1A24';g.font='bold 26px sans-serif';g.fillText(r[1],40,205+i*100);g.font='22px sans-serif';});
+function compEjemplo(){var c=document.createElement('canvas');c.width=600;c.height=760;var g=c.getContext('2d');g.fillStyle='#ffffff';g.fillRect(0,0,600,760);g.fillStyle='#0A1A24';g.font='bold 34px sans-serif';g.fillText('Comprobante de transferencia',40,80);g.font='22px sans-serif';
+ [['Fecha',new Date().toLocaleString('es-AR')],['Destinatario','[Razón social del negocio]'],['CBU/CVU','[0000000000000000000000]'],['Monto','$ 16.000,00'],['N.º de operación','EJEMPLO-000123']].forEach(function(r,i){g.fillStyle='#8FA3AE';g.fillText(r[0],40,170+i*100);g.fillStyle='#0A1A24';g.font='bold 26px sans-serif';g.fillText(r[1],40,205+i*100);g.font='22px sans-serif';});
  g.fillStyle='#F2B33D';g.fillRect(0,700,600,60);g.fillStyle='#0A1A24';g.font='bold 22px sans-serif';g.fillText('EJEMPLO · sin validez',40,738);return c.toDataURL('image/png');}
 
-var ref=(location.hash.match(/ref=([a-z0-9-]+)/)||[])[1];if(ref){S.refPendiente=ref;guardar();}
-
-/* ===== Prueba de animaciones ===== */
+/* ---------- animaciones ---------- */
 (function(){
  var SEL='.btn,.tarjeta,.opcion,.vinculo,.drop,.plan>button,.redondo';
  function brillo(e){var t=e.target.closest&&e.target.closest(SEL);if(!t)return null;var r=t.getBoundingClientRect();t.style.setProperty('--mx',(e.clientX-r.left)+'px');t.style.setProperty('--my',(e.clientY-r.top)+'px');return t;}
@@ -542,14 +879,19 @@ var ref=(location.hash.match(/ref=([a-z0-9-]+)/)||[])[1];if(ref){S.refPendiente=
  window.__post=function(){
   var r=(location.hash||'').split('?')[0];
   if(r!==ruta){ruta=r;var p=document.querySelector('.pant');if(p){p.classList.add('entra');setTimeout(function(){p.classList.remove('entra');},900);}}
-  if(ultimo){var sel='[data-a="'+ultimo.a+'"]'+(ultimo.v!=null?'[data-v="'+ultimo.v+'"]':'');var el=document.querySelector(sel);
+  if(ultimo){var sel='[data-a="'+ultimo.a+'"]'+(ultimo.v!=null?'[data-v="'+ultimo.v+'"]':'');var el=null;try{el=document.querySelector(sel);}catch(x){}
    if(el){var cl=el.classList.contains('on')||el.getAttribute('aria-pressed')==='true'||el.getAttribute('aria-expanded')==='true'?'brillo':'pop';el.classList.add(cl);setTimeout(function(){el.classList.remove(cl);},1200);
     var art=el.closest('.plan');if(art&&el.getAttribute('aria-expanded')==='true'){art.classList.add('pop');setTimeout(function(){art.classList.remove('pop');},700);}}
    ultimo=null;}
  };
 })();
+
+setInterval(function(){if(S.sesion&&S.actividad&&Date.now()-S.actividad>INACTIVIDAD){S.sesion=null;S.expiro=true;ui.modoAcceso='entrar';guardar();location.hash='#acceso';render();}},60000);
+
+var ref=(location.hash.match(/ref=([a-z0-9-]+)/)||[])[1];if(ref){S.refPendiente=ref;guardar();}
 render();
 })();
+
 </script>
 </body>
 </html>
