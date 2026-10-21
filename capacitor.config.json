@@ -1,6 +1,6 @@
 {
-  "appId": "com.veritup.demo",
-  "appName": "Veritup Demo",
+  "appId": "com.veritup",
+  "appName": "Veritup",
   "webDir": "www",
   "android": {
     "backgroundColor": "#0A1A24"
