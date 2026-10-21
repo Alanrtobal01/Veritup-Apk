@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+# Versión de la app: cambiala acá y cambia el nombre del release, del APK y del link
+env:
+  VERSION: 1.2.1
+
 jobs:
   apk:
     runs-on: ubuntu-24.04
@@ -29,31 +33,30 @@ jobs:
       - name: Crear proyecto Android
         run: |
           npx cap add android
+          npx cap sync android
 
-      - name: Poner ícono de la app
-        run: npx --yes @capacitor/assets generate --android --iconBackgroundColor "#0A1A24" --iconBackgroundColorDark "#0A1A24" --splashBackgroundColor "#0A1A24" --splashBackgroundColorDark "#0A1A24"
-
-      - name: Copiar la web a la app
-        run: npx cap sync android
+      - name: Aplicar ícono y splash de Veritup
+        run: npx @capacitor/assets generate --android --iconBackgroundColor '#0A1A24' --splashBackgroundColor '#0A1A24' --splashBackgroundColorDark '#0A1A24'
 
       - name: Compilar APK
         run: |
           cd android
+          sed -i "s/versionName \".*\"/versionName \"${VERSION}\"/" app/build.gradle
           chmod +x gradlew
           ./gradlew assembleDebug
-          cp app/build/outputs/apk/debug/app-debug.apk ../veritup-demo.apk
+          cp app/build/outputs/apk/debug/app-debug.apk ../veritup-${VERSION}.apk
 
       - name: Guardar APK en el resumen de la ejecución
         uses: actions/upload-artifact@v4
         with:
-          name: veritup-demo-apk
-          path: veritup-demo.apk
+          name: veritup-${{ env.VERSION }}-apk
+          path: veritup-${{ env.VERSION }}.apk
 
       - name: Publicar en Releases (link fijo de descarga)
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: demo
-          name: Veritup Demo (versión de prueba)
+          tag_name: v${{ env.VERSION }}
+          name: Veritup ${{ env.VERSION }}
           body: Maqueta de demostración. Montos ficticios, pagos simulados.
-          files: veritup-demo.apk
+          files: veritup-${{ env.VERSION }}.apk
           make_latest: true
